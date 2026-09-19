@@ -1,0 +1,202 @@
+```json
+{
+  "type": "finish",
+  "output": "The incident analysis reveals a classic cascading failure pattern triggered by an external dependency rate-limiting event and amplified by an aggressive retry policy. The primary cause is identified as dependency B imposing HTTP 429 rate limits on 31% of outbound requests (E05), which occurred without any internal system changes (E10). This external constraint caused tasks to stall, leading to queue depth escalation from 120 to 1,850 (E01-E02) and median latency increasing nearly 8x from 1.8s to 14.2s (E03).\n\nThe retry policy acted as the primary amplifier. With exponential backoff capped at only three retries, the system generated a 420% increase in retry volume (E06), effectively multiplying the load on an already rate-limited dependency. This retry storm consumed worker capacity without making meaningful progress, as retried requests were likely to receive additional 429 responses.\n\nAdding workers from 8 to 16 produced only a 6% queue reduction over ten minutes (E07), demonstrating that the bottleneck was not worker capacity but rather the external dependency constraint. Workers were idle waiting for rate-limited responses, not blocked by CPU or memory limits, as confirmed by moderate resource utilization (CPU 43%, memory 51%, disk 22% at E04). This confirms the system was I/O-bound on dependency B, not compute-bound.\n\nThe decisive evidence comes from two interventions: disabling retries for dependency B reduced queue depth by 38% in six minutes (E08), proving retries were amplifying the problem; and when dependency B raised its rate limits, HTTP 429 responses dropped below 1% and the queue recovered to normal levels within eleven minutes (E09). This causal chain confirms dependency B rate limiting as the root cause.\n\nAn alternative hypothesis—that an internal performance degradation caused the queue buildup—is contradicted by E10 (no deploy, schema change, restart, or network change) and E04 (normal resource utilization). Another alternative—that worker count was insufficient—is contradicted by E07, which shows doubling workers had negligible effect.\n\nThe retry policy requires redesign: exponential backoff should incorporate jitter, higher maximum retry counts with circuit breaker patterns, and rate-limit-aware backoff that respects 429 Retry-After headers. A staged remediation plan should prioritize implementing circuit breakers, adding retry budget limits, improving observability for dependency health, and establishing rate-limit change notification procedures with dependency B operators.",
+  "data": {
+    "executive_summary": "A queue depth incident occurred between 09:00 and 09:46, escalating from 120 to 1,850 tasks before recovery. The primary cause was dependency B returning HTTP 429 rate-limit responses for 31% of requests, beginning around 09:15. This external constraint caused task processing to stall, as workers waited for responses that were being throttled. The retry policy significantly amplified the incident: exponential backoff with a maximum of three retries generated a 420% increase in retry volume, creating a retry storm that consumed worker capacity without making progress. Doubling worker count from 8 to 16 had minimal impact (6% reduction), confirming the bottleneck was external, not internal. Resource utilization remained moderate throughout, ruling out compute constraints. Disabling retries for dependency B reduced queue depth by 38%, and when dependency B raised rate limits, full recovery occurred within eleven minutes. No internal changes preceded the incident.",
+    "findings": [
+      {
+        "id": "F01",
+        "severity": "critical",
+        "claim": "Dependency B HTTP 429 rate limiting was the primary trigger of the queue incident, affecting 31% of outbound requests.",
+        "evidence_refs": ["E05", "E09", "E10"],
+        "confidence": 95
+      },
+      {
+        "id": "F02",
+        "severity": "high",
+        "claim": "The retry policy amplified the incident by generating a 420% increase in retry volume, creating a retry storm that consumed worker capacity.",
+        "evidence_refs": ["E06", "E08"],
+        "confidence": 90
+      },
+      {
+        "id": "F03",
+        "severity": "medium",
+        "claim": "Adding workers had limited effect because the bottleneck was external dependency latency, not internal compute capacity.",
+        "evidence_refs": ["E04", "E07"],
+        "confidence": 92
+      },
+      {
+        "id": "F04",
+        "severity": "high",
+        "claim": "Queue depth increased 15x (120 to 1,850) and median latency increased 8x (1.8s to 14.2s) within 12 minutes, indicating rapid cascade.",
+        "evidence_refs": ["E01", "E02", "E03"],
+        "confidence": 98
+      },
+      {
+        "id": "F05",
+        "severity": "medium",
+        "claim": "Disabling retries for dependency B reduced queue depth by 38% in six minutes, confirming retries as a significant amplifier.",
+        "evidence_refs": ["E08"],
+        "confidence": 88
+      },
+      {
+        "id": "F06",
+        "severity": "low",
+        "claim": "System resources were underutilized during the incident, confirming the bottleneck was I/O-bound on dependency B.",
+        "evidence_refs": ["E04"],
+        "confidence": 85
+      },
+      {
+        "id": "F07",
+        "severity": "medium",
+        "claim": "Recovery occurred only after dependency B raised rate limits, not after any internal system adjustment.",
+        "evidence_refs": ["E09", "E10"],
+        "confidence": 93
+      },
+      {
+        "id": "F08",
+        "severity": "high",
+        "claim": "The retry policy lacks circuit breaker logic and rate-limit-aware backoff, making the system vulnerable to external throttling events.",
+        "evidence_refs": ["E05", "E06", "E08"],
+        "confidence": 87
+      }
+    ],
+    "risks": [
+      "Retry storms can amplify external dependency failures into full system outages.",
+      "Lack of circuit breaker allows continued requests to rate-limited dependencies, wasting worker capacity.",
+      "No Retry-After header handling means retries ignore server-specified backoff intervals.",
+      "Worker scaling is ineffective against I/O-bound bottlenecks caused by external dependencies.",
+      "Dependency B rate limit changes can occur without notification, creating silent degradation.",
+      "Queue depth monitoring alone may not detect retry amplification until the system is already overloaded."
+    ],
+    "uncertainties": [
+      "The exact trigger for dependency B rate limiting is unknown; it may have been triggered by the retry storm itself or an independent upstream event.",
+      "The precise timing of when HTTP 429 responses began is uncertain; E05 records it at 09:15 but the onset may have been earlier.",
+      "The impact of disabling retries on end-user experience (direct failure rate increase) was not quantified.",
+      "Whether dependency B rate limits are static, dynamic, or customer-specific is unknown.",
+      "The retry volume baseline before the 420% increase is not explicitly stated, making absolute retry counts uncertain."
+    ],
+    "recommendations": [
+      {
+        "priority": 1,
+        "action": "Implement a circuit breaker for dependency B that opens after a configurable threshold of 429 responses and halts retries until the circuit resets.",
+        "rationale": "A circuit breaker would have prevented the retry storm by stopping requests to a rate-limited dependency, preserving worker capacity for other tasks."
+      },
+      {
+        "priority": 2,
+        "action": "Add Retry-After header parsing to the retry logic so backoff intervals respect server-specified wait times.",
+        "rationale": "Respecting Retry-After headers prevents premature retries that are likely to fail again, reducing unnecessary load on the dependency."
+      },
+      {
+        "priority": 3,
+        "action": "Implement retry budget limits that cap the percentage of total request capacity consumed by retries.",
+        "rationale": "A retry budget ensures that retries cannot consume all worker capacity, preserving throughput for new requests."
+      },
+      {
+        "priority": 4,
+        "action": "Add jitter to exponential backoff to prevent synchronized retry bursts from multiple workers.",
+        "rationale": "Without jitter, workers retry simultaneously, creating periodic load spikes that can trigger or worsen rate limiting."
+      },
+      {
+        "priority": 5,
+        "action": "Establish a monitoring dashboard for dependency health metrics including 429 response rates, retry volumes, and queue depth correlation.",
+        "rationale": "Early detection of dependency degradation enables faster response before queue buildup becomes critical."
+      },
+      {
+        "priority": 6,
+        "action": "Negotiate a rate-limit change notification process with dependency B operators to receive advance warning of throttling adjustments.",
+        "rationale": "Proactive awareness of rate limit changes allows pre-emptive system tuning rather than reactive incident response."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Internal performance degradation caused queue buildup",
+        "pros": ["Would explain latency increase", "Common cause of queue incidents"],
+        "cons": ["Contradicted by E10 showing no deploy or config change", "Contradicted by E04 showing normal CPU and memory utilization", "Does not explain why disabling retries helped", "Does not explain why dependency B rate limit resolution fixed the issue"]
+      },
+      {
+        "name": "Insufficient worker count caused the bottleneck",
+        "pros": ["Queue depth was high relative to worker count", "Adding workers is a common scaling response"],
+        "cons": ["Contradicted by E07 showing doubling workers only reduced queue 6%", "Contradicted by E04 showing low resource utilization", "Does not explain why dependency B resolution was required for recovery", "Does not explain the 429 response spike"]
+      },
+      {
+        "name": "Network route change caused dependency B latency",
+        "pros": ["Network issues can cause dependency failures", "Could explain increased latency"],
+        "cons": ["Contradicted by E10 showing no network route change", "Does not explain HTTP 429 responses specifically", "Does not explain why retry disabling helped", "Rate limit raise (E09) resolved the issue, not network fix"]
+      },
+      {
+        "name": "Dependency B experienced an independent upstream failure",
+        "pros": ["Plausible explanation for rate limiting onset", "External dependencies can fail independently"],
+        "cons": ["The rate limit was raised (E09), suggesting it was a configuration change not a failure", "Does not fully explain why retry policy made it worse", "Less actionable than the confirmed rate-limit hypothesis"]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E01",
+        "source": "System metrics",
+        "observation": "At 09:00, queue depth was 120 and worker count was 8."
+      },
+      {
+        "id": "E02",
+        "source": "System metrics",
+        "observation": "At 09:10, queue depth rose to 1,850 while worker count remained 8."
+      },
+      {
+        "id": "E03",
+        "source": "System metrics",
+        "observation": "At 09:12, median task latency rose from 1.8 seconds to 14.2 seconds."
+      },
+      {
+        "id": "E04",
+        "source": "System metrics",
+        "observation": "At 09:14, CPU utilization averaged 43%, memory 51%, and disk utilization 22%."
+      },
+      {
+        "id": "E05",
+        "source": "Dependency monitoring",
+        "observation": "At 09:15, outbound dependency B began returning HTTP 429 for 31% of requests."
+      },
+      {
+        "id": "E06",
+        "source": "Retry metrics",
+        "observation": "At 09:16, retry volume increased by 420%, using exponential backoff with a maximum of three retries."
+      },
+      {
+        "id": "E07",
+        "source": "Intervention metrics",
+        "observation": "At 09:20, increasing worker count from 8 to 16 reduced queue depth only 6% over ten minutes."
+      },
+      {
+        "id": "E08",
+        "source": "Intervention metrics",
+        "observation": "At 09:26, temporarily disabling retries for dependency B caused queue depth to fall 38% in six minutes, while direct failure rate increased."
+      },
+      {
+        "id": "E09",
+        "source": "Dependency monitoring",
+        "observation": "At 09:35, dependency B rate limits were raised and HTTP 429 responses fell below 1%; queue depth then returned below 150 within eleven minutes."
+      },
+      {
+        "id": "E10",
+        "source": "Change management log",
+        "observation": "No deploy, schema change, host restart, network route change, or credential rotation occurred between 08:00 and 10:00."
+      }
+    ],
+    "edge_cases": [
+      "If dependency B rate limits are per-client, other clients may not experience the same throttling.",
+      "If the retry storm itself triggered dependency B rate limiting, the causal direction is reversed from the primary hypothesis.",
+      "Disabling retries may cause data loss or incomplete task processing for tasks that depend on dependency B.",
+      "Circuit breaker false positives could unnecessarily block healthy dependency requests.",
+      "Retry budget limits may cause starvation of legitimate retries during transient failures.",
+      "Jitter implementation must be carefully calibrated to avoid extending recovery time during genuine brief outages."
+    ],
+    "unicode_check": "Tiếng Việt: dữ liệu thử nghiệm phải được giữ nguyên dấu.",
+    "path_check": {
+      "windows": "C:\\DSH\\probe\\sample.json",
+      "posix": "/opt/dsh/probe/sample.json"
+    },
+    "literal_check": "Keep braces { }, brackets [ ], quotes \"like this\", colon :, comma , and backslash \\ inside this string."
+  }
+}
+```

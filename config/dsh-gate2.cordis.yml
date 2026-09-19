@@ -1,0 +1,45 @@
+# DSH Gate 2 three-agent composition (T2) — harness driver tree.
+#
+# ONE DSH host/context used by `scripts/dsh-gate2-smoke.mjs` to register and
+# invoke three real stock backends in the same project workspace:
+#
+#   codex         -> @deepseek-ai/dsh-subagent-codex (native Codex app-server)
+#   claude-code   -> @deepseek-ai/dsh-subagent-claude-code (native Claude Code)
+#   grok          -> @deepseek-ai/dsh-subagent-acp, providerName grok, driving
+#                    the native Grok Build ACP stdio transport
+#                    (`grok agent stdio`).
+#
+# The model-facing tools exposed in the full DSH host are `subagent_codex`,
+# `subagent_claude_code`, and `subagent_grok` (see `config/dsh-gate2.patch.yml`);
+# this tree carries the provider machinery the tool wrapper delegates to.
+#
+# Published upstream line: 0.1.0-rc.6 (dsh + subagent providers + ACP provider).
+#   https://github.com/deepseek-ai/DeepSeek-Harness
+# Source-of-truth packages:
+#   @deepseek-ai/dsh-subprocess-local -> child process service
+#   @deepseek-ai/dsh-subagent         -> subagent runtime service
+#   @deepseek-ai/dsh-subagent-codex   -> fixed `codex` provider
+#   @deepseek-ai/dsh-subagent-claude-code -> fixed `claude-code` provider
+#   @deepseek-ai/dsh-subagent-acp     -> generic ACP provider (providerName `grok`)
+
+- id: subprocess
+  name: '@deepseek-ai/dsh-subprocess-local'
+
+- id: subagent
+  name: '@deepseek-ai/dsh-subagent'
+
+- id: subagent-codex
+  name: '@deepseek-ai/dsh-subagent-codex'
+  config: {}
+
+- id: subagent-claude-code
+  name: '@deepseek-ai/dsh-subagent-claude-code'
+  config: {}
+
+- id: subagent-acp
+  name: '@deepseek-ai/dsh-subagent-acp'
+  config:
+    providerName: grok
+    command: grok
+    args: ['agent', 'stdio']
+    permission: reject

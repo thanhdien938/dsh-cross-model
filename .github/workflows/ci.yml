@@ -1,0 +1,215 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - p15-rem/**
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # The root dependency graph now requires >=22.19. Electron packaging rebuilds
+  # its own separate Desktop install tree afterward.
+  NODE_VERSION: 22.19.0
+
+jobs:
+  root-portable:
+    name: root-portable (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm run abi:check -- --require-installed root
+      - run: npm run test:portable
+      - name: Upload root summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: root-portable-${{ matrix.os }}
+          path: .test-results/*.json
+          if-no-files-found: warn
+          include-hidden-files: true
+
+  desktop-node:
+    name: desktop-node (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: 22.19.0
+            cross_tree: true
+          - os: windows-latest
+            node: 20.20.2
+            cross_tree: false
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            desktop/package-lock.json
+      # The cross-tree integration runs only where both native dependency lines
+      # have a clean Node-22 install. Windows uses the repository's Desktop Node-20 ABI.
+      - if: matrix.cross_tree
+        run: npm ci
+        working-directory: .
+      - run: npm ci
+      - run: npm run abi:check
+      - run: npm run test:ci
+      - if: matrix.cross_tree
+        run: npm run test:cross-tree
+      - if: runner.os == 'Windows'
+        run: npm run test:windows
+      - run: npm run build
+      - name: Upload Desktop summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-node-${{ matrix.os }}
+          path: .test-results/desktop-*.json
+          if-no-files-found: warn
+          include-hidden-files: true
+
+  postgres:
+    name: postgres-integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: dsh_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d dsh_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      DSH_CI_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3G1_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3G2_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3G3_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3G4_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3FINAL_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P5_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P5_R2_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P6_P0_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P13_R2_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_R22_TEST_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_P3G1_REQUIRE_POSTGRES: 1
+      DSH_P3G2_REQUIRE_POSTGRES: 1
+      DSH_P3G3_REQUIRE_POSTGRES: 1
+      DSH_P3G4_REQUIRE_POSTGRES: 1
+      DSH_P3FINAL_REQUIRE_POSTGRES: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            desktop/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix desktop
+      - name: Export disposable service container identity
+        run: |
+          echo "DSH_TEST_POSTGRES_CONTAINER_ID=${{ job.services.postgres.id }}" >> "$GITHUB_ENV"
+          echo "DSH_P3G2_CONTAINER_ID=${{ job.services.postgres.id }}" >> "$GITHUB_ENV"
+          echo "DSH_P3G3_CONTAINER_ID=${{ job.services.postgres.id }}" >> "$GITHUB_ENV"
+          echo "DSH_P3G4_CONTAINER_ID=${{ job.services.postgres.id }}" >> "$GITHUB_ENV"
+          echo "DSH_P3FINAL_CONTAINER_ID=${{ job.services.postgres.id }}" >> "$GITHUB_ENV"
+      - name: Initialize canonical disposable schema
+        run: npm run test:postgres:init
+      - name: Run known multi-process PostgreSQL diagnostic without skips
+        continue-on-error: true
+        run: npm run test:postgres:diagnostic
+      - name: Run 13 required root PostgreSQL files without skips
+        run: npm run test:postgres
+      - name: Reset canonical schema before Desktop PostgreSQL suite
+        run: npm run test:postgres:init -- --reset
+      - name: Run Desktop PostgreSQL file without skips
+        run: npm --prefix desktop run test:postgres
+      - name: Upload PostgreSQL summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgres-integration
+          path: .test-results/*postgres*.json
+          if-no-files-found: warn
+          include-hidden-files: true
+
+  windows-process:
+    name: windows-process
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm run test:windows
+      - name: Run host-timing diagnostic without gating
+        continue-on-error: true
+        run: npm run test:host-timing:diagnostic
+      - name: Upload Windows process summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-process
+          path: .test-results/root-windows-process.json
+          if-no-files-found: warn
+          include-hidden-files: true
+
+  desktop-electron-build:
+    name: desktop-electron-build (windows)
+    runs-on: windows-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.20.2
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Rebuild only this job's native tree for Electron
+        run: npm exec -- electron-builder install-app-deps
+      - name: Create unpacked package from clean isolated Electron tree
+        run: npm exec -- electron-builder --dir --publish never

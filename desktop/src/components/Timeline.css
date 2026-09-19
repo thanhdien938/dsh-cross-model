@@ -1,0 +1,214 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* UI V2.2: tighter header (was 24px all around); title reduced from a
+   large 20px display size toward the app's dominant 13-14px scale — the
+   brief's "no new giant headings" rule. */
+.timeline-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--dsh-border-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.timeline-title {
+  font-size: var(--dsh-font-size-lg);
+  font-weight: var(--dsh-font-weight-semibold);
+  color: var(--dsh-text-primary);
+  margin: 0 0 2px 0;
+}
+
+.timeline-subtitle {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+}
+
+.timeline-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* UI V2.2: a compact tab-like control (was a 999px pill) — same active/
+   hover semantics, minimal radius per the brief's Tab System guidance. */
+.timeline-filter {
+  padding: 4px 10px;
+  border: 1px solid var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+  background: var(--dsh-bg-panel);
+  color: var(--dsh-text-secondary);
+  font-size: 11px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.timeline-filter:hover {
+  border-color: var(--dsh-accent);
+  color: var(--dsh-accent);
+}
+
+.timeline-filter-active {
+  background: var(--dsh-accent);
+  color: var(--dsh-text-inverse);
+  border-color: var(--dsh-accent);
+}
+
+.timeline-notice {
+  padding: 12px 24px;
+  background: var(--dsh-accent-soft);
+  color: var(--dsh-accent);
+  font-size: 13px;
+  text-align: center;
+  border-bottom: 1px solid var(--dsh-border-default);
+}
+
+.timeline-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+
+.timeline-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--dsh-text-secondary);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* P15-REM-R3-G (P15-D-012): a read failure/degraded read is a distinct,
+   visible state — never styled the same as (or less prominent than) the
+   plain empty state. UI V2.2: thin left-edge treatment, same tokened
+   warning color as the other "system message" banners this phase
+   introduced (CouncilPanel, MultiTaskControl). */
+.timeline-unavailable {
+  margin: 8px 0;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--dsh-status-warning);
+  background: var(--dsh-status-warning-bg);
+  border-left: 2px solid var(--dsh-status-warning);
+  border-radius: var(--dsh-radius-sm);
+}
+
+/* UI V2.2: denser event stream — marker shrunk (32px circle -> 22px),
+   entry spacing tightened (24px -> 14px margin). Structured-event-feed
+   density, not a chat-message list. */
+.timeline-entry {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.timeline-entry-marker {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.timeline-entry-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.timeline-entry-category {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* UI V2.2: fixed-width + monospace so every entry's timestamp lines up
+   in one column — the "TIME / TYPE / MESSAGE" aligned structure the
+   brief's target layout calls for. */
+.timeline-entry-time {
+  font-size: 11px;
+  font-family: var(--dsh-font-mono);
+  color: var(--dsh-text-secondary);
+  flex-shrink: 0;
+  min-width: 64px;
+  text-align: right;
+}
+
+.timeline-entry-meta {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  margin-bottom: 6px;
+}
+
+.timeline-entry-pending {
+  opacity: 0.6;
+}
+
+.timeline-cancel-btn {
+  margin-left: 8px;
+  font-size: 10px;
+  padding: 2px 8px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dsh-status-warning);
+  background: var(--dsh-status-warning-bg);
+  border-radius: var(--dsh-radius-sm);
+  cursor: pointer;
+}
+
+.timeline-entry-meta code {
+  background: var(--dsh-bg-app);
+  padding: 2px 6px;
+  border-radius: var(--dsh-radius-sm);
+  font-family: var(--dsh-font-mono);
+}
+
+.timeline-entry-body {
+  font-size: 13px;
+  color: var(--dsh-text-primary);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.timeline-entry-details {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.timeline-entry-details summary {
+  cursor: pointer;
+  color: var(--dsh-text-secondary);
+  user-select: none;
+}
+
+.timeline-entry-details summary:hover {
+  color: var(--dsh-accent);
+}
+
+.timeline-entry-details pre {
+  margin-top: 6px;
+  padding: 10px;
+  background: var(--dsh-bg-app);
+  border-radius: var(--dsh-radius-sm);
+  overflow-x: auto;
+  font-size: 11px;
+  color: var(--dsh-text-primary);
+}

@@ -1,0 +1,10 @@
+{
+  "outcome": "NOT_RUN",
+  "error_code": null,
+  "parse_subreason": null,
+  "structural_diagnostics": null,
+  "normalized_decision": null,
+  "normalize_outcome": null,
+  "normalize_error_code": null,
+  "note": "no assistant output was extracted (transport/extraction layer), so the production parse boundary was not reached"
+}

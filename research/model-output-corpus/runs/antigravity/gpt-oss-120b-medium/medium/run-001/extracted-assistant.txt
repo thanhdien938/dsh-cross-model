@@ -1,0 +1,8 @@
+The implementation plan has been created as **[dsh_model_output_dialect_probe_v1_plan.md](file:///C:/Users/user/.gemini/antigravity-cli/brain/8be59e57-7aa8-41c7-9a30-ffdb373c1d6a/dsh_model_output_dialect_probe_v1_plan.md)**.
+
+Please review the plan. In particular, let me know:
+
+1. **Formatting of line breaks** in the `output` string – do you prefer escaped `\\n` characters or actual newlines within the JSON string?  
+2. **Ordering of the recommendations** – should they be listed strictly in priority order (1‑6), or is any order acceptable as long as the `priority` field reflects the intended ranking?
+
+Once you approve the plan (or provide any needed adjustments), I will generate the final JSON artifact that satisfies all of the constraints you specified.

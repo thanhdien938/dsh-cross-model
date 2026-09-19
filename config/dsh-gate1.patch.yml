@@ -1,0 +1,39 @@
+# DSH Gate 1 full-host patch (T1).
+#
+# Insert the two stock subagent providers and their foreground tools into the
+# full DSH host tree (e.g. the `headless` profile), so the model-facing tools
+# `subagent_codex` and `subagent_claude_code` are exposed alongside the stock
+# host services (`ctx.tools`, `ctx.systemPrompt`, sessions, agent, ...).
+#
+# Apply with:
+#   node node_modules/@deepseek-ai/dsh/lib/bin.js --profile headless --patch config/dsh-gate1.patch.yml "<parent instruction>"
+#
+# Source-of-truth packages (published 0.1.0-rc.6 line):
+#   @deepseek-ai/dsh-subagent-codex
+#   @deepseek-ai/dsh-subagent-claude-code
+#   @deepseek-ai/dsh-tool-subagent
+
+- insert:
+    - id: subagent-codex
+      name: '@deepseek-ai/dsh-subagent-codex'
+      config: {}
+
+    - id: subagent-claude-code
+      name: '@deepseek-ai/dsh-subagent-claude-code'
+      config: {}
+
+    - id: tool-subagent-codex
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: codex
+        toolName: subagent_codex
+        enableRunInBackground: false
+        maxDepth: provider-managed
+
+    - id: tool-subagent-claude-code
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: claude-code
+        toolName: subagent_claude_code
+        enableRunInBackground: false
+        maxDepth: provider-managed

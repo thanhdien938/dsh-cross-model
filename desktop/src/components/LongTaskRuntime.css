@@ -1,0 +1,107 @@
+/* UI V2.1: shared structural-frame separator — see BackendRuns.css's
+   comment on the same treatment. */
+.long-task-runtime {
+  border-top: var(--dsh-frame-neon-width) solid var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  background: var(--dsh-bg-app);
+}
+
+.long-task-runtime-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.long-task-runtime-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.long-task-runtime-content {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0 16px 10px 16px;
+}
+
+.long-task-row {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--dsh-border-subtle);
+}
+
+.long-task-row-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.long-task-field-label {
+  color: var(--dsh-text-secondary);
+}
+
+.long-task-task-id {
+  font-family: var(--dsh-font-mono);
+  font-weight: 600;
+}
+
+.long-task-row-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: var(--dsh-font-size-xs);
+  color: var(--dsh-text-secondary);
+  font-family: var(--dsh-font-mono);
+  padding: 2px 0 0 0;
+}
+
+.long-task-liveness {
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.long-task-liveness-active {
+  color: var(--dsh-status-success);
+  background: var(--dsh-status-success-bg);
+}
+
+.long-task-liveness-quiet_running {
+  color: var(--dsh-text-secondary);
+  background: var(--dsh-badge-bg);
+}
+
+.long-task-liveness-stalled {
+  color: var(--dsh-status-warning);
+  background: var(--dsh-status-warning-bg);
+}
+
+.long-task-liveness-exited {
+  color: var(--dsh-text-secondary);
+  background: var(--dsh-badge-bg);
+}
+
+.long-task-liveness-unknown {
+  color: var(--dsh-text-secondary);
+  background: var(--dsh-badge-bg);
+}
+
+.long-task-hard-deadline {
+  color: var(--dsh-status-error);
+  font-weight: 600;
+}
+
+.long-task-exited-note {
+  font-style: italic;
+}

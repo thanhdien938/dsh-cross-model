@@ -1,0 +1,88 @@
+.login-terminal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 27, 22, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* UI V2.0: dialog chrome background consolidated onto the shared terminal
+   background token (was #1E1B16, a 1-2 value-per-channel difference from
+   ActivityPanel's #1F2421 — visually indistinguishable). See
+   UI_V2_FOUNDATION_IMPLEMENTATION.md §4. */
+.login-terminal-dialog {
+  width: 640px;
+  max-width: 90vw;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--dsh-terminal-bg);
+  color: var(--dsh-terminal-fg);
+}
+
+.login-terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.login-terminal-status {
+  font-size: 11px;
+  color: var(--dsh-accent);
+  text-transform: uppercase;
+}
+
+.login-terminal-status-running {
+  color: var(--dsh-terminal-success);
+}
+
+/* UI V2.0: background/foreground/font now share the same terminal tokens
+   as ActivityPanel/BackendExecutionLogs (was pure-black #000000 with a
+   green-tinted #d7f5dd foreground — a third, separate palette). The input
+   field's own dark background (#14110d) and border (#3a352c) are left as
+   literals for now — no shared "dark-surface input" token exists yet in
+   the V2.0 spec; see UI_V2_FOUNDATION_IMPLEMENTATION.md §4/§6. */
+.login-terminal-body {
+  background: var(--dsh-terminal-bg);
+  color: var(--dsh-terminal-fg);
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-base);
+  padding: 10px;
+  height: 280px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: var(--dsh-radius-md);
+  margin: 0;
+}
+
+.login-terminal-footer {
+  display: flex;
+  gap: 8px;
+}
+
+/* UI V2.3: resolves the V2.1 deferral noted above — a real shared
+   "dark-surface input" token exists now that the whole app is dark
+   (--dsh-control-bg/--dsh-control-border), so this no longer needs its
+   own one-off literals. */
+.login-terminal-input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: var(--dsh-radius-md);
+  border: 1px solid var(--dsh-control-border);
+  background: var(--dsh-control-bg);
+  color: var(--dsh-terminal-fg);
+  font-family: var(--dsh-font-mono);
+}
+
+.login-terminal-note {
+  font-size: var(--dsh-font-size-sm);
+  color: var(--dsh-text-muted);
+  margin: 0;
+}

@@ -1,0 +1,29 @@
+mode: production
+postgres:
+  dsn_env: DSH_POSTGRES_DSN
+sqlite:
+  path: C:/var/lib/dsh/p5-canary.sqlite
+projects_file: ./p5-canary-projects.example.yaml
+pm_profiles_file: ./p5-canary-pm-profiles.example.yaml
+# P11-R0: OPTIONAL. Omitted here deliberately — no API provider has been
+# selected for this canary. Uncomment once you configure real provider(s)
+# in an api-providers.yaml of your own (see api-providers.example.yaml).
+# api_providers_file: ./api-providers.example.yaml
+telegram:
+  token_env: DSH_TELEGRAM_BOT_TOKEN
+  user_id: "100000001"
+  chat_id: "100000001"
+  project_id: disposable-canary
+  poll_interval_ms: 1000
+coordinator:
+  logical_id: p5-canary-coordinator
+  lease_ms: 30000
+  poll_interval_ms: 250
+worker:
+  logical_id: p5-canary-worker
+  lease_ms: 30000
+  poll_interval_ms: 250
+pm:
+  scripted_decisions:
+    - type: finish
+      output: canary-complete

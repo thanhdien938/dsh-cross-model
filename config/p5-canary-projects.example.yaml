@@ -1,0 +1,13 @@
+projects:
+  - id: disposable-canary
+    display_name: Disposable Local Canary
+    repo_path: C:/replace/with/disposable/local/repository
+    default_pm_profile_id: canary-scripted-pm
+    autonomy:
+      revision: 1
+      effects:
+        SUBMIT_TASK: ALLOW
+        REQUEST_CANCEL: APPROVAL
+        BRANCH_CREATE: FORBID
+        MERGE_MAIN: FORBID
+        PUSH_REMOTE: FORBID

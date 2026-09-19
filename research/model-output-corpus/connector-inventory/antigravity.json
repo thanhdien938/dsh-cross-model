@@ -1,0 +1,484 @@
+{
+  "phase_version": "1.0",
+  "captured_at_utc": "2026-09-08T01:49:57.801Z",
+  "repo": {
+    "branch": "codex/council-participant-execution-audit",
+    "head": "25622581d6a3d19a0805fd1849c8f4bc7526a6d8"
+  },
+  "connector": "antigravity",
+  "connector_version": "1.1.27",
+  "binary": "C:\\Users\\<user>\\AppData\\Local\\agy\\bin\\agy.exe",
+  "discovery_command": "agy models",
+  "discovery_raw": {
+    "stdout_bytes": 643,
+    "stdout_sha256": "b1cc011310435afa07b1e132a5b7f3e22297aa21427177461c858bcbd6a58794",
+    "stderr_bytes": 29,
+    "exit_code": 0,
+    "duration_ms": 5117
+  },
+  "catalogue_metadata_note": "`agy models` exposes only slug + display name per row; no per-model cost/availability/deprecation metadata exists in the catalogue output",
+  "native_structured_output": {
+    "cli_flag": "--json-schema (documented: \"Optional JSON schema string or path to a schema file to enforce structured output (for stream-json, only applicable to the final result)\")",
+    "production_use": "production attaches a native schema ONLY on certain council participant steps (participant-json-schema.mjs); single-PM decision execution forwards no schema",
+    "corpus_mode": "NONE — this corpus harness deliberately exercises the free-form output path and never forwards --json-schema"
+  },
+  "reasoning_axis_note": "the reasoning axis is the model slug tier suffix (-low/-medium/-high); production never forwards --effort (live-proven docs/p9/06,07) — a tier-suffixed slug supports exactly its own tier, Claude slugs have no reasoning control (default once)",
+  "counts": {
+    "total_discovered": 14,
+    "paid_or_standard": 14,
+    "free_excluded": 0,
+    "trial_excluded": 0,
+    "ephemeral_excluded": 0,
+    "unknown_not_invoked": 0,
+    "eligible": 14
+  },
+  "planned_configurations": [
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.8-flash-high",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "high"
+      ],
+      "selected_reasoning": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.8-flash-medium",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "medium"
+      ],
+      "selected_reasoning": "medium",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.8-flash-low",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.7-flash-high",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "high"
+      ],
+      "selected_reasoning": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.7-flash-medium",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "medium"
+      ],
+      "selected_reasoning": "medium",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.7-flash-low",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.6-flash-high",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "high"
+      ],
+      "selected_reasoning": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.6-flash-medium",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "medium"
+      ],
+      "selected_reasoning": "medium",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.6-flash-low",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.1-pro-high",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "high"
+      ],
+      "selected_reasoning": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gemini-3.1-pro-low",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "claude-sonnet-4-6",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [],
+      "selected_reasoning": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "claude-opus-4-6-thinking",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [],
+      "selected_reasoning": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "antigravity",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed per-model by `agy models`; slugs indicate model families (gemini/claude/gpt-oss) routed via the authenticated Antigravity CLI service",
+      "model": "gpt-oss-120b-medium",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "medium"
+      ],
+      "selected_reasoning": "medium",
+      "planned_sample_count": 1
+    }
+  ],
+  "planned_baseline_invocations": 14,
+  "canonical_probe": {
+    "sha256": "102946023d462f67187574cdad536eba93c2e3f4351c07d2f9a82d8f59b3bcb5",
+    "bytes": 4112
+  },
+  "models": [
+    {
+      "id": "gemini-3.8-flash-high",
+      "display_name": "Gemini 3.8 Flash (High)",
+      "catalogue_row": "gemini-3.8-flash-high\tGemini 3.8 Flash (High)",
+      "reasoning_tier_suffix": "high",
+      "supported_reasoning_levels": [
+        "high"
+      ],
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "high",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.8-flash-medium",
+      "display_name": "Gemini 3.8 Flash (Medium)",
+      "catalogue_row": "gemini-3.8-flash-medium\tGemini 3.8 Flash (Medium)",
+      "reasoning_tier_suffix": "medium",
+      "supported_reasoning_levels": [
+        "medium"
+      ],
+      "reasoning_extremes": {
+        "lowest": "medium",
+        "highest": "medium",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.8-flash-low",
+      "display_name": "Gemini 3.8 Flash (Low)",
+      "catalogue_row": "gemini-3.8-flash-low\tGemini 3.8 Flash (Low)",
+      "reasoning_tier_suffix": "low",
+      "supported_reasoning_levels": [
+        "low"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "low",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.7-flash-high",
+      "display_name": "Gemini 3.7 Flash (High)",
+      "catalogue_row": "gemini-3.7-flash-high\tGemini 3.7 Flash (High)",
+      "reasoning_tier_suffix": "high",
+      "supported_reasoning_levels": [
+        "high"
+      ],
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "high",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.7-flash-medium",
+      "display_name": "Gemini 3.7 Flash (Medium)",
+      "catalogue_row": "gemini-3.7-flash-medium\tGemini 3.7 Flash (Medium)",
+      "reasoning_tier_suffix": "medium",
+      "supported_reasoning_levels": [
+        "medium"
+      ],
+      "reasoning_extremes": {
+        "lowest": "medium",
+        "highest": "medium",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.7-flash-low",
+      "display_name": "Gemini 3.7 Flash (Low)",
+      "catalogue_row": "gemini-3.7-flash-low\tGemini 3.7 Flash (Low)",
+      "reasoning_tier_suffix": "low",
+      "supported_reasoning_levels": [
+        "low"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "low",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.6-flash-high",
+      "display_name": "Gemini 3.6 Flash (High)",
+      "catalogue_row": "gemini-3.6-flash-high\tGemini 3.6 Flash (High)",
+      "reasoning_tier_suffix": "high",
+      "supported_reasoning_levels": [
+        "high"
+      ],
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "high",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.6-flash-medium",
+      "display_name": "Gemini 3.6 Flash (Medium)",
+      "catalogue_row": "gemini-3.6-flash-medium\tGemini 3.6 Flash (Medium)",
+      "reasoning_tier_suffix": "medium",
+      "supported_reasoning_levels": [
+        "medium"
+      ],
+      "reasoning_extremes": {
+        "lowest": "medium",
+        "highest": "medium",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.6-flash-low",
+      "display_name": "Gemini 3.6 Flash (Low)",
+      "catalogue_row": "gemini-3.6-flash-low\tGemini 3.6 Flash (Low)",
+      "reasoning_tier_suffix": "low",
+      "supported_reasoning_levels": [
+        "low"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "low",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.1-pro-high",
+      "display_name": "Gemini 3.1 Pro (High)",
+      "catalogue_row": "gemini-3.1-pro-high\tGemini 3.1 Pro (High)",
+      "reasoning_tier_suffix": "high",
+      "supported_reasoning_levels": [
+        "high"
+      ],
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "high",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gemini-3.1-pro-low",
+      "display_name": "Gemini 3.1 Pro (Low)",
+      "catalogue_row": "gemini-3.1-pro-low\tGemini 3.1 Pro (Low)",
+      "reasoning_tier_suffix": "low",
+      "supported_reasoning_levels": [
+        "low"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "low",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "display_name": "Claude Sonnet 4.6 (Thinking)",
+      "catalogue_row": "claude-sonnet-4-6\tClaude Sonnet 4.6 (Thinking)",
+      "reasoning_tier_suffix": null,
+      "supported_reasoning_levels": [],
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_reasoning_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "claude-opus-4-6-thinking",
+      "display_name": "Claude Opus 4.6 (Thinking)",
+      "catalogue_row": "claude-opus-4-6-thinking\tClaude Opus 4.6 (Thinking)",
+      "reasoning_tier_suffix": null,
+      "supported_reasoning_levels": [],
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_reasoning_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-oss-120b-medium",
+      "display_name": "GPT-OSS 120B (Medium)",
+      "catalogue_row": "gpt-oss-120b-medium\tGPT-OSS 120B (Medium)",
+      "reasoning_tier_suffix": "medium",
+      "supported_reasoning_levels": [
+        "medium"
+      ],
+      "reasoning_extremes": {
+        "lowest": "medium",
+        "highest": "medium",
+        "single": true
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "returned by the authenticated owner-facing `agy models` catalogue; no free/trial/ephemeral/deprecation marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    }
+  ]
+}

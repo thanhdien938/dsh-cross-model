@@ -1,0 +1,259 @@
+{
+  "outcome": "PASS",
+  "error_code": null,
+  "parse_subreason": null,
+  "structural_diagnostics": null,
+  "normalized_decision": {
+    "type": "finish",
+    "output": "Incident assessment\n\nThe most likely primary cause of the sustained queue incident was insufficient effective request capacity at dependency B, manifested as rate limiting. Retries were a substantial amplifier rather than the best supported initiating cause. This conclusion rests on the combination of HTTP 429 responses, weak improvement after worker expansion, a stronger queue response when retries were disabled, and recovery after B's limits were raised. Confidence is high that dependency throttling materially sustained the incident, but lower that it initiated the earliest backlog. The queue rose before the first supplied observation of 429 responses, leaving the initial trigger unresolved.\n\nObserved progression\n\nAt 09:00, the queue contained 120 tasks and there were eight workers. By 09:10, the queue reached 1,850 with the same worker count, approximately 15.4 times the earlier depth (E01, E02). At 09:12, median task latency had increased from 1.8 seconds to 14.2 seconds, approximately 7.9 times its earlier value (E03). These observations establish a substantial processing imbalance and latency impact, but they do not separately identify arrival growth, reduced completion capacity, or both. At 09:14, average CPU, memory, and disk utilization were 43%, 51%, and 22% respectively (E04), offering little affirmative evidence of broad host resource exhaustion.\n\nPrimary cause and timing qualification\n\nDependency B began returning HTTP 429 for 31% of requests at 09:15 (E05). At 09:35, its rate limits were raised, the 429 fraction fell below 1%, and the queue returned below 150 within eleven minutes (E09). This paired improvement in dependency responses and queue depth makes B's effective rate limit the strongest supported constraint during the sustained incident. However, E02 places substantial queue growth five minutes before E05. The evidence therefore supports distinguishing the dominant recovery bottleneck from the original initiating event. It does not establish that throttling was already occurring at 09:10 or that raising limits alone explains every change in workload behavior.\n\nRetry amplification\n\nAt 09:16, retry volume increased by 420% under exponential backoff with a maximum of three retries (E06). Read as an increase relative to the prior retry volume, that corresponds to 5.2 times the baseline retry volume, not 5.2 times all traffic. Baseline attempt counts and the relationship between tasks and dependency requests are absent. Nevertheless, the retry increase immediately after the reported throttling provides a coherent amplification mechanism: unsuccessful dependency attempts generate additional attempts, which can compete with original requests for constrained capacity. This mechanism is supported further by the intervention in E08, rather than inferred solely from temporal proximity.\n\nAt 09:26, disabling retries for B was followed by a 38% queue reduction in six minutes, while direct failures increased (E08). This indicates that retry behavior materially influenced queue persistence. It does not demonstrate an equivalent improvement in successful task delivery. Some backlog reduction could reflect faster terminal failures instead of successful completions. The distinction matters operationally: a smaller queue is not sufficient evidence of restored service if work is being rejected or lost. Retry suppression should therefore be evaluated against both successful completion and failure outcomes, with failed work preserved where the task contract permits later recovery.\n\nWhy worker expansion helped little\n\nIncreasing the worker count from eight to sixteen at 09:20 reduced queue depth only 6% over ten minutes (E07). Doubling execution slots cannot necessarily increase successful throughput when requests still encounter the same dependency allowance. Additional workers could instead produce more competing attempts or spend more time awaiting dependency responses and retry delays. These are plausible mechanisms, not observed worker states. The resource averages in E04 also weaken a simple host saturation explanation. They do not exclude per-worker blocking, a constrained connection pool, localized saturation, or brief resource peaks that averages conceal.\n\nThe intervention windows limit causal precision. The ten-minute worker expansion observation spans approximately 09:20 through 09:30, while retry disabling begins at 09:26 and its six-minute observation extends to approximately 09:32. Consequently, the reported 6% and 38% reductions are not independent, controlled estimates of intervention effectiveness. Their starting queue depths and intervening arrivals are unspecified. They support the qualitative conclusion that worker expansion was insufficient and retry suppression coincided with substantial drainage, but not a precise numerical comparison of treatment effects.\n\nRetry policy assessment\n\nExponential backoff and a three-retry maximum impose delay and a finite retry count, but E06 and E08 show that these features did not prevent substantial amplification in this incident. A per-task retry ceiling is not the same as a shared retry budget across workers. The record does not specify backoff intervals, jitter, retry eligibility, server-provided timing guidance, task deadlines, or coordinated dependency concurrency. Accordingly, the defensible assessment is that the observed policy was insufficiently protective under the observed throttling, not that any particular unreported feature was missing. Permanently disabling all retries would also be unjustified because the temporary intervention increased direct failures.\n\nAlternatives and uncertainty\n\nAn arrival surge is a plausible alternative initiating explanation: arrivals exceeding eight workers' effective completion capacity could explain the early backlog and might subsequently drive dependency throttling. No arrival-rate series is supplied, so this possibility remains open. As a complete explanation of the sustained incident, however, it is less supported than the dependency constraint because it lacks direct measurements and does not independently explain recovery alongside the limit increase. Broad local resource saturation is also less supported by E04 and E07. E10 weakens explanations requiring a deployment, schema change, host restart, route change, or credential rotation during the stated window, without excluding other operational or dependency-side changes.\n\nStaged remediation\n\nFirst, establish a synchronized timeline of arrivals, successful completions, terminal failures, dependency attempts, 429 responses, queue age, and retry counts. Second, contain amplification with a reversible shared retry budget and a cap on B-bound attempts; preserve recoverable work and monitor failures during rollout. Third, coordinate a verified dependency allowance, using the successful limit adjustment as supporting evidence rather than assuming unlimited capacity. Fourth, revise retries to respect available timing guidance, bounded elapsed time, and task safety requirements. Fifth, tune worker concurrency against successful throughput only after the dependency constraint is controlled. Finally, validate under representative load and throttling, with rollback criteria covering latency, queue age, 429 frequency, successful delivery, and direct failures. This sequence prioritizes the observed bottleneck while explicitly protecting against apparent recovery through failed work.",
+    "data": {
+      "executive_summary": "Dependency B's effective rate limit is the most likely primary constraint sustaining the queue incident, with retries acting as a substantial amplifier. HTTP 429 responses affected 31% of requests; after B's limits were raised, that fraction fell below 1% and the queue returned below 150 within eleven minutes. Doubling workers produced limited reported improvement, consistent with a downstream capacity constraint rather than simple worker scarcity. Disabling retries accelerated queue drainage but increased direct failures, so backlog reduction cannot be equated with successful recovery. The initiating cause remains uncertain because substantial queue growth preceded the first reported throttling. An arrival surge could have initiated the backlog and subsequently exposed the dependency limit. Remediation should proceed through measurement, reversible retry containment, verified dependency capacity, safer retry controls, concurrency tuning, and outcome-based validation. Overlapping intervention windows prevent precise attribution of the reported queue reductions.",
+      "findings": [
+        {
+          "id": "F01",
+          "severity": "high",
+          "claim": "The incident produced substantial backlog and latency degradation: queue depth rose approximately 15.4-fold and median latency approximately 7.9-fold.",
+          "evidence_refs": [
+            "E01",
+            "E02",
+            "E03"
+          ],
+          "confidence": 100
+        },
+        {
+          "id": "F02",
+          "severity": "high",
+          "claim": "Dependency B's effective rate limit was most likely the primary constraint sustaining the incident, although its role in initiating the earliest backlog is unproven.",
+          "evidence_refs": [
+            "E02",
+            "E05",
+            "E09"
+          ],
+          "confidence": 91
+        },
+        {
+          "id": "F03",
+          "severity": "high",
+          "claim": "Retries materially amplified queue persistence despite exponential backoff and a three-retry maximum.",
+          "evidence_refs": [
+            "E05",
+            "E06",
+            "E08"
+          ],
+          "confidence": 94
+        },
+        {
+          "id": "F04",
+          "severity": "medium",
+          "claim": "Worker expansion was insufficient to resolve the bottleneck, consistent with dependency-constrained successful throughput.",
+          "evidence_refs": [
+            "E04",
+            "E05",
+            "E07",
+            "E09"
+          ],
+          "confidence": 88
+        },
+        {
+          "id": "F05",
+          "severity": "high",
+          "claim": "Disabling retries traded faster queue drainage for increased direct failures; queue reduction alone did not establish improved successful delivery.",
+          "evidence_refs": [
+            "E08"
+          ],
+          "confidence": 100
+        },
+        {
+          "id": "F06",
+          "severity": "medium",
+          "claim": "Average utilization provides limited support for broad local resource exhaustion, but does not exclude localized or transient bottlenecks.",
+          "evidence_refs": [
+            "E04"
+          ],
+          "confidence": 90
+        },
+        {
+          "id": "F07",
+          "severity": "medium",
+          "claim": "Overlapping worker-expansion and retry-disabling observation windows prevent clean attribution of their individual queue-reduction effects.",
+          "evidence_refs": [
+            "E07",
+            "E08"
+          ],
+          "confidence": 100
+        },
+        {
+          "id": "F08",
+          "severity": "low",
+          "claim": "The listed deployment and infrastructure changes are unsupported incident explanations within the specified 08:00–10:00 window.",
+          "evidence_refs": [
+            "E10"
+          ],
+          "confidence": 100
+        }
+      ],
+      "risks": [
+        "Retry attempts may consume constrained dependency capacity and prolong backlog.",
+        "Increasing workers without controlling dependency attempts may increase throttling rather than successful throughput.",
+        "Disabling retries may turn recoverable tasks into direct failures and create apparent recovery through failed work.",
+        "An unresolved arrival surge or other early trigger may cause recurrence even after a dependency limit increase.",
+        "Queue depth alone may conceal poor successful delivery, old queued tasks, or increased terminal failures.",
+        "Overlapping interventions may lead to incorrect capacity estimates and unsafe remediation choices."
+      ],
+      "uncertainties": [
+        "What caused queue growth before the first reported HTTP 429 responses at 09:15?",
+        "What were the arrival rates, successful completion rates, and absolute dependency-attempt and retry volumes?",
+        "What dependency limit scope, request allowance, and competing consumers applied during the incident?",
+        "What backoff intervals, jitter, retry eligibility, timing guidance, task deadlines, and task-safety guarantees existed?",
+        "How much observed drainage represented successful completion versus failure, and how much was attributable to each overlapping intervention?"
+      ],
+      "recommendations": [
+        {
+          "priority": 1,
+          "action": "Establish a synchronized incident timeline and monitor arrivals, successful completions, direct failures, queue age, dependency attempts, HTTP 429 responses, and retries.",
+          "rationale": "The initial trigger and successful-delivery impact cannot be resolved from queue depth and aggregate intervention outcomes alone."
+        },
+        {
+          "priority": 2,
+          "action": "Apply reversible containment through a shared retry budget and a cap on B-bound attempts, preserving recoverable failed work where supported.",
+          "rationale": "Retry suppression reduced backlog but increased direct failures, requiring explicit outcome safeguards."
+        },
+        {
+          "priority": 3,
+          "action": "Coordinate and verify dependency B's available request allowance and align aggregate attempt volume with that allowance.",
+          "rationale": "The rate-limit increase coincided with lower throttling and sustained queue recovery."
+        },
+        {
+          "priority": 4,
+          "action": "Revise retry controls to include bounded elapsed time, appropriate timing guidance when available, jitter where useful, and eligibility consistent with task safety.",
+          "rationale": "Backoff and a three-retry ceiling alone did not prevent the observed retry amplification; unreported policy features must first be verified."
+        },
+        {
+          "priority": 5,
+          "action": "Tune worker and dependency concurrency incrementally after controlling throttling, measuring successful throughput and failures at each step.",
+          "rationale": "Doubling workers showed limited improvement and did not establish that additional workers could overcome the dependency constraint."
+        },
+        {
+          "priority": 6,
+          "action": "Validate the staged configuration under representative load and throttling, using rollback thresholds for queue age, latency, HTTP 429 frequency, successful delivery, and direct failures.",
+          "rationale": "Validation must distinguish genuine recovery from faster task failure and test whether the unresolved initiating condition can recur."
+        }
+      ],
+      "alternatives": [
+        {
+          "name": "Arrival surge as the initiating cause",
+          "pros": [
+            "Could explain backlog growth before the reported onset of HTTP 429 responses.",
+            "Could coexist with subsequent dependency throttling and retry amplification."
+          ],
+          "cons": [
+            "No arrival-rate measurements are supplied.",
+            "Less supported as the sole sustained cause because recovery followed the dependency limit increase."
+          ]
+        },
+        {
+          "name": "Insufficient worker count as the primary bottleneck",
+          "pros": [
+            "The queue rose while worker count remained at eight.",
+            "Increasing workers coincided with some reported queue reduction."
+          ],
+          "cons": [
+            "Doubling workers produced only a 6% reported reduction over ten minutes.",
+            "Dependency and retry interventions provide stronger evidence of downstream constraints.",
+            "Overlapping intervention windows obscure the independent worker effect."
+          ]
+        },
+        {
+          "name": "Local resource or worker-blocking bottleneck",
+          "pros": [
+            "Aggregate resource averages cannot exclude localized saturation or blocked workers.",
+            "Could contribute to latency without uniformly high host utilization."
+          ],
+          "cons": [
+            "Reported CPU, memory, and disk averages do not demonstrate broad exhaustion.",
+            "No direct worker-state or localized resource evidence is supplied.",
+            "Recovery after dependency limit adjustment favors a dependency-related constraint."
+          ]
+        },
+        {
+          "name": "Deployment or listed infrastructure change",
+          "pros": [
+            "Would merit reconsideration if evidence outside the supplied time window became relevant."
+          ],
+          "cons": [
+            "E10 explicitly reports no listed changes between 08:00 and 10:00.",
+            "No supplied evidence connects such a change to the incident."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E01",
+          "source": "Synthetic evidence E01",
+          "observation": "At 09:00, queue depth was 120 and worker count was 8."
+        },
+        {
+          "id": "E02",
+          "source": "Synthetic evidence E02",
+          "observation": "At 09:10, queue depth rose to 1,850 while worker count remained 8."
+        },
+        {
+          "id": "E03",
+          "source": "Synthetic evidence E03",
+          "observation": "At 09:12, median task latency rose from 1.8 seconds to 14.2 seconds."
+        },
+        {
+          "id": "E04",
+          "source": "Synthetic evidence E04",
+          "observation": "At 09:14, CPU utilization averaged 43%, memory 51%, and disk utilization 22%."
+        },
+        {
+          "id": "E05",
+          "source": "Synthetic evidence E05",
+          "observation": "At 09:15, outbound dependency B began returning HTTP 429 for 31% of requests."
+        },
+        {
+          "id": "E06",
+          "source": "Synthetic evidence E06",
+          "observation": "At 09:16, retry volume increased by 420%, using exponential backoff with a maximum of three retries."
+        },
+        {
+          "id": "E07",
+          "source": "Synthetic evidence E07",
+          "observation": "At 09:20, increasing worker count from 8 to 16 reduced queue depth only 6% over ten minutes."
+        },
+        {
+          "id": "E08",
+          "source": "Synthetic evidence E08",
+          "observation": "At 09:26, temporarily disabling retries for dependency B caused queue depth to fall 38% in six minutes, while direct failure rate increased."
+        },
+        {
+          "id": "E09",
+          "source": "Synthetic evidence E09",
+          "observation": "At 09:35, dependency B rate limits were raised and HTTP 429 responses fell below 1%; queue depth then returned below 150 within eleven minutes."
+        },
+        {
+          "id": "E10",
+          "source": "Synthetic evidence E10",
+          "observation": "No deploy, schema change, host restart, network route change, or credential rotation occurred between 08:00 and 10:00."
+        }
+      ],
+      "edge_cases": [
+        "Queue drainage accompanied by higher terminal failures must not be classified automatically as successful service recovery.",
+        "If tasks are not safe to repeat, retries or later replay require safeguards against duplicate effects; task semantics are unspecified.",
+        "If B's allowance is shared with other consumers, controlling this worker pool alone may not prevent renewed throttling.",
+        "If tasks have deadlines, retries that finish after those deadlines may consume capacity without delivering useful outcomes.",
+        "Short resource spikes or a single saturated worker can be concealed by the supplied average utilization figures.",
+        "If arrivals changed during overlapping interventions, the reported queue reductions cannot be treated as isolated causal effect sizes."
+      ],
+      "unicode_check": "Tiếng Việt: dữ liệu thử nghiệm phải được giữ nguyên dấu.",
+      "path_check": {
+        "windows": "C:\\DSH\\probe\\sample.json",
+        "posix": "/opt/dsh/probe/sample.json"
+      },
+      "literal_check": "Keep braces { }, brackets [ ], quotes \"like this\", colon :, comma , and backslash \\ inside this string."
+    }
+  },
+  "normalize_outcome": "PASS",
+  "normalize_error_code": null
+}

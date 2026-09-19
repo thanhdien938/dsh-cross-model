@@ -1,0 +1,21 @@
+{
+  "outcome": "FAIL",
+  "error_code": "PM_DECISION_PARSE_FAILED",
+  "parse_subreason": "PM_DECISION_NO_DECISION_FOUND",
+  "structural_diagnostics": {
+    "bytes": 620,
+    "outputByteLength": 620,
+    "firstChar": "I",
+    "lastChar": ".",
+    "firstCharClass": "LETTER",
+    "lastCharClass": "OTHER",
+    "fullJson": false,
+    "jsonFence": false,
+    "prefixClass": "UNKNOWN",
+    "suffixClass": "UNKNOWN",
+    "parseSubreason": "PM_DECISION_UNEXPECTED_SHAPE"
+  },
+  "normalized_decision": null,
+  "normalize_outcome": null,
+  "normalize_error_code": null
+}

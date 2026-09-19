@@ -1,0 +1,17 @@
+{
+  "tested_head": "ffe2cbf7f891b820b23e18de3a02abce4c57c544",
+  "passed": true,
+  "initial_combined_tests": 225,
+  "initial_combined_pass": 225,
+  "final_harness_tests": 8,
+  "final_harness_pass": 8,
+  "distinct_tests": 226,
+  "failures": 0,
+  "skipped": 0,
+  "historical_corpus_rows": 154,
+  "historical_parser_pass": 114,
+  "historical_parser_fail": 22,
+  "historical_parser_not_attempted": 18,
+  "historical_acceptance_delta": 0,
+  "production_code_changed": false
+}

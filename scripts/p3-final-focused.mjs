@@ -1,0 +1,2 @@
+import { spawn } from 'node:child_process';
+const gate = process.argv[2]; const unit = ['g5','g6','g7'].includes(gate); const args = unit ? ['--test', `--test-name-pattern=${gate.toUpperCase()}_CHECKPOINT`, 'tests/phase3-final-unit.test.mjs'] : ['scripts/p3-final-postgres-proof.mjs']; const child = spawn(process.execPath, args, { stdio: 'inherit', windowsHide: true, env: process.env }); const code = await new Promise((r) => child.once('exit', r)); if (code !== 0) process.exit(code ?? 1); console.log(`P3 FINAL ${gate.toUpperCase()} CHECKPOINT: PASS`);

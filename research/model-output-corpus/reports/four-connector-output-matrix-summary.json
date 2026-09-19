@@ -1,0 +1,4494 @@
+{
+  "analysis_base_head": "cb01af1a9c4d6d81845014661afa94a2653ad702",
+  "original_corpus_rows": 154,
+  "corpus_rows_reconciled": 154,
+  "input_json_sha256": "450104d1f4ea85ba43f92fbb7a1fb09d42a6cd47719250fbaaad992a6eca3a20",
+  "totals": {
+    "total": 154,
+    "provider_success": 136,
+    "provider_error": 18,
+    "provider_unknown": 0,
+    "assistant_present": 136,
+    "parser_attempted": 136,
+    "parser_pass": 114,
+    "parser_fail": 22,
+    "parser_not_attempted": 18,
+    "pass_per_attempt": "114 / 136 = 83.8%",
+    "dialects": {
+      "RAW_CANONICAL_JSON": 102,
+      "TRUNCATED": 9,
+      "UNKNOWN": 5,
+      "EMPTY": 18,
+      "MALFORMED_JSON": 8,
+      "FENCED_JSON": 12
+    },
+    "provider_failures": {
+      "TERMINAL_ERROR_WITH_RESPONSE_PRESENT": 1,
+      "TERMINAL_ERROR_EMPTY": 1,
+      "TIMEOUT": 3,
+      "HTTP_403": 4,
+      "HTTP_402": 6,
+      "CONTENT_FILTER_EMPTY": 2,
+      "BODY_ABORT": 1
+    },
+    "extraction_diagnostic_rows": 18,
+    "extraction_mismatches": 0,
+    "effective_reasoning_known": 0
+  },
+  "sample_kinds": {
+    "BASELINE": 108,
+    "REPEAT": 46
+  },
+  "historical_parser_states": {
+    "PASS": 114,
+    "FAIL": 31,
+    "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT": 9
+  },
+  "by_connector": {
+    "codex": {
+      "total": 12,
+      "provider_success": 12,
+      "provider_error": 0,
+      "provider_unknown": 0,
+      "assistant_present": 12,
+      "parser_attempted": 12,
+      "parser_pass": 11,
+      "parser_fail": 1,
+      "parser_not_attempted": 0,
+      "pass_per_attempt": "11 / 12 = 91.7%",
+      "dialects": {
+        "RAW_CANONICAL_JSON": 11,
+        "TRUNCATED": 1
+      },
+      "provider_failures": {},
+      "extraction_diagnostic_rows": 0,
+      "extraction_mismatches": 0,
+      "effective_reasoning_known": 0,
+      "sample_kinds": {
+        "BASELINE": 10,
+        "REPEAT": 2
+      },
+      "repeat_stability": {
+        "ONE_OFF_1_OF_3": 1
+      },
+      "reasoning": {
+        "low": {
+          "total": 7,
+          "provider_success": 7,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 7,
+          "parser_attempted": 7,
+          "parser_pass": 6,
+          "parser_fail": 1,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "6 / 7 = 85.7%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 6,
+            "TRUNCATED": 1
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "xhigh": {
+          "total": 1,
+          "provider_success": 1,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 1,
+          "parser_attempted": 1,
+          "parser_pass": 1,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "1 / 1 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 1
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "max": {
+          "total": 1,
+          "provider_success": 1,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 1,
+          "parser_attempted": 1,
+          "parser_pass": 1,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "1 / 1 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 1
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "ultra": {
+          "total": 3,
+          "provider_success": 3,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 3,
+          "parser_attempted": 3,
+          "parser_pass": 3,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "3 / 3 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 3
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        }
+      }
+    },
+    "antigravity": {
+      "total": 20,
+      "provider_success": 18,
+      "provider_error": 2,
+      "provider_unknown": 0,
+      "assistant_present": 18,
+      "parser_attempted": 18,
+      "parser_pass": 14,
+      "parser_fail": 4,
+      "parser_not_attempted": 2,
+      "pass_per_attempt": "14 / 18 = 77.8%",
+      "dialects": {
+        "UNKNOWN": 3,
+        "RAW_CANONICAL_JSON": 14,
+        "EMPTY": 2,
+        "MALFORMED_JSON": 1
+      },
+      "provider_failures": {
+        "TERMINAL_ERROR_WITH_RESPONSE_PRESENT": 1,
+        "TERMINAL_ERROR_EMPTY": 1
+      },
+      "extraction_diagnostic_rows": 2,
+      "extraction_mismatches": 0,
+      "effective_reasoning_known": 0,
+      "sample_kinds": {
+        "BASELINE": 14,
+        "REPEAT": 6
+      },
+      "repeat_stability": {
+        "ONE_OFF_1_OF_3": 1,
+        "REPRODUCED_2_OF_3": 1,
+        "MIXED": 1
+      },
+      "reasoning": {
+        "default": {
+          "total": 4,
+          "provider_success": 4,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 4,
+          "parser_attempted": 4,
+          "parser_pass": 2,
+          "parser_fail": 2,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "2 / 4 = 50.0%",
+          "dialects": {
+            "UNKNOWN": 2,
+            "RAW_CANONICAL_JSON": 2
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "high": {
+          "total": 4,
+          "provider_success": 4,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 4,
+          "parser_attempted": 4,
+          "parser_pass": 4,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "4 / 4 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 4
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "low": {
+          "total": 4,
+          "provider_success": 4,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 4,
+          "parser_attempted": 4,
+          "parser_pass": 4,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "4 / 4 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 4
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "medium": {
+          "total": 8,
+          "provider_success": 6,
+          "provider_error": 2,
+          "provider_unknown": 0,
+          "assistant_present": 6,
+          "parser_attempted": 6,
+          "parser_pass": 4,
+          "parser_fail": 2,
+          "parser_not_attempted": 2,
+          "pass_per_attempt": "4 / 6 = 66.7%",
+          "dialects": {
+            "EMPTY": 2,
+            "RAW_CANONICAL_JSON": 4,
+            "UNKNOWN": 1,
+            "MALFORMED_JSON": 1
+          },
+          "provider_failures": {
+            "TERMINAL_ERROR_WITH_RESPONSE_PRESENT": 1,
+            "TERMINAL_ERROR_EMPTY": 1
+          },
+          "extraction_diagnostic_rows": 2,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        }
+      }
+    },
+    "opencode": {
+      "total": 64,
+      "provider_success": 57,
+      "provider_error": 7,
+      "provider_unknown": 0,
+      "assistant_present": 57,
+      "parser_attempted": 57,
+      "parser_pass": 47,
+      "parser_fail": 10,
+      "parser_not_attempted": 7,
+      "pass_per_attempt": "47 / 57 = 82.5%",
+      "dialects": {
+        "RAW_CANONICAL_JSON": 41,
+        "MALFORMED_JSON": 5,
+        "EMPTY": 7,
+        "FENCED_JSON": 6,
+        "UNKNOWN": 2,
+        "TRUNCATED": 3
+      },
+      "provider_failures": {
+        "TIMEOUT": 3,
+        "HTTP_403": 4
+      },
+      "extraction_diagnostic_rows": 7,
+      "extraction_mismatches": 0,
+      "effective_reasoning_known": 0,
+      "sample_kinds": {
+        "BASELINE": 44,
+        "REPEAT": 20
+      },
+      "repeat_stability": {
+        "ONE_OFF_1_OF_3": 3,
+        "REPRODUCED_2_OF_3": 2,
+        "MIXED": 4,
+        "REPRODUCED_3_OF_3": 1
+      },
+      "reasoning": {
+        "low": {
+          "total": 13,
+          "provider_success": 12,
+          "provider_error": 1,
+          "provider_unknown": 0,
+          "assistant_present": 12,
+          "parser_attempted": 12,
+          "parser_pass": 9,
+          "parser_fail": 3,
+          "parser_not_attempted": 1,
+          "pass_per_attempt": "9 / 12 = 75.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 8,
+            "UNKNOWN": 1,
+            "EMPTY": 1,
+            "FENCED_JSON": 1,
+            "MALFORMED_JSON": 1,
+            "TRUNCATED": 1
+          },
+          "provider_failures": {
+            "TIMEOUT": 1
+          },
+          "extraction_diagnostic_rows": 1,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "max": {
+          "total": 8,
+          "provider_success": 8,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 8,
+          "parser_attempted": 8,
+          "parser_pass": 8,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "8 / 8 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 8
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "high": {
+          "total": 10,
+          "provider_success": 9,
+          "provider_error": 1,
+          "provider_unknown": 0,
+          "assistant_present": 9,
+          "parser_attempted": 9,
+          "parser_pass": 7,
+          "parser_fail": 2,
+          "parser_not_attempted": 1,
+          "pass_per_attempt": "7 / 9 = 77.8%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 5,
+            "FENCED_JSON": 2,
+            "EMPTY": 1,
+            "TRUNCATED": 1,
+            "MALFORMED_JSON": 1
+          },
+          "provider_failures": {
+            "TIMEOUT": 1
+          },
+          "extraction_diagnostic_rows": 1,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "default": {
+          "total": 19,
+          "provider_success": 18,
+          "provider_error": 1,
+          "provider_unknown": 0,
+          "assistant_present": 18,
+          "parser_attempted": 18,
+          "parser_pass": 14,
+          "parser_fail": 4,
+          "parser_not_attempted": 1,
+          "pass_per_attempt": "14 / 18 = 77.8%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 11,
+            "EMPTY": 1,
+            "MALFORMED_JSON": 2,
+            "TRUNCATED": 1,
+            "FENCED_JSON": 3,
+            "UNKNOWN": 1
+          },
+          "provider_failures": {
+            "TIMEOUT": 1
+          },
+          "extraction_diagnostic_rows": 1,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "none": {
+          "total": 6,
+          "provider_success": 6,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 6,
+          "parser_attempted": 6,
+          "parser_pass": 5,
+          "parser_fail": 1,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "5 / 6 = 83.3%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 5,
+            "MALFORMED_JSON": 1
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "xhigh": {
+          "total": 5,
+          "provider_success": 3,
+          "provider_error": 2,
+          "provider_unknown": 0,
+          "assistant_present": 3,
+          "parser_attempted": 3,
+          "parser_pass": 3,
+          "parser_fail": 0,
+          "parser_not_attempted": 2,
+          "pass_per_attempt": "3 / 3 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 3,
+            "EMPTY": 2
+          },
+          "provider_failures": {
+            "HTTP_403": 2
+          },
+          "extraction_diagnostic_rows": 2,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "thinking": {
+          "total": 1,
+          "provider_success": 1,
+          "provider_error": 0,
+          "provider_unknown": 0,
+          "assistant_present": 1,
+          "parser_attempted": 1,
+          "parser_pass": 1,
+          "parser_fail": 0,
+          "parser_not_attempted": 0,
+          "pass_per_attempt": "1 / 1 = 100.0%",
+          "dialects": {
+            "RAW_CANONICAL_JSON": 1
+          },
+          "provider_failures": {},
+          "extraction_diagnostic_rows": 0,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "minimal": {
+          "total": 2,
+          "provider_success": 0,
+          "provider_error": 2,
+          "provider_unknown": 0,
+          "assistant_present": 0,
+          "parser_attempted": 0,
+          "parser_pass": 0,
+          "parser_fail": 0,
+          "parser_not_attempted": 2,
+          "pass_per_attempt": "0 / 0 = undefined",
+          "dialects": {
+            "EMPTY": 2
+          },
+          "provider_failures": {
+            "HTTP_403": 2
+          },
+          "extraction_diagnostic_rows": 2,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        }
+      }
+    },
+    "api/openrouter": {
+      "total": 58,
+      "provider_success": 49,
+      "provider_error": 9,
+      "provider_unknown": 0,
+      "assistant_present": 49,
+      "parser_attempted": 49,
+      "parser_pass": 42,
+      "parser_fail": 7,
+      "parser_not_attempted": 9,
+      "pass_per_attempt": "42 / 49 = 85.7%",
+      "dialects": {
+        "EMPTY": 9,
+        "FENCED_JSON": 6,
+        "RAW_CANONICAL_JSON": 36,
+        "TRUNCATED": 5,
+        "MALFORMED_JSON": 2
+      },
+      "provider_failures": {
+        "HTTP_402": 6,
+        "CONTENT_FILTER_EMPTY": 2,
+        "BODY_ABORT": 1
+      },
+      "extraction_diagnostic_rows": 9,
+      "extraction_mismatches": 0,
+      "effective_reasoning_known": 0,
+      "sample_kinds": {
+        "BASELINE": 40,
+        "REPEAT": 18
+      },
+      "repeat_stability": {
+        "REPRODUCED_3_OF_3": 2,
+        "PROVIDER_BLOCKED": 2,
+        "ONE_OFF_1_OF_3": 4,
+        "REPRODUCED_2_OF_3": 1
+      },
+      "reasoning": {
+        "high": {
+          "total": 28,
+          "provider_success": 24,
+          "provider_error": 4,
+          "provider_unknown": 0,
+          "assistant_present": 24,
+          "parser_attempted": 24,
+          "parser_pass": 21,
+          "parser_fail": 3,
+          "parser_not_attempted": 4,
+          "pass_per_attempt": "21 / 24 = 87.5%",
+          "dialects": {
+            "EMPTY": 4,
+            "FENCED_JSON": 3,
+            "RAW_CANONICAL_JSON": 18,
+            "TRUNCATED": 3
+          },
+          "provider_failures": {
+            "HTTP_402": 3,
+            "CONTENT_FILTER_EMPTY": 1
+          },
+          "extraction_diagnostic_rows": 4,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        },
+        "low": {
+          "total": 30,
+          "provider_success": 25,
+          "provider_error": 5,
+          "provider_unknown": 0,
+          "assistant_present": 25,
+          "parser_attempted": 25,
+          "parser_pass": 21,
+          "parser_fail": 4,
+          "parser_not_attempted": 5,
+          "pass_per_attempt": "21 / 25 = 84.0%",
+          "dialects": {
+            "EMPTY": 5,
+            "FENCED_JSON": 3,
+            "RAW_CANONICAL_JSON": 18,
+            "MALFORMED_JSON": 2,
+            "TRUNCATED": 2
+          },
+          "provider_failures": {
+            "HTTP_402": 3,
+            "CONTENT_FILTER_EMPTY": 1,
+            "BODY_ABORT": 1
+          },
+          "extraction_diagnostic_rows": 5,
+          "extraction_mismatches": 0,
+          "effective_reasoning_known": 0
+        }
+      }
+    }
+  },
+  "repeat_configurations": 23,
+  "repeat_stability": {
+    "ONE_OFF_1_OF_3": 9,
+    "REPRODUCED_2_OF_3": 4,
+    "MIXED": 5,
+    "REPRODUCED_3_OF_3": 3,
+    "PROVIDER_BLOCKED": 2
+  },
+  "historical_repeat_stability": {
+    "ONE_OFF_1_OF_3": 10,
+    "MIXED": 5,
+    "REPRODUCED_2_OF_3": 3,
+    "REPRODUCED_3_OF_3": 3,
+    "PROVIDER_BLOCKED": 2
+  },
+  "dialects": [
+    {
+      "dialect": "RAW_CANONICAL_JSON",
+      "sample_count": 102,
+      "parser_pass": 102,
+      "parser_fail": 0,
+      "parser_not_attempted": 0,
+      "connectors": [
+        "antigravity",
+        "api/openrouter",
+        "codex",
+        "opencode"
+      ],
+      "models": [
+        "antigravity:claude-opus-4-6-thinking",
+        "antigravity:claude-sonnet-4-6",
+        "antigravity:gemini-3.1-pro-high",
+        "antigravity:gemini-3.1-pro-low",
+        "antigravity:gemini-3.6-flash-high",
+        "antigravity:gemini-3.6-flash-low",
+        "antigravity:gemini-3.6-flash-medium",
+        "antigravity:gemini-3.7-flash-high",
+        "antigravity:gemini-3.7-flash-low",
+        "antigravity:gemini-3.7-flash-medium",
+        "antigravity:gemini-3.8-flash-high",
+        "antigravity:gemini-3.8-flash-low",
+        "antigravity:gemini-3.8-flash-medium",
+        "api/openrouter:anthropic/claude-sonnet-5",
+        "api/openrouter:google/gemini-3.1-pro-preview",
+        "api/openrouter:google/gemini-3.5-flash-lite",
+        "api/openrouter:google/gemini-3.8-flash",
+        "api/openrouter:google/gemma-4-31b-it",
+        "api/openrouter:openai/gpt-5.3-codex",
+        "api/openrouter:openai/gpt-5.4-mini",
+        "api/openrouter:openai/gpt-5.5",
+        "api/openrouter:openai/gpt-5.6-luna",
+        "api/openrouter:openai/gpt-5.6-sol",
+        "api/openrouter:openai/gpt-5.6-terra",
+        "api/openrouter:openai/gpt-6-astra",
+        "api/openrouter:openai/gpt-6-astra-pro",
+        "api/openrouter:openai/gpt-oss-120b",
+        "api/openrouter:z-ai/glm-5.3",
+        "api/openrouter:z-ai/glm-5.3-flash",
+        "api/openrouter:z-ai/glm-5v-turbo",
+        "codex:gpt-5.5",
+        "codex:gpt-5.6-luna",
+        "codex:gpt-5.6-sol",
+        "codex:gpt-5.6-terra",
+        "codex:gpt-6-astra",
+        "opencode:opencode-go/deepseek-v4-flash",
+        "opencode:opencode-go/deepseek-v4-flash-vision-exp",
+        "opencode:opencode-go/deepseek-v4-pro",
+        "opencode:opencode-go/glm-5.1",
+        "opencode:opencode-go/glm-5.2",
+        "opencode:opencode-go/glm-5.3",
+        "opencode:opencode-go/glm-5.3-flash",
+        "opencode:opencode-go/gpt-5.6-luna",
+        "opencode:opencode-go/grok-4.6",
+        "opencode:opencode-go/hy3",
+        "opencode:opencode-go/hy4-preview",
+        "opencode:opencode-go/kimi-k2.6",
+        "opencode:opencode-go/kimi-k2.7-code",
+        "opencode:opencode-go/kimi-k3",
+        "opencode:opencode-go/mimo-v2.5",
+        "opencode:opencode-go/mimo-v2.5-pro",
+        "opencode:opencode-go/minimax-m2.7",
+        "opencode:opencode-go/minimax-m3",
+        "opencode:opencode-go/omen-alpha",
+        "opencode:opencode-go/qwen3.7-max",
+        "opencode:opencode-go/qwen3.7-plus",
+        "opencode:opencode-go/qwen3.8-flash",
+        "opencode:opencode-go/qwen3.8-max"
+      ],
+      "repeat_sample_states": {
+        "PASS": 23
+      },
+      "repeat_config_classes": {
+        "ONE_OFF_1_OF_3": 9,
+        "REPRODUCED_2_OF_3": 2,
+        "MIXED": 3
+      }
+    },
+    {
+      "dialect": "TRUNCATED",
+      "sample_count": 9,
+      "parser_pass": 0,
+      "parser_fail": 9,
+      "parser_not_attempted": 0,
+      "connectors": [
+        "api/openrouter",
+        "codex",
+        "opencode"
+      ],
+      "models": [
+        "api/openrouter:google/gemma-4-31b-it",
+        "api/openrouter:z-ai/glm-5.3-flash",
+        "codex:gpt-5.6-luna",
+        "opencode:opencode-go/minimax-m2.7",
+        "opencode:opencode-go/omen-alpha"
+      ],
+      "repeat_sample_states": {
+        "FAIL": 4
+      },
+      "repeat_config_classes": {
+        "ONE_OFF_1_OF_3": 3,
+        "MIXED": 3,
+        "REPRODUCED_2_OF_3": 1
+      }
+    },
+    {
+      "dialect": "UNKNOWN",
+      "sample_count": 5,
+      "parser_pass": 0,
+      "parser_fail": 5,
+      "parser_not_attempted": 0,
+      "connectors": [
+        "antigravity",
+        "opencode"
+      ],
+      "models": [
+        "antigravity:claude-opus-4-6-thinking",
+        "antigravity:gpt-oss-120b-medium",
+        "opencode:opencode-go/longcat-2.0",
+        "opencode:opencode-go/qwen3.7-max"
+      ],
+      "repeat_sample_states": {
+        "FAIL": 1
+      },
+      "repeat_config_classes": {
+        "ONE_OFF_1_OF_3": 2,
+        "MIXED": 2
+      }
+    },
+    {
+      "dialect": "EMPTY",
+      "sample_count": 18,
+      "parser_pass": 0,
+      "parser_fail": 0,
+      "parser_not_attempted": 18,
+      "connectors": [
+        "antigravity",
+        "api/openrouter",
+        "opencode"
+      ],
+      "models": [
+        "antigravity:gemini-3.6-flash-medium",
+        "antigravity:gpt-oss-120b-medium",
+        "api/openrouter:anthropic/claude-fable-5.1",
+        "api/openrouter:anthropic/claude-opus-5",
+        "api/openrouter:z-ai/glm-5.3-flash",
+        "opencode:opencode-go/kimi-k2.6",
+        "opencode:opencode-go/longcat-2.0",
+        "opencode:opencode-go/muse-spark-1.2-contributor",
+        "opencode:opencode-go/muse-spark-1.3-contributor"
+      ],
+      "repeat_sample_states": {
+        "NOT_ATTEMPTED": 7
+      },
+      "repeat_config_classes": {
+        "REPRODUCED_2_OF_3": 4,
+        "MIXED": 2,
+        "PROVIDER_BLOCKED": 2
+      }
+    },
+    {
+      "dialect": "MALFORMED_JSON",
+      "sample_count": 8,
+      "parser_pass": 0,
+      "parser_fail": 8,
+      "parser_not_attempted": 0,
+      "connectors": [
+        "antigravity",
+        "api/openrouter",
+        "opencode"
+      ],
+      "models": [
+        "antigravity:gpt-oss-120b-medium",
+        "api/openrouter:openai/gpt-oss-120b",
+        "api/openrouter:z-ai/glm-5.3",
+        "opencode:opencode-go/hy3",
+        "opencode:opencode-go/mimo-v2.5-pro",
+        "opencode:opencode-go/minimax-m2.7",
+        "opencode:opencode-go/omen-alpha"
+      ],
+      "repeat_sample_states": {
+        "FAIL": 3
+      },
+      "repeat_config_classes": {
+        "MIXED": 4,
+        "ONE_OFF_1_OF_3": 4
+      }
+    },
+    {
+      "dialect": "FENCED_JSON",
+      "sample_count": 12,
+      "parser_pass": 12,
+      "parser_fail": 0,
+      "parser_not_attempted": 0,
+      "connectors": [
+        "api/openrouter",
+        "opencode"
+      ],
+      "models": [
+        "api/openrouter:anthropic/claude-haiku-4.5",
+        "opencode:opencode-go/longcat-2.0",
+        "opencode:opencode-go/qwen3.6-plus"
+      ],
+      "repeat_sample_states": {
+        "PASS": 8
+      },
+      "repeat_config_classes": {
+        "REPRODUCED_2_OF_3": 1,
+        "MIXED": 1,
+        "REPRODUCED_3_OF_3": 3
+      }
+    }
+  ],
+  "reasoning_pairs": [
+    {
+      "connector": "codex",
+      "model": "gpt-5.5",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "codex",
+      "model": "gpt-5.6-luna",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "TRUNCATED",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "codex",
+      "model": "gpt-5.6-sol",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "ultra",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "codex",
+      "model": "gpt-5.6-terra",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "ultra",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "codex",
+      "model": "gpt-6-astra",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "ultra",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/deepseek-v4-flash",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/deepseek-v4-flash-vision-exp",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/deepseek-v4-pro",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/glm-5.2",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/glm-5.3",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/glm-5.3-flash",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/gpt-5.6-luna",
+      "observations": [
+        {
+          "reasoning": "max",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "none",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/grok-4.6",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/hy3",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "none",
+          "dialect": "MALFORMED_JSON",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/hy4-preview",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "none",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/longcat-2.0",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "FENCED_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "UNKNOWN",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/minimax-m3",
+      "observations": [
+        {
+          "reasoning": "none",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "thinking",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/muse-spark-1.2-contributor",
+      "observations": [
+        {
+          "reasoning": "minimal",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        }
+      ],
+      "both_success": false,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "observations": [
+        {
+          "reasoning": "minimal",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        }
+      ],
+      "both_success": false,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/omen-alpha",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "TRUNCATED",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "MALFORMED_JSON",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/qwen3.8-flash",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "opencode",
+      "model": "opencode-go/qwen3.8-max",
+      "observations": [
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "xhigh",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "anthropic/claude-fable-5.1",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        }
+      ],
+      "both_success": false,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "anthropic/claude-haiku-4.5",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "FENCED_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "FENCED_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "anthropic/claude-opus-5",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        }
+      ],
+      "both_success": false,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "anthropic/claude-sonnet-5",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "google/gemini-3.1-pro-preview",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "google/gemini-3.8-flash",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "google/gemma-4-31b-it",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "TRUNCATED",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.3-codex",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.4-mini",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.5",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.6-sol",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-5.6-terra",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-6-astra",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-6-astra-pro",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "openai/gpt-oss-120b",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "MALFORMED_JSON",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "z-ai/glm-5.3",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "MALFORMED_JSON",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "z-ai/glm-5.3-flash",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "TRUNCATED",
+          "parser": "FAIL",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "EMPTY",
+          "parser": "NOT_ATTEMPTED",
+          "terminal": "ERROR"
+        }
+      ],
+      "both_success": false,
+      "dialect_differs": true,
+      "parser_differs": true
+    },
+    {
+      "connector": "api/openrouter",
+      "model": "z-ai/glm-5v-turbo",
+      "observations": [
+        {
+          "reasoning": "high",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        },
+        {
+          "reasoning": "low",
+          "dialect": "RAW_CANONICAL_JSON",
+          "parser": "PASS",
+          "terminal": "SUCCESS"
+        }
+      ],
+      "both_success": true,
+      "dialect_differs": false,
+      "parser_differs": false
+    }
+  ],
+  "integrity_reconciliation": [
+    {
+      "sample_id": "codex/gpt-5.6-luna/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "codex/gpt-5.6-luna/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/claude-opus-4-6-thinking/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/claude-opus-4-6-thinking/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-001",
+      "field": "provider_terminal_status",
+      "recorded": "RUN_LEVEL_ANOMALY_NO_EXPLICIT_TERMINAL_FIELD",
+      "reconciled": "ERROR",
+      "evidence": "raw result.status=ERROR"
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/none/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/none/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5-pro/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5-pro/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m2.7/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m2.7/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.6-plus/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.6-plus/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-max/default/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-max/default/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/high/run-001",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": true
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/low/run-001",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": true
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-001",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": true
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-002",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": false
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-003",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": false
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-001",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": true
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-002",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": false
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-003",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": false
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/high/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/high/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-001",
+      "field": "parser_state",
+      "recorded": "FAIL",
+      "reconciled": "NOT_ATTEMPTED",
+      "evidence": "parse-observation.json skipped=true; empty Layer B",
+      "closure_correction_present": true
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-002",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 2,
+      "evidence": "run directory ordinal; original metadata retained"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-003",
+      "field": "sample_index",
+      "recorded": 1,
+      "reconciled": 3,
+      "evidence": "run directory ordinal; original metadata retained"
+    }
+  ],
+  "not_attempted_rows": [
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "TERMINAL_ERROR_WITH_RESPONSE_PRESENT"
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-003",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "TERMINAL_ERROR_EMPTY"
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "TIMEOUT"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-003",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "TIMEOUT"
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-002",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "TIMEOUT"
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.2-contributor/minimal/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "HTTP_403"
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.2-contributor/xhigh/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "HTTP_403"
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.3-contributor/minimal/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "HTTP_403"
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.3-contributor/xhigh/run-001",
+      "recorded_parser_state": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "provider_failure_category": "HTTP_403"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/high/run-001",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/low/run-001",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-001",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "CONTENT_FILTER_EMPTY"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-002",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-003",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-001",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "CONTENT_FILTER_EMPTY"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-002",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-003",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "HTTP_402"
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-001",
+      "recorded_parser_state": "FAIL",
+      "provider_failure_category": "BODY_ABORT"
+    }
+  ],
+  "provider_failures": [
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-001",
+      "category": "TERMINAL_ERROR_WITH_RESPONSE_PRESENT",
+      "transport_status": "PROCESS_EXIT_0",
+      "provider_http_status": null,
+      "terminal_response_present": true,
+      "terminal_response_bytes": 16286
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-003",
+      "category": "TERMINAL_ERROR_EMPTY",
+      "transport_status": "PROCESS_EXIT_1",
+      "provider_http_status": null,
+      "terminal_response_present": false,
+      "terminal_response_bytes": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-001",
+      "category": "TIMEOUT",
+      "transport_status": "OPENCODE_TIMEOUT",
+      "provider_http_status": null,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-003",
+      "category": "TIMEOUT",
+      "transport_status": "OPENCODE_TIMEOUT",
+      "provider_http_status": null,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-002",
+      "category": "TIMEOUT",
+      "transport_status": "OPENCODE_TIMEOUT",
+      "provider_http_status": null,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.2-contributor/minimal/run-001",
+      "category": "HTTP_403",
+      "transport_status": "OPENCODE_RUN_FAILED",
+      "provider_http_status": 403,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.2-contributor/xhigh/run-001",
+      "category": "HTTP_403",
+      "transport_status": "OPENCODE_RUN_FAILED",
+      "provider_http_status": 403,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.3-contributor/minimal/run-001",
+      "category": "HTTP_403",
+      "transport_status": "OPENCODE_RUN_FAILED",
+      "provider_http_status": 403,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-muse-spark-1.3-contributor/xhigh/run-001",
+      "category": "HTTP_403",
+      "transport_status": "OPENCODE_RUN_FAILED",
+      "provider_http_status": 403,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/high/run-001",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-fable-5.1/low/run-001",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-001",
+      "category": "CONTENT_FILTER_EMPTY",
+      "transport_status": "API_EMPTY_RESPONSE",
+      "provider_http_status": 200,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-002",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/high/run-003",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-001",
+      "category": "CONTENT_FILTER_EMPTY",
+      "transport_status": "API_EMPTY_RESPONSE",
+      "provider_http_status": 200,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-002",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-opus-5/low/run-003",
+      "category": "HTTP_402",
+      "transport_status": "API_BILLING_FAILED",
+      "provider_http_status": 402,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-001",
+      "category": "BODY_ABORT",
+      "transport_status": "API_NETWORK_ERROR",
+      "provider_http_status": 200,
+      "terminal_response_present": null,
+      "terminal_response_bytes": null
+    }
+  ],
+  "structural_reviews": [
+    {
+      "sample_id": "codex/gpt-5.5/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.5/xhigh/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-luna/low/run-001",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 15452
+    },
+    {
+      "sample_id": "codex/gpt-5.6-luna/low/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-luna/low/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-luna/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-sol/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-sol/ultra/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-terra/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-5.6-terra/ultra/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-6-astra/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "codex/gpt-6-astra/ultra/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/claude-opus-4-6-thinking/default/run-001",
+      "dialect": "UNKNOWN",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "antigravity/claude-opus-4-6-thinking/default/run-002",
+      "dialect": "UNKNOWN",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "antigravity/claude-opus-4-6-thinking/default/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/claude-sonnet-4-6/default/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.1-pro-high/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.1-pro-low/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-high/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-low/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.6-flash-medium/medium/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.7-flash-high/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.7-flash-low/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.7-flash-medium/medium/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.8-flash-high/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.8-flash-low/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gemini-3.8-flash-medium/medium/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-001",
+      "dialect": "UNKNOWN",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "antigravity/gpt-oss-120b-medium/medium/run-002",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "UNESCAPED_CONTROL_CHARACTER",
+      "syntax_position": 2962
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-flash/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-flash/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-flash-vision-exp/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-flash-vision-exp/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-pro/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-deepseek-v4-pro/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.1/default/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.2/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.2/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.3/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.3/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.3-flash/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-glm-5.3-flash/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-gpt-5.6-luna/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-gpt-5.6-luna/none/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-grok-4.6/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-grok-4.6/xhigh/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/none/run-001",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 8463
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/none/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy3/none/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy4-preview/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-hy4-preview/none/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.6/default/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k2.7-code/default/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-kimi-k3/max/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-001",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "PROSE_PREFIX_SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 193,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/high/run-002",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "PROSE_PREFIX_SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 238,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-001",
+      "dialect": "UNKNOWN",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-longcat-2.0/low/run-003",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "PROSE_PREFIX_SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 288,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5/default/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5-pro/default/run-001",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 9100
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5-pro/default/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-mimo-v2.5-pro/default/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m2.7/default/run-001",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 8491
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m2.7/default/run-002",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 10102
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m2.7/default/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m3/none/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-minimax-m3/thinking/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/high/run-001",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 15764
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/high/run-002",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/high/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/low/run-001",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 12678
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/low/run-002",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 14004
+    },
+    {
+      "sample_id": "opencode/opencode-go-omen-alpha/low/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.6-plus/default/run-001",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.6-plus/default/run-002",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.6-plus/default/run-003",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-max/default/run-001",
+      "dialect": "UNKNOWN",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": null
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-max/default/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-max/default/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.7-plus/default/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.8-flash/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.8-flash/xhigh/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.8-max/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "opencode/opencode-go-qwen3.8-max/xhigh/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/high/run-001",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/high/run-002",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/high/run-003",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/low/run-001",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/low/run-002",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-haiku-4.5/low/run-003",
+      "dialect": "FENCED_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": false,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "SINGLE_JSON_FENCE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-sonnet-5/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/anthropic-claude-sonnet-5/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.1-pro-preview/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.1-pro-preview/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.5-flash-lite/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.5-flash-lite/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.8-flash/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemini-3.8-flash/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/high/run-001",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "INCOMPLETE_JSON",
+      "syntax_position": 12865
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/high/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/high/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/google-gemma-4-31b-it/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.3-codex/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.3-codex/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.4-mini/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.4-mini/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.5/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.5/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-luna/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-luna/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-sol/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-sol/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-terra/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-5.6-terra/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-6-astra/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-6-astra/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-6-astra-pro/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-6-astra-pro/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/low/run-001",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "UNESCAPED_CONTROL_CHARACTER",
+      "syntax_position": 1060
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/low/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/openai-gpt-oss-120b/low/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/low/run-001",
+      "dialect": "MALFORMED_JSON",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 13287
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/low/run-002",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3/low/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/high/run-001",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 17134
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/high/run-002",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 15546
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/high/run-003",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-002",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 14019
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5.3-flash/low/run-003",
+      "dialect": "TRUNCATED",
+      "parser_state": "FAIL",
+      "whole_json_valid": false,
+      "bounded_wrapper": "NONE",
+      "syntax_diagnostic": "JSON_SYNTAX_INVALID",
+      "syntax_position": 16127
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5v-turbo/high/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    },
+    {
+      "sample_id": "api/openrouter/z-ai-glm-5v-turbo/low/run-001",
+      "dialect": "RAW_CANONICAL_JSON",
+      "parser_state": "PASS",
+      "whole_json_valid": true,
+      "bounded_json_valid": true,
+      "bounded_wrapper": "NONE",
+      "prose_prefix_bytes": 0,
+      "top_level": "OBJECT",
+      "decision_type_finish": true,
+      "output_nonempty_string": true,
+      "data_plain_object": true,
+      "contract_state": "PASS",
+      "discarded_field_count": 0,
+      "changed_field_count": 0,
+      "duplicate_key_count": 0
+    }
+  ],
+  "exact_overlap_models": 0,
+  "overlap_candidate_decisions": {
+    "OVERLAP_SKIPPED_NOT_ELIGIBLE_OPENCODE": 23,
+    "OVERLAP_IDENTITY_UNRESOLVED": 25,
+    "NO_NAME_IDENTITY_MATCH_ON_OPENROUTER": 2
+  },
+  "deferred_connectors": {
+    "claude-code": "NOT_COLLECTED / DEFERRED_QUOTA_UNAVAILABLE",
+    "grok": "NOT_COLLECTED / DEFERRED_NO_ACTIVE_SUBSCRIPTION_PLAN"
+  },
+  "policy": {
+    "offline": true,
+    "providers_invoked": false,
+    "raw_evidence_modified": false,
+    "production_code_changed": false,
+    "reasoning_content_included": false
+  }
+}

@@ -1,0 +1,102 @@
+/* UI V2.1: shared structural-frame separator — see BackendRuns.css's
+   comment on the same treatment. This is the last band in the lower
+   control-plane stack, so its neon top edge is what visually "closes"
+   the frame started by the topbar/sidebars above. */
+.activity-panel {
+  border-top: var(--dsh-frame-neon-width) solid var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  background: var(--dsh-bg-panel);
+  transition: all 0.2s ease;
+}
+
+.activity-panel-expanded {
+  height: 240px;
+}
+
+/* UI V2.1: tightened from 12px 24px to match the other three lower
+   bands' 8px 16px density. */
+.activity-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.activity-panel-header:hover {
+  background: var(--dsh-bg-panel-subtle);
+}
+
+.activity-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dsh-text-primary);
+}
+
+.activity-panel-pid {
+  font-size: var(--dsh-font-size-sm);
+  font-weight: 400;
+  color: var(--dsh-text-secondary);
+  font-family: var(--dsh-font-mono);
+  background: var(--dsh-bg-app);
+  padding: 3px 8px;
+  border-radius: var(--dsh-radius-sm);
+}
+
+.activity-panel-toggle {
+  background: none;
+  border: none;
+  color: var(--dsh-text-secondary);
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.activity-panel-content {
+  height: calc(100% - 48px);
+  overflow: hidden;
+  border-top: 1px solid var(--dsh-border-default);
+}
+
+.activity-panel-logs {
+  height: 100%;
+  overflow-y: auto;
+  padding: 12px 24px;
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-sm);
+  line-height: var(--dsh-line-height-terminal);
+  background: var(--dsh-terminal-bg);
+  color: var(--dsh-terminal-fg);
+}
+
+.activity-panel-empty {
+  color: var(--dsh-text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: 24px;
+  font-family: var(--dsh-font-ui);
+}
+
+.activity-log-entry {
+  margin-bottom: 2px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.activity-log-entry-error {
+  color: var(--dsh-terminal-error);
+}
+
+.activity-log-time {
+  color: var(--dsh-terminal-muted);
+  margin-right: 8px;
+}

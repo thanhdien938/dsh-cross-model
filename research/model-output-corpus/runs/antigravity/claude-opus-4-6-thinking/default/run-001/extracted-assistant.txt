@@ -1,0 +1,10 @@
+I'll create a detailed implementation plan for this DSH Model Output Dialect Probe task. Let me first analyze the requirements and synthetic evidence, then produce the plan.
+The plan is ready for your review. Key points:
+
+- **Primary cause identified:** Dependency B's HTTP 429 rate-limiting (E05, E09) — not resource saturation or infra changes.
+- **Amplifier:** The exponential-backoff retry policy (E06) turned each 429 into up to 4 requests, explaining why adding workers had negligible effect (E07).
+- **Resolution path confirmed:** Raising Dep-B rate limits (E09) resolved the incident, establishing causation.
+- **All cardinality constraints** are mapped: 8 findings, 6 risks, 5 uncertainties, 6 recommendations, 4 alternatives, 10 evidence items, 6 edge cases.
+- **Verbatim fields** (Unicode, Windows paths, literal punctuation) will be copied exactly.
+
+Please review the plan and approve when ready — I'll then produce the final JSON object directly in chat.

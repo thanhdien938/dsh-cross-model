@@ -1,0 +1,245 @@
+{
+  "outcome": "PASS",
+  "error_code": null,
+  "parse_subreason": null,
+  "structural_diagnostics": null,
+  "normalized_decision": {
+    "type": "finish",
+    "output": "PRIMARY CAUSE ANALYSIS\n\nThe incident window from 08:00 to 10:00 is constrained by E10, which rules out any deploy, schema change, host restart, network route change, or credential rotation. That single fact eliminates the most common change-induced failure classes and focuses attention on a load- or dependency-driven mechanism. Between 09:00 and 09:10, queue depth rose from 120 to 1,850 while worker count held at 8, implying a sudden collapse in effective throughput rather than a surge of inbound work. Median task latency climbed from 1.8s to 14.2s, an approximately eightfold degradation consistent with tasks stalling on a slow or rejecting dependency rather than with local resource exhaustion. Resource telemetry at 09:14 shows CPU 43%, memory 51%, and disk 22%, so the node was not compute- or storage-bound. The first credible exogenous trigger is E05: at 09:15, outbound dependency B began returning HTTP 429 for 31% of requests. We treat E05 as the primary cause. A 429 response signals rate limiting; tasks calling B were throttled, and because B sits on the critical path for the queued work, throttled tasks neither complete nor free their slots, so the queue grows and latency inflates.\n\nAMPLIFIERS VERSUS ROOT CAUSE\n\nThe retry policy is the dominant amplifier. E06 records retry volume increasing 420% with exponential backoff capped at three retries. Retries re-enter the queue and re-hit the already-saturated dependency B, compounding pressure. This is corroborated by E08: disabling retries for B cut queue depth 38% in six minutes, even though direct failure rate rose. The trade-off confirms retries were converting transient throttling into sustained backlog rather than improving success probability. Worker scaling is at best a weak amplifier. E07 shows raising workers from 8 to 16 reduced queue depth only 6% over ten minutes, because the bottleneck is B's rate ceiling, not local concurrency. More workers simply generate more throttled calls.\n\nWHY ADDING WORKERS FAILED\n\nWorker count controls local parallelism, not remote allowance. With B returning 429 for nearly a third of attempts, additional workers mostly produced additional 429s and additional retries. The small 6% improvement reflects the fraction of tasks not dependent on B; the majority remained gated by B. Therefore horizontal scaling was the wrong lever. The correct lever is the remote throttle, where E09 shows raising B's rate limits drove 429s below 1% and returned queue depth below 150 within eleven minutes.\n\nRETRY POLICY ASSESSMENT\n\nExponential backoff with three retries is reasonable in isolation but harmful under sustained rate limiting. It spreads retry load over time yet still guarantees repeated contact with the throttling endpoint, and each retry consumes a worker slot and a queue entry. A circuit-breaker design would have failed fast, shed load, and protected B. The E08 experiment is effectively a manual circuit break and validates that approach.\n\nUNCERTAINTIES AND ALTERNATIVES\n\nA competing hypothesis is local resource starvation, but E04 contradicts it. A second is a silent deploy or credential failure, contradicted by E10. We therefore rank B rate limiting as primary, retry amplification as secondary, and worker misconfiguration as unsupported. Residual uncertainty remains around what triggered B's limit drop and whether 429s were global or per-key.\n\nSTAGED REMEDIATION\n\nRemediation should follow six steps. First, enable fast-fail circuit breaking on retries to B immediately, mirroring the E08 effect. Second, engage the dependency owner to raise and formalize limits, following the E09 success path. Third, add per-key quotas, jitter, and retry budgeting to prevent synchronized storms. Fourth, instrument queue latency separately from dependency latency so future incidents are classified in seconds. Fifth, load-test at queue depth above 2,000 with B throttled to validate the breaker. Sixth, document a runbook encoding the E01 through E10 signal chain. This balances rapid mitigation with durable fixes while preserving the evidence chain.",
+    "data": {
+      "executive_summary": "The queue incident between 09:00 and 09:35 was driven primarily by a rate-limiting regression at outbound dependency B, first observed at 09:15 when B returned HTTP 429 for 31% of requests (E05). This throttle capped effective task throughput, causing queue depth to climb from 120 to 1,850 (E01, E02) and median latency to rise from 1.8s to 14.2s (E03). The retry policy (exponential backoff, three retries) was the principal amplifier: retry volume rose 420% (E06) and re-hit the saturated dependency, sustaining backlog. Evidence E08 confirms this, disabling retries dropped queue depth 38% in six minutes. Increasing workers from 8 to 16 produced only a 6% reduction (E07) because the bottleneck was B's remote rate ceiling, not local compute, which E04 shows was underutilized (CPU 43%, memory 51%, disk 22%). E10 rules out deploy, schema, restart, route, or credential changes. Permanent relief came from raising B's limits (E09), returning queue depth below 150. The staged plan prioritizes circuit-breaking retries, limit negotiation, and per-key quotas.",
+      "findings": [
+        {
+          "id": "F01",
+          "severity": "critical",
+          "claim": "Dependency B rate limiting (HTTP 429) is the primary cause of the incident, first observed at 09:15.",
+          "evidence_refs": [
+            "E05"
+          ],
+          "confidence": 95
+        },
+        {
+          "id": "F02",
+          "severity": "high",
+          "claim": "The retry policy was the dominant amplifier; disabling retries cut queue depth 38% in six minutes.",
+          "evidence_refs": [
+            "E06",
+            "E08"
+          ],
+          "confidence": 88
+        },
+        {
+          "id": "F03",
+          "severity": "medium",
+          "claim": "Worker scaling was ineffective because the bottleneck was B's remote rate ceiling, not local compute capacity.",
+          "evidence_refs": [
+            "E07",
+            "E04"
+          ],
+          "confidence": 82
+        },
+        {
+          "id": "F04",
+          "severity": "low",
+          "claim": "No deploy, schema change, host restart, route change, or credential rotation occurred, ruling out change-induced causes.",
+          "evidence_refs": [
+            "E10"
+          ],
+          "confidence": 90
+        },
+        {
+          "id": "F05",
+          "severity": "high",
+          "claim": "Nodes were not CPU, memory, or disk bound, so local resource starvation is not the cause of latency rise.",
+          "evidence_refs": [
+            "E04"
+          ],
+          "confidence": 85
+        },
+        {
+          "id": "F06",
+          "severity": "medium",
+          "claim": "Raising B's rate limits resolved the incident, confirming the dependency throttle as the root cause.",
+          "evidence_refs": [
+            "E09"
+          ],
+          "confidence": 92
+        },
+        {
+          "id": "F07",
+          "severity": "medium",
+          "claim": "Queue backlog began before 429 was observed, suggesting B degradation may have slightly preceded 09:15 or piled via retries.",
+          "evidence_refs": [
+            "E01",
+            "E02",
+            "E03",
+            "E05"
+          ],
+          "confidence": 60
+        },
+        {
+          "id": "F08",
+          "severity": "low",
+          "claim": "Disabling retries increased direct failure rate, indicating some tasks cannot succeed without B, an acceptable trade-off.",
+          "evidence_refs": [
+            "E08"
+          ],
+          "confidence": 70
+        }
+      ],
+      "risks": [
+        "Sustained HTTP 429 from dependency B can recur if rate limits remain unchanged.",
+        "Retry storms may further overwhelm B during future incidents if not circuit-broken.",
+        "Fast-fail without mitigation increases user-visible direct failure rate.",
+        "Worker misallocation wastes capacity without addressing the remote bottleneck.",
+        "The rate-limit raise by the B owner may be temporary or later revoked.",
+        "Lack of per-key quota visibility obscures the true source of throttling."
+      ],
+      "uncertainties": [
+        "The exact trigger that caused B to begin returning 429 responses is unknown.",
+        "Whether the 429s were global or scoped per API key is undetermined.",
+        "Timestamp granularity hides whether B degradation preceded the 09:15 observation.",
+        "The true proportion of queued tasks not dependent on B is unmeasured.",
+        "The durability of the raised rate limits after E09 is not guaranteed."
+      ],
+      "recommendations": [
+        {
+          "priority": 1,
+          "action": "Immediately enable circuit-breaker or fast-fail on retries to dependency B.",
+          "rationale": "E08 shows disabling retries cut queue depth 38%, proving retries amplify the backlog."
+        },
+        {
+          "priority": 2,
+          "action": "Engage the dependency B owner to raise and formally reserve higher rate limits.",
+          "rationale": "E09 shows raising limits resolved the incident and restored normal queue depth."
+        },
+        {
+          "priority": 3,
+          "action": "Add per-key quotas, jitter, and bounded retry budgeting.",
+          "rationale": "Prevents synchronized retry storms and isolates throttled keys from healthy ones."
+        },
+        {
+          "priority": 4,
+          "action": "Instrument queue latency separately from dependency latency.",
+          "rationale": "Enables rapid distinction of local versus remote bottlenecks as in E04 versus E05."
+        },
+        {
+          "priority": 5,
+          "action": "Load-test at queue depth above 2,000 with B intentionally throttled.",
+          "rationale": "Validates circuit-breaker resilience before the next production incident."
+        },
+        {
+          "priority": 6,
+          "action": "Document a runbook encoding E01 through E10 signal thresholds for on-call.",
+          "rationale": "Reduces mean-time-to-detect using the established evidence chain."
+        }
+      ],
+      "alternatives": [
+        {
+          "name": "Local resource starvation hypothesis",
+          "pros": [
+            "Would explain the observed latency rise from 1.8s to 14.2s."
+          ],
+          "cons": [
+            "E04 shows CPU 43%, memory 51%, disk 22%, contradicting exhaustion."
+          ]
+        },
+        {
+          "name": "Deploy or credential regression hypothesis",
+          "pros": [
+            "Common and frequent incident cause in production systems."
+          ],
+          "cons": [
+            "E10 explicitly rules out deploy, schema, restart, route, and credential rotation."
+          ]
+        },
+        {
+          "name": "Aggressively increase worker count",
+          "pros": [
+            "Cheap horizontal scaling and offers partial relief for non-B tasks."
+          ],
+          "cons": [
+            "E07 shows only 6% improvement; bottleneck is remote B, not local workers."
+          ]
+        },
+        {
+          "name": "Drop dependency B entirely or cache its results",
+          "pros": [
+            "Removes the throttle surface and eliminates 429 exposure."
+          ],
+          "cons": [
+            "May break correctness, is unvalidated by evidence, and carries high blast radius."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E01",
+          "source": "Synthetic probe queue log",
+          "observation": "At 09:00, queue depth was 120 and worker count was 8."
+        },
+        {
+          "id": "E02",
+          "source": "Synthetic probe queue log",
+          "observation": "At 09:10, queue depth rose to 1,850 while worker count remained 8."
+        },
+        {
+          "id": "E03",
+          "source": "Synthetic probe latency metric",
+          "observation": "At 09:12, median task latency rose from 1.8 seconds to 14.2 seconds."
+        },
+        {
+          "id": "E04",
+          "source": "Synthetic probe resource telemetry",
+          "observation": "At 09:14, CPU utilization averaged 43%, memory 51%, and disk utilization 22%."
+        },
+        {
+          "id": "E05",
+          "source": "Synthetic probe dependency monitor",
+          "observation": "At 09:15, outbound dependency B began returning HTTP 429 for 31% of requests."
+        },
+        {
+          "id": "E06",
+          "source": "Synthetic probe retry counter",
+          "observation": "At 09:16, retry volume increased by 420%, using exponential backoff with a maximum of three retries."
+        },
+        {
+          "id": "E07",
+          "source": "Synthetic probe scaling test",
+          "observation": "At 09:20, increasing worker count from 8 to 16 reduced queue depth only 6% over ten minutes."
+        },
+        {
+          "id": "E08",
+          "source": "Synthetic probe experiment",
+          "observation": "At 09:26, temporarily disabling retries for dependency B caused queue depth to fall 38% in six minutes, while direct failure rate increased."
+        },
+        {
+          "id": "E09",
+          "source": "Synthetic probe recovery log",
+          "observation": "At 09:35, dependency B rate limits were raised and HTTP 429 responses fell below 1%; queue depth then returned below 150 within eleven minutes."
+        },
+        {
+          "id": "E10",
+          "source": "Synthetic probe change audit",
+          "observation": "No deploy, schema change, host restart, network route change, or credential rotation occurred between 08:00 and 10:00."
+        }
+      ],
+      "edge_cases": [
+        "Queue depth began rising before the 429 was observed, creating causal-ordering ambiguity.",
+        "Disabling retries increases direct failure rate, an acceptable but user-visible trade-off.",
+        "Worker scaling behavior may differ across Windows versus POSIX path handling (see path_check).",
+        "Unicode log content must be preserved exactly without normalization (see unicode_check).",
+        "Backoff capped at three retries can still saturate the dependency under sustained 429 pressure.",
+        "The rate-limit raise may be temporary, so the incident could recur without durable fixes."
+      ],
+      "unicode_check": "Tiếng Việt: dữ liệu thử nghiệm phải được giữ nguyên dấu.",
+      "path_check": {
+        "windows": "C:\\DSH\\probe\\sample.json",
+        "posix": "/opt/dsh/probe/sample.json"
+      },
+      "literal_check": "Keep braces { }, brackets [ ], quotes \"like this\", colon :, comma , and backslash \\ inside this string."
+    }
+  },
+  "normalize_outcome": "PASS",
+  "normalize_error_code": null
+}

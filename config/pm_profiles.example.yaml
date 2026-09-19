@@ -1,0 +1,17 @@
+pm_profiles:
+  - id: local-pm
+    role_kind: PM
+    session_kind: STATELESS
+    product: claude-code
+    transport: stdio
+    model: null
+    # Optional (P6-W3-R4): a backend-specific reasoning-effort value, only
+    # meaningful for a backend whose capability is SUPPORTED (see
+    # src/pm/pm-reasoning-capability.mjs) — omit or leave null otherwise.
+    reasoning: null
+# Credentials are supplied through the local secret environment, never this file.
+# Connection Center (Desktop) can create/edit profiles for any supported
+# product (claude-code, opencode, codex, grok) through the same durable,
+# atomic write path this file is loaded from — see
+# desktop/electron/main/services/pmProfileConfigService.ts and
+# docs/p6/implementation/24_CONNECTION_CENTER_V2.md.

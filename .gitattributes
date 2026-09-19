@@ -1,0 +1,5 @@
+# DSH MODEL OUTPUT CORPUS & DIALECT DISCOVERY — byte-identical artifacts.
+# The canonical probe must keep sha256 102946023d462f67187574cdad536eba93c2e3f4351c07d2f9a82d8f59b3bcb5
+# at 4112 bytes, and raw/extracted run artifacts carry recorded byte counts/hashes.
+# Never let core.autocrlf rewrite line endings in this tree.
+research/model-output-corpus/** -text

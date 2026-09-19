@@ -1,0 +1,316 @@
+.connection-center {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* UI V2.1: tighter, more compact panel-header padding (was 24px 16px
+   16px) — matches ProjectList.css's own header treatment; see
+   .panel-header-label/.section-title in App.css. */
+.connection-header {
+  padding: 12px 16px;
+  background: var(--dsh-panel-header-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.connection-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.connection-header-actions .btn {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.connection-last-checked {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  font-style: italic;
+}
+
+.connection-refresh-hint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--dsh-text-muted);
+}
+
+.connection-list {
+  padding: 0 16px;
+  overflow-y: auto;
+}
+
+.connection-empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--dsh-text-secondary);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* UI V2.2: each backend is now a compact operator unit divided from its
+   neighbor by a thin rule instead of being its own boxed `.card` (the
+   `card` class was removed from this element's className in
+   ConnectionCenter.tsx) — see the target layout in
+   UI_V2_DENSE_COMPONENTS_IMPLEMENTATION.md §5. */
+.connection-card {
+  padding: 10px 0;
+  border-bottom: var(--dsh-border-width) solid var(--dsh-row-divider);
+}
+
+.connection-card:last-child {
+  border-bottom: none;
+}
+
+.connection-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+/* UI V2.2: monospace, matching every other identifier/label in the app's
+   operator-console typography (was Inter at 15px/500). */
+.connection-name {
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-md);
+  font-weight: var(--dsh-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dsh-text-primary);
+}
+
+.connection-health {
+  font-size: var(--dsh-font-size-base);
+  font-weight: var(--dsh-font-weight-semibold);
+  line-height: 1;
+}
+
+/* UI V2.2: a fixed label column (CSS Grid) instead of flex
+   `justify-content: space-between`, so every row's VALUE lines up in one
+   vertical column regardless of label length — the "aligned metadata"
+   the dense operator-unit target calls for. Same information, same
+   number of rows; only the alignment mechanism changed. */
+.connection-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.connection-detail {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  align-items: baseline;
+  font-size: var(--dsh-font-size-base);
+  line-height: 1.5;
+}
+
+.connection-detail-label {
+  color: var(--dsh-text-secondary);
+  font-weight: 400;
+}
+
+.connection-yes {
+  color: var(--dsh-status-success);
+}
+
+.connection-no {
+  color: var(--dsh-status-error);
+}
+
+.connection-unknown {
+  color: var(--dsh-text-secondary);
+  font-style: italic;
+}
+
+.connection-backend {
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-base);
+  background: var(--dsh-bg-app);
+  padding: 2px 6px;
+  border-radius: var(--dsh-radius-sm);
+}
+
+.connection-models {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.connection-model-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* UI V2.2: compact rectangular tag (was a 999px pill) — the brief's
+   "reduce excessive pills" rule for badges. */
+.connection-model-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--dsh-accent-soft);
+  color: var(--dsh-accent);
+  border-radius: var(--dsh-radius-sm);
+  font-size: var(--dsh-font-size-sm);
+  font-weight: 500;
+}
+
+.connection-configured-profiles {
+  margin-top: 6px;
+}
+
+.connection-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.connection-profile-row {
+  display: grid;
+  grid-template-columns: 1fr 70px 100px;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.connection-profile-id {
+  font-family: var(--dsh-font-mono);
+}
+
+.connection-login-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.connection-login-actions .btn {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.runner-state {
+  font-family: var(--dsh-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dsh-text-secondary);
+}
+
+.runner-state-online_idle { color: var(--dsh-status-success); }
+.runner-state-online_busy, .runner-state-starting, .runner-state-stopping { color: var(--dsh-status-warning); }
+.runner-state-failed, .runner-state-degraded { color: var(--dsh-status-error); }
+.runner-path-value { overflow-wrap: anywhere; font-family: var(--dsh-font-mono); font-size: 11px; }
+.runner-error { margin: 7px 0 0; color: var(--dsh-status-error); font-size: 11px; line-height: 1.4; }
+.runner-actions { flex-wrap: wrap; }
+.runner-logs { max-height: 160px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: 8px; background: var(--dsh-bg-app); color: var(--dsh-text-secondary); font-size: 10px; }
+.runner-setting { display: flex; gap: 6px; align-items: center; margin-top: 5px; font-size: 11px; color: var(--dsh-text-secondary); }
+.runner-path-setting { align-items: stretch; flex-direction: column; }
+.runner-path-setting input { min-width: 0; padding: 5px 7px; border: var(--dsh-border-width) solid var(--dsh-control-border); border-radius: var(--dsh-radius-sm); background: var(--dsh-control-bg); color: var(--dsh-text-primary); font-family: var(--dsh-font-mono); font-size: 11px; }
+.runner-save { margin-top: 7px; padding: 4px 10px; font-size: 11px; }
+
+/* UI V2.2: this already WAS a compact "system label" style (uppercase,
+   tracked, muted) — only the divider color/spacing tightened slightly
+   (14px/10px -> 12px/8px) to match the rest of this phase's density
+   pass. Kept as its own sub-header rather than merged into
+   .panel-header-label (App.css): it's a subsection INSIDE one operator
+   unit, not a major shell panel. */
+.connection-section-label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dsh-text-secondary);
+  border-top: var(--dsh-border-width) solid var(--dsh-row-divider);
+  padding-top: 8px;
+}
+
+.connection-no-profile {
+  font-size: 13px;
+  color: var(--dsh-text-secondary);
+}
+
+.connection-no-profile p {
+  margin: 0 0 8px 0;
+}
+
+.pm-profile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pm-profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+}
+
+.pm-profile-field-label {
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+}
+
+.pm-profile-field select,
+.pm-profile-field input,
+.pm-profile-model-input {
+  font-size: 13px;
+  padding: 5px 8px;
+  border: var(--dsh-border-width) solid var(--dsh-control-border);
+  border-radius: var(--dsh-radius-sm);
+  background: var(--dsh-control-bg);
+  color: var(--dsh-text-primary);
+}
+
+/* P8-R0.2: execution identity (model/reasoning) is displayed read-only —
+   never as an editable input — once a profile is created. */
+.pm-profile-readonly {
+  font-family: var(--dsh-font-mono);
+  font-size: 13px;
+  padding: 5px 8px;
+  border: var(--dsh-border-width) solid var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+  background: var(--dsh-bg-panel-subtle);
+  color: var(--dsh-text-primary);
+}
+
+.pm-profile-identity-note {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  margin: 2px 0 0 0;
+  line-height: 1.4;
+}
+
+.pm-profile-single-id {
+  font-family: var(--dsh-font-mono);
+  font-size: 12px;
+  color: var(--dsh-text-primary);
+}
+
+.pm-profile-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.pm-profile-actions .btn {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.btn-inline {
+  padding: 2px 8px !important;
+  font-size: 11px !important;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

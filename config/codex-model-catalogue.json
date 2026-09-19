@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "codex debug models (installed Codex CLI 0.147.0 / client_version 0.149.0) — a real, official, local, machine-readable CLI subcommand (`codex debug models --help`: \"Render the raw model catalog as JSON\"). This file is the JSON_FALLBACK snapshot the loader uses only when that live command is unavailable at probe time (offline, CLI not installed, unexpected output shape); when the command succeeds, its live output is normalized and used instead — see src/pm/codex-model-catalogue.mjs. Only models with visibility \"list\" from the live catalogue are included; \"hide\"-visibility entries (gpt-reserve, codex-auto-review) are internal and are not owner-facing choices, so they are intentionally excluded here.",
+  "last_verified": "2026-08-27",
+  "models": [
+    {
+      "id": "gpt-5.6-sol",
+      "label": "5.6 Sol",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh", "max", "ultra"]
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "label": "5.6 Terra",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh", "max", "ultra"]
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "label": "5.6 Luna",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh", "max"]
+    },
+    {
+      "id": "gpt-5.5",
+      "label": "5.5",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh"]
+    },
+    {
+      "id": "gpt-5.4",
+      "label": "5.4",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh"]
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "label": "5.4 Mini",
+      "enabled": true,
+      "efforts": ["low", "medium", "high", "xhigh"]
+    }
+  ]
+}

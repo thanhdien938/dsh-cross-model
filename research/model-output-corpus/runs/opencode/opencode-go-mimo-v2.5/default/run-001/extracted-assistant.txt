@@ -1,0 +1,200 @@
+{
+  "type": "finish",
+  "output": "Primary cause analysis of the DSH queue incident of 09 Sep 2026. The queue incident was a dependency-induced saturation event with retry amplification. Between 09:00 and 09:10, the queue depth surged from 120 to 1850 while worker count held steady at 8, indicating the backlog was not caused by insufficient workers. Median task latency spiked from 1.8 s to 14.2 s by 09:12 (E03), confirming the system was congested but not crashed. At 09:14, CPU, memory, and disk were well within safe bounds (43%, 51%, 22%), ruling out local resource exhaustion as the primary driver. At 09:15, dependency B began returning HTTP 429 for 31% of requests, the first hard indicator of an external rate-limit constraint. The system's retry policy—up to three retries with exponential backoff—amplified load by 420%, flooding the queue with repeated attempts against a throttled endpoint. Doubling workers from 8 to 16 at 09:20 reduced queue depth only 6% over ten minutes, because the bottleneck was not CPU-bound task processing but the external dependency's admission gate. When retries were temporarily disabled at 09:26, queue depth fell 38% in six minutes while the direct failure rate rose, proving retries were a major amplifier rather than a mitigation. Once dependency B's rate limits were raised at 09:35 and HTTP 429s fell below 1%, the queue normalized within eleven minutes. No deploy, schema change, host restart, network route change, or credential rotation occurred between 08:00 and 10:00, isolating the external rate-limit as the sole actionable trigger. The primary cause was dependency B's HTTP 429 responses; the primary amplifier was the exponential-backoff retry policy. Recommendations: implement circuit breaker on dependency B, cap retry volume with adaptive backpressure, add dependency health checks to load shedding, redesign queue to shed low-priority tasks under saturation, instrument per-dependency metrics, and conduct a post-incident review of retry policy thresholds.",
+  "data": {
+    "executive_summary": "Between 09:00 and 09:10 on 09 Sep 2026, the DSH task queue depth surged from 120 to 1850 while worker count remained constant at 8, indicating an external constraint rather than local capacity exhaustion. CPU, memory, and disk utilization at 09:14 were well within normal bounds (43%, 51%, 22%). At 09:15, dependency B began returning HTTP 429 for 31% of requests, and the retry policy amplified volume by 420%. Doubling workers had negligible effect; disabling retries reduced queue depth 38%. Raising dependency B's rate limits resolved the incident. No internal changes occurred, isolating the root cause as dependency B rate-limiting with retry amplification.",
+    "findings": [
+      {
+        "id": "F01",
+        "severity": "high",
+        "claim": "Primary cause: dependency B returning HTTP 429 for 31% of requests beginning at 09:15 triggered the queue saturation.",
+        "evidence_refs": ["E05", "E09"],
+        "confidence": 95
+      },
+      {
+        "id": "F02",
+        "severity": "high",
+        "claim": "The exponential-backoff retry policy (max 3 retries) was the primary amplifier, increasing retry volume by 420% and flooding the queue.",
+        "evidence_refs": ["E06", "E08"],
+        "confidence": 92
+      },
+      {
+        "id": "F03",
+        "severity": "medium",
+        "claim": "Local resource exhaustion was not the bottleneck; CPU at 43%, memory at 51%, and disk at 22% at 09:14 were all within normal ranges.",
+        "evidence_refs": ["E04"],
+        "confidence": 90
+      },
+      {
+        "id": "F04",
+        "severity": "medium",
+        "claim": "Adding workers from 8 to 16 at 09:20 reduced queue depth only 6% over ten minutes, confirming the bottleneck was external.",
+        "evidence_refs": ["E07"],
+        "confidence": 88
+      },
+      {
+        "id": "F05",
+        "severity": "medium",
+        "claim": "Disabling retries at 09:26 reduced queue depth 38% in six minutes, proving retries were a major contributor to backlog.",
+        "evidence_refs": ["E08"],
+        "confidence": 93
+      },
+      {
+        "id": "F06",
+        "severity": "low",
+        "claim": "Baseline system health at 09:00 was nominal with queue depth at 120 and 8 workers handling normal load.",
+        "evidence_refs": ["E01"],
+        "confidence": 85
+      },
+      {
+        "id": "F07",
+        "severity": "low",
+        "claim": "No internal change (deploy, schema, restart, network, credentials) occurred between 08:00 and 10:00, eliminating internal causes.",
+        "evidence_refs": ["E10"],
+        "confidence": 88
+      },
+      {
+        "id": "F08",
+        "severity": "high",
+        "claim": "Raising dependency B rate limits at 09:35 resolved the incident, confirming external rate-limiting as the root cause.",
+        "evidence_refs": ["E09"],
+        "confidence": 96
+      }
+    ],
+    "risks": [
+      "Dependency B rate limit may be lowered again without warning, causing recurrence",
+      "Retry policy lacks circuit breaker, so future dependency failures will amplify queue depth",
+      "No backpressure mechanism exists to shed tasks during external dependency degradation",
+      "Queue monitoring does not include per-dependency health signals, delaying diagnosis",
+      "Worker autoscaling is ineffective against external bottlenecks, creating false confidence",
+      "Direct failure rate rises when retries are disabled, potentially impacting downstream consumers"
+    ],
+    "uncertainties": [
+      "Unknown whether dependency B rate limit was intentional (capacity planning) or misconfiguration",
+      "No data on whether retry policy parameters were tuned for this specific dependency",
+      "Unconfirmed whether alternative dependencies could serve as fallback for dependency B",
+      "Queue depth at 09:00 was 120, which may already represent mild backpressure from earlier signals",
+      "No visibility into whether direct failures during retry disable caused data loss or ordering issues"
+    ],
+    "recommendations": [
+      {
+        "priority": 1,
+        "action": "Implement circuit breaker on dependency B with configurable failure threshold and half-open probe interval",
+        "rationale": "Prevents retry amplification by stopping outbound requests to a degraded dependency before queue saturates"
+      },
+      {
+        "priority": 2,
+        "action": "Cap total retry volume with adaptive backpressure; reduce max retries or backoff delay when queue depth exceeds threshold",
+        "rationale": "Limits the amplification factor of retries under load, as demonstrated by the 420% volume increase"
+      },
+      {
+        "priority": 3,
+        "action": "Add dependency health check integration to load shedding logic so tasks targeting unhealthy dependencies are queued or dropped",
+        "rationale": "Reduces wasted worker cycles processing tasks that will inevitably fail against a throttled endpoint"
+      },
+      {
+        "priority": 4,
+        "action": "Redesign queue to support priority tiers and task shedding; deprioritize non-critical tasks under saturation",
+        "rationale": "Ensures critical-path work completes even when external dependencies are degraded"
+      },
+      {
+        "priority": 5,
+        "action": "Instrument per-dependency metrics (429 rate, latency, retry count) with alerting on threshold breaches",
+        "rationale": "Provides early warning before queue depth becomes critical, as 429 signals were available at 09:15 but not surfaced"
+      },
+      {
+        "priority": 6,
+        "action": "Conduct post-incident review of retry policy thresholds and ensure circuit breaker configuration is reviewed quarterly",
+        "rationale": "Prevents policy drift and ensures retry parameters remain appropriate as dependencies evolve"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Local CPU saturation hypothesis",
+        "pros": ["CPU utilization was measured at 43%", "Explains queue depth increase if workers were CPU-bound"],
+        "cons": ["CPU was only at 43%, well below saturation", "Doubling workers had negligible effect", "Does not explain why dependency B rate limit correlated perfectly with incident timeline"]
+      },
+      {
+        "name": "Memory pressure hypothesis",
+        "pros": ["Memory at 51% could indicate garbage collection pressure", "GC pauses could delay task processing"],
+        "cons": ["51% memory usage is normal for a JVM-based system", "Does not explain dependency B 429 responses", "Disabling retries reduced queue depth, inconsistent with memory as root cause"]
+      },
+      {
+        "name": "Deploy or configuration change hypothesis",
+        "pros": ["Deploys are common incident triggers", "Could explain behavioral change at 09:00"],
+        "cons": ["E10 explicitly rules out deploy, schema change, host restart, network route change, and credential rotation", "No evidence of any internal change in the window"]
+      },
+      {
+        "name": "Internal database contention hypothesis",
+        "pros": ["Task processing may involve database writes", "Lock contention could stall workers"],
+        "cons": ["Disk utilization was only 22%", "No evidence of database errors or slow queries", "Queue normalized after dependency B fix, not after any database action"]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E01",
+        "source": "Monitoring snapshot at 09:00",
+        "observation": "Queue depth was 120 with 8 workers operating at baseline capacity"
+      },
+      {
+        "id": "E02",
+        "source": "Monitoring snapshot at 09:10",
+        "observation": "Queue depth rose to 1850 while worker count remained at 8, indicating external pressure"
+      },
+      {
+        "id": "E03",
+        "source": "Latency telemetry at 09:12",
+        "observation": "Median task latency increased from 1.8 seconds to 14.2 seconds, confirming congestion"
+      },
+      {
+        "id": "E04",
+        "source": "System metrics at 09:14",
+        "observation": "CPU averaged 43%, memory 51%, disk utilization 22%, all within normal operating range"
+      },
+      {
+        "id": "E05",
+        "source": "Dependency telemetry at 09:15",
+        "observation": "Dependency B returned HTTP 429 for 31% of outbound requests, indicating rate-limiting"
+      },
+      {
+        "id": "E06",
+        "source": "Retry metrics at 09:16",
+        "observation": "Retry volume increased by 420% with exponential backoff capped at three retries"
+      },
+      {
+        "id": "E07",
+        "source": "Scaling action at 09:20",
+        "observation": "Increasing worker count from 8 to 16 reduced queue depth only 6% over ten minutes"
+      },
+      {
+        "id": "E08",
+        "source": "Mitigation test at 09:26",
+        "observation": "Disabling retries for dependency B reduced queue depth 38% in six minutes while direct failure rate increased"
+      },
+      {
+        "id": "E09",
+        "source": "Resolution at 09:35",
+        "observation": "Dependency B rate limits raised; HTTP 429 responses fell below 1%; queue depth returned below 150 within eleven minutes"
+      },
+      {
+        "id": "E10",
+        "source": "Change audit log 08:00-10:00",
+        "observation": "No deploy, schema change, host restart, network route change, or credential rotation occurred during the incident window"
+      }
+    ],
+    "edge_cases": [
+      "Dependency B rate limits may be dynamic and could decrease again without notice",
+      "Disabling retries may cause silent data loss for tasks requiring exactly-once semantics",
+      "Worker autoscaling may mask the real bottleneck by consuming resources without throughput gain",
+      "Queue depth of 120 at baseline may already indicate chronic mild saturation not yet alerting",
+      "Exponential backoff with max 3 retries may be insufficient for transient 429s but excessive for sustained throttling",
+      "Fallback to alternative dependencies requires verification that alternatives have adequate capacity"
+    ],
+    "unicode_check": "Tiếng Việt: dữ liệu thử nghiệm phải được giữ nguyên dấu.",
+    "path_check": {
+      "windows": "C:\\DSH\\probe\\sample.json",
+      "posix": "/opt/dsh/probe/sample.json"
+    },
+    "literal_check": "Keep braces { }, brackets [ ], quotes \"like this\", colon :, comma , and backslash \\ inside this string."
+  }
+}

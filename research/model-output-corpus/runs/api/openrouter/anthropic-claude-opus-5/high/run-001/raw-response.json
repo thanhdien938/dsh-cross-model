@@ -1,0 +1,36 @@
+{
+  "url": "https://openrouter.ai/api/v1/chat/completions",
+  "http_status": 200,
+  "response_headers": {
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "X-Generation-Id,X-Provider-Name,request-id,cf-ray",
+    "cache-control": "private",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a37ac4eced0485ac-HKG",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "date": "Tue, 08 Sep 2026 03:12:03 GMT",
+    "expires": "Tue, 08 Sep 2026 03:12:02 GMT",
+    "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\"), payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+    "referrer-policy": "no-referrer, strict-origin-when-cross-origin, no-referrer, strict-origin-when-cross-origin",
+    "server": "cloudflare",
+    "set-cookie": "__cf_bm=d1jZYV8QKotyYDGJrRLqSymRhKfZMP8Luo1KQ459hkc-1788837122.0687876-1.0.1.1-Mt3K6D1MFeaMjBPYxNw4pYnGAetIJN1nJwH7bFd7nT24MD4WvDNcF_mDaDc2_DiPcxvrHWk6qnMNNCLL_NYlnFKyAqW0tAzvd8bldrKKOrzlgZ6P_HNgmd6OWcech.Wg; HttpOnly; SameSite=None; Secure; Path=/; Domain=openrouter.ai; Expires=Tue, 08 Sep 2026 03:42:03 GMT",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff, nosniff",
+    "x-generation-id": "gen-1788837122-F3IA3WcOk0r0u3O2Nu8g"
+  },
+  "body_text": "{\"id\":\"gen-1788837122-F3IA3WcOk0r0u3O2Nu8g\",\"object\":\"chat.completion\",\"created\":1788837122,\"model\":\"anthropic/claude-opus-5\",\"provider\":\"Claude Platform on AWS\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"content_filter\",\"native_finish_reason\":\"refusal\",\"message\":{\"role\":\"assistant\",\"content\":null,\"refusal\":\"This request was blocked as it seems to violate Anthropic's Terms of Service restrictions on reverse engineering or duplicating model outputs. To learn more, visit https://www.anthropic.com/legal/commercial-terms.\",\"reasoning\":\"<WITHHELD: hidden chain-of-thought (reasoning trace) — never persisted per DSH corpus PLAN section 9; SHA-256 of the original response body is recorded in raw_artifact_policy>\"}}]}",
+  "transport_error": null,
+  "raw_artifact_policy": {
+    "marker": "RAW_ARTIFACT_WITHHELD_SECRET_RISK",
+    "withheld_fields": [
+      "choices[0].message.reasoning"
+    ],
+    "withholding_reason": "hidden chain-of-thought (OpenRouter reasoning trace) is never persisted per PLAN section 9; sanitized structural copy retained; assistant message.content is untouched and byte-identical to what production extracted",
+    "original_body_text_sha256": "28c73c4bb3d1c124a1072e091647c52b99ac21baae5c239b7a6593c2f5e45344",
+    "original_body_text_bytes": 614,
+    "sanitized_body_text_note": "body_text is a structural copy with the reasoning fields replaced by the withhold marker — NOT byte-exact raw"
+  }
+}

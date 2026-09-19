@@ -1,0 +1,163 @@
+{
+  "call_ordinal": 2,
+  "live_provider_invocations": 1,
+  "budget_guard_blocked_decide_calls": 0,
+  "parser_0": {
+    "diagnostic_version": 1,
+    "execution_state": "SUCCESS",
+    "terminal_state": "SUCCESS",
+    "terminal_status": null,
+    "terminal_response_present": null,
+    "terminal_response_bytes": null,
+    "extraction_state": "SUCCEEDED",
+    "assistant_output_present": true,
+    "assistant_output_bytes": 1547,
+    "parser_attempted": true,
+    "parser_state": "PASS",
+    "parse_error_code": null,
+    "parse_subreason": null,
+    "pm_contract_state": "NOT_EVALUATED",
+    "step_validation_state": "NOT_EVALUATED",
+    "provider_http_status": null,
+    "finish_reason": null,
+    "structured_output_requested": true,
+    "structured_output_present": true,
+    "attempt_ordinal": 0,
+    "request_phase": null,
+    "execution_error_code": null,
+    "primary_layer": "L5_PARSER"
+  },
+  "structure": {
+    "event_count": 13,
+    "result_event_count": 1,
+    "terminal_result_event_count": 1,
+    "selected_terminal_result_ordinal": 1,
+    "selected_result_status": "SUCCESS",
+    "selected_result_field_names": [
+      "conversation_id",
+      "duration_seconds",
+      "json_schema",
+      "num_turns",
+      "response",
+      "status",
+      "structured_output",
+      "usage"
+    ],
+    "selected_result_field_types": {
+      "conversation_id": "string",
+      "duration_seconds": "number",
+      "json_schema": "object",
+      "num_turns": "number",
+      "response": "string",
+      "status": "string",
+      "structured_output": "object",
+      "usage": "object"
+    },
+    "structured_output_related_field_names": [
+      "json_schema",
+      "response",
+      "structured_output"
+    ],
+    "response_field_present": true,
+    "response_field_type": "string",
+    "whole_response_bytes": 3183,
+    "whole_response_sha256": "454b06c091931dd21472680945334067ea0c021a42321d1570306cb3513f843c",
+    "extracted_trimmed_response_bytes": 3182,
+    "extracted_trimmed_response_sha256": "cd4432586881c8a976ddc966abacc59f46fdea678447ffced889bcf2d0bd2392",
+    "top_level_balanced_object_count": 2,
+    "decision_candidate_count": 2,
+    "json_fence_count": 0,
+    "non_whitespace_prefix_bytes": 0,
+    "non_whitespace_suffix_bytes": 0,
+    "non_whitespace_between_top_level_objects_bytes": 0,
+    "non_whitespace_outside_candidates": false,
+    "incomplete_object_or_string": false,
+    "stray_closing_brace": false,
+    "candidates": [
+      {
+        "candidate_ordinal": 1,
+        "candidate_bytes": 1547,
+        "candidate_sha256": "e35ad5958e96b6ab4b82bfd94946d59244923baf241b90131b7a966990ae6f4a",
+        "candidate_json_valid": true,
+        "candidate_top_level_type": "object",
+        "candidate_pm_decision_shaped": true,
+        "candidate_pm_decision_type": "finish",
+        "candidate_finish_output_present": true,
+        "candidate_pm_contract_valid": true,
+        "candidate_matches_requested_native_schema_shape": true
+      },
+      {
+        "candidate_ordinal": 2,
+        "candidate_bytes": 1634,
+        "candidate_sha256": "ed2ff1cbf27ee1f612dd965fc24e58f62c6c9b2380bd734f3e99565a06b70381",
+        "candidate_json_valid": true,
+        "candidate_top_level_type": "object",
+        "candidate_pm_decision_shaped": true,
+        "candidate_pm_decision_type": "finish",
+        "candidate_finish_output_present": true,
+        "candidate_pm_contract_valid": true,
+        "candidate_matches_requested_native_schema_shape": true
+      }
+    ],
+    "candidates_byte_identical": false,
+    "candidates_canonical_json_identical": false,
+    "candidate_keyset_identical": false,
+    "candidate_decision_type_identical": true,
+    "candidate_data_shape_identical": true
+  },
+  "native_boundary": {
+    "event_count": 1,
+    "result_event_count": 1,
+    "terminal_result_event_count": 1,
+    "selected_terminal_result_ordinal": 1,
+    "selected_result_status": "SUCCESS",
+    "selected_result_field_names": [
+      "response",
+      "status"
+    ],
+    "selected_result_field_types": {
+      "response": "string",
+      "status": "string"
+    },
+    "structured_output_related_field_names": [
+      "response"
+    ],
+    "response_field_present": true,
+    "response_field_type": "string",
+    "whole_response_bytes": 1547,
+    "whole_response_sha256": "194eedd23febf079c9960b8acf17834d1f9eae9d893ae92038f47c69c0262f91",
+    "extracted_trimmed_response_bytes": 1547,
+    "extracted_trimmed_response_sha256": "194eedd23febf079c9960b8acf17834d1f9eae9d893ae92038f47c69c0262f91",
+    "top_level_balanced_object_count": 1,
+    "decision_candidate_count": 1,
+    "json_fence_count": 0,
+    "non_whitespace_prefix_bytes": 0,
+    "non_whitespace_suffix_bytes": 0,
+    "non_whitespace_between_top_level_objects_bytes": 0,
+    "non_whitespace_outside_candidates": false,
+    "incomplete_object_or_string": false,
+    "stray_closing_brace": false,
+    "candidates": [
+      {
+        "candidate_ordinal": 1,
+        "candidate_bytes": 1547,
+        "candidate_sha256": "194eedd23febf079c9960b8acf17834d1f9eae9d893ae92038f47c69c0262f91",
+        "candidate_json_valid": true,
+        "candidate_top_level_type": "object",
+        "candidate_pm_decision_shaped": true,
+        "candidate_pm_decision_type": "finish",
+        "candidate_finish_output_present": true,
+        "candidate_pm_contract_valid": true,
+        "candidate_matches_requested_native_schema_shape": true
+      }
+    ],
+    "candidates_byte_identical": null,
+    "candidates_canonical_json_identical": null,
+    "candidate_keyset_identical": null,
+    "candidate_decision_type_identical": null,
+    "candidate_data_shape_identical": null
+  },
+  "pm_contract_state": "PASS",
+  "council_validation_state": "PASS",
+  "end_to_end_accepted": true
+}

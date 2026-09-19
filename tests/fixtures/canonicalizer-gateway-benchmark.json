@@ -1,0 +1,79 @@
+{
+  "source_commit": "4c9e508",
+  "cases": [
+    {
+      "case_id": "C1_missing_terminal_brace_code_review",
+      "category": "RECOVERABLE_SYNTAX",
+      "input_hash": "sha256:c814c608e96b0a47f818172a2804fa37d9ea2944b30b2c1d96b789d678b75747",
+      "input": "{\"type\":\"finish\",\"output\":\"Code review complete for pull request #482 (payment-retry-backoff). The change is APPROVED with two minor follow-up suggestions. The exponential backoff implementation correctly caps retries at 5 attempts and uses jitter to avoid thundering-herd retries against the payment gateway. Test coverage for the new retry path is adequate (3 new unit tests, 1 integration test). Two non-blocking suggestions: (1) the retry delay constants should be extracted to a named config rather than inline magic numbers, and (2) the log line on final retry exhaustion should include the correlation ID for easier tracing. Neither issue blocks merge.\",\"data\":{\"verdict\":\"APPROVE\",\"pull_request\":\"PR-482\",\"blocking_issues\":[],\"suggestions\":[{\"id\":\"S1\",\"severity\":\"minor\",\"note\":\"Extract retry delay constants to named config.\"},{\"id\":\"S2\",\"severity\":\"minor\",\"note\":\"Include correlation ID in retry-exhaustion log line.\"}],\"tests_reviewed\":{\"unit\":3,\"integration\":1}}",
+      "expected_status": "NORMALIZED",
+      "expected_canonical": {
+        "type": "finish",
+        "output": "Code review complete for pull request #482 (payment-retry-backoff). The change is APPROVED with two minor follow-up suggestions. The exponential backoff implementation correctly caps retries at 5 attempts and uses jitter to avoid thundering-herd retries against the payment gateway. Test coverage for the new retry path is adequate (3 new unit tests, 1 integration test). Two non-blocking suggestions: (1) the retry delay constants should be extracted to a named config rather than inline magic numbers, and (2) the log line on final retry exhaustion should include the correlation ID for easier tracing. Neither issue blocks merge.",
+        "data": {
+          "verdict": "APPROVE",
+          "pull_request": "PR-482",
+          "blocking_issues": [],
+          "suggestions": [
+            {
+              "id": "S1",
+              "severity": "minor",
+              "note": "Extract retry delay constants to named config."
+            },
+            {
+              "id": "S2",
+              "severity": "minor",
+              "note": "Include correlation ID in retry-exhaustion log line."
+            }
+          ],
+          "tests_reviewed": {
+            "unit": 3,
+            "integration": 1
+          }
+        }
+      },
+      "acceptable_reason_codes": null
+    },
+    {
+      "case_id": "C2_trailing_comma_build_failure",
+      "category": "RECOVERABLE_SYNTAX",
+      "input_hash": "sha256:21c59d793535c820a006af9732cc6acce708cb100916198fb4dd3f3ea07ceae3",
+      "input": "{\n  \"type\": \"finish\",\n  \"output\": \"Root cause of the nightly build failure (build #9142) is a stale dependency lock file referencing a yanked version of left-pad-safe@3.2.1. CI began failing at 02:14 UTC when the package registry removed that version. Pinning to 3.2.2 in package-lock.json resolves the failure; no source code changes are required.\",\n  \"data\": {\n    \"root_cause\": \"stale lock file referencing yanked dependency left-pad-safe@3.2.1\",\n    \"fix\": \"pin left-pad-safe to 3.2.2 in package-lock.json\",\n    \"evidence\": [\n      {\n        \"id\": \"E1\",\n        \"source\": \"CI log build #9142\",\n        \"observation\": \"npm ci failed with ETARGET for left-pad-safe@3.2.1 at 02:14 UTC\"\n      },\n      {\n        \"id\": \"E2\",\n        \"source\": \"registry status page\",\n        \"observation\": \"left-pad-safe@3.2.1 was yanked at 02:09 UTC for a security advisory\"\n      }\n    ],\n    \"requires_code_change\": false\n  },\n}",
+      "expected_status": "NORMALIZED",
+      "expected_canonical": {
+        "type": "finish",
+        "output": "Root cause of the nightly build failure (build #9142) is a stale dependency lock file referencing a yanked version of left-pad-safe@3.2.1. CI began failing at 02:14 UTC when the package registry removed that version. Pinning to 3.2.2 in package-lock.json resolves the failure; no source code changes are required.",
+        "data": {
+          "root_cause": "stale lock file referencing yanked dependency left-pad-safe@3.2.1",
+          "fix": "pin left-pad-safe to 3.2.2 in package-lock.json",
+          "evidence": [
+            {
+              "id": "E1",
+              "source": "CI log build #9142",
+              "observation": "npm ci failed with ETARGET for left-pad-safe@3.2.1 at 02:14 UTC"
+            },
+            {
+              "id": "E2",
+              "source": "registry status page",
+              "observation": "left-pad-safe@3.2.1 was yanked at 02:09 UTC for a security advisory"
+            }
+          ],
+          "requires_code_change": false
+        }
+      },
+      "acceptable_reason_codes": null
+    },
+    {
+      "case_id": "D4_synthetic_truncated_content",
+      "category": "UNSAFE_OR_AMBIGUOUS",
+      "input_hash": "sha256:53a060eaa8e583bd6e2268ad2dcf5fc0791021b806cbf300d54b10deee3751c9",
+      "input": "{\"type\":\"finish\",\"output\":\"Root cause analysis for the checkout outage: the primary driver was a connection pool exhaustion in the payment-service client caused by",
+      "expected_status": "UNSAFE",
+      "expected_canonical": null,
+      "acceptable_reason_codes": [
+        "TRUNCATED_SEMANTIC_CONTENT",
+        "UNRECOVERABLE_STRUCTURE"
+      ]
+    }
+  ]
+}

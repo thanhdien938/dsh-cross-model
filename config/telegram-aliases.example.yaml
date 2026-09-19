@@ -1,0 +1,38 @@
+# P8-R0.1: this is a GENERATED-STATE example, NOT an operator-authored
+# declaration. Do not hand-write a file like this to "reserve" aliases for
+# projects/PM profiles you have not created yet — DSH allocates and persists
+# these automatically the first time it loads a production config (and every
+# time afterward, as projects/profiles are added, edited, or removed).
+#
+# Concretely:
+#   1. create/register a project (Desktop "Add Folder") or a PM profile
+#      (Desktop "Create PM Profile") the normal way, through the existing
+#      canonical config lifecycle
+#   2. on the next config load/reload, DSH assigns it the next unused,
+#      never-before-issued alias number and writes that assignment HERE
+#   3. the alias stays stable afterward -- editing model/reasoning on an
+#      existing profile never changes its alias; deleting a project/profile
+#      retires its alias number permanently (it is never reissued to a
+#      later, different object)
+#
+# See docs/p8/03_DYNAMIC_ALIAS_RECONCILIATION.md for the full reconciliation
+# semantics, and docs/p8/02_TELEGRAM_ALIAS_UX.md for the owner-facing usage.
+#
+# This snapshot shows what the file looks like after DSH has reconciled it
+# once against a fresh registry of an example baseline: three projects
+# (demo-frontend, demo-backend, demo-docs) and four PM profiles
+# (example-claude-pm, example-opencode-pm, example-codex-pm, example-gemini-pm).
+version: 1
+next_project_alias: 4
+next_pm_profile_alias: 5
+
+projects:
+  "1": demo-frontend
+  "2": demo-backend
+  "3": demo-docs
+
+pm_profiles:
+  "1": example-claude-pm
+  "2": example-opencode-pm
+  "3": example-codex-pm
+  "4": example-gemini-pm

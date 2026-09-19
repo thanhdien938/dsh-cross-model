@@ -1,0 +1,404 @@
+{
+  "phase_version": "1.0",
+  "captured_at_utc": "2026-09-08T00:11:12.436Z",
+  "repo": {
+    "branch": "codex/council-participant-execution-audit",
+    "head": "d1f5a27fa9839b8cc26358f05a5237c4b397e3d9"
+  },
+  "connector": "codex",
+  "connector_version": "codex-cli 0.153.4",
+  "binary": "C:\\Users\\<user>\\.codex\\packages\\standalone\\releases\\0.153.4-x86_64-pc-windows-msvc\\bin\\codex.exe",
+  "discovery_command": "codex debug models",
+  "discovery_raw": {
+    "stdout_bytes": 383535,
+    "stdout_sha256": "1fb6b521faa8ec79e60158c41211176d78eae7ef4ef60b9ca09820016efd97e7",
+    "stderr_bytes": 0,
+    "exit_code": 0,
+    "duration_ms": 29
+  },
+  "catalogue_client_version": null,
+  "counts": {
+    "total_discovered": 8,
+    "paid_or_standard": 5,
+    "free_excluded": 0,
+    "trial_excluded": 0,
+    "ephemeral_excluded": 1,
+    "unknown_not_invoked": 2,
+    "eligible": 5
+  },
+  "planned_configurations": [
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-6-astra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-6-astra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "ultra",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-sol",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-sol",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "ultra",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-terra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-terra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "selected_reasoning": "ultra",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-luna",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.6-luna",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "selected_reasoning": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_reasoning": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "codex",
+      "provider": null,
+      "provider_note": "provider/route identity is not exposed by `codex debug models`; invocation routes via the authenticated Codex CLI service",
+      "model": "gpt-5.5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_reasoning": "xhigh",
+      "planned_sample_count": 1
+    }
+  ],
+  "planned_baseline_invocations": 10,
+  "canonical_probe": {
+    "sha256": "102946023d462f67187574cdad536eba93c2e3f4351c07d2f9a82d8f59b3bcb5",
+    "bytes": 4112
+  },
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "display_name": "GPT-6-Astra",
+      "visibility": "list",
+      "description": "Our most capable model for complex, demanding work.",
+      "default_reasoning_level": "low",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "ultra",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "owner-facing visibility=list; no free/trial/ephemeral marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-reserve",
+      "display_name": "GPT-Reserve",
+      "visibility": "hide",
+      "description": "Fast and affordable agentic coding model.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "visibility=\"hide\" is not owner-facing; catalogue exposes no cost/availability evidence -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "invocation_eligible": false
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "display_name": "GPT-5.6-Sol",
+      "visibility": "list",
+      "description": "Reliable agentic workhorse for everyday tasks.",
+      "default_reasoning_level": "low",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "ultra",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "owner-facing visibility=list; no free/trial/ephemeral marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "display_name": "GPT-5.6-Terra",
+      "visibility": "list",
+      "description": "Balanced agentic coding model for everyday work.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "ultra",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "owner-facing visibility=list; no free/trial/ephemeral marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "display_name": "GPT-5.6-Luna",
+      "visibility": "list",
+      "description": "Fast and affordable agentic coding model.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "owner-facing visibility=list; no free/trial/ephemeral marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-5.5",
+      "display_name": "GPT-5.5",
+      "visibility": "list",
+      "description": "Proven previous-generation model for coding and general work.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "owner-facing visibility=list; no free/trial/ephemeral marker anywhere in catalogue metadata"
+      ],
+      "invocation_eligible": true
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "display_name": "GPT-5.4-Mini",
+      "visibility": "list",
+      "description": "Small, fast, and cost-efficient model for simpler coding tasks.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "EPHEMERAL",
+      "cost_classification_evidence": [
+        "catalogue upgrade.retirement_at=2026-08-31T19:00:00Z (already past at classification time)",
+        "catalogue upgrade.model=gpt-5.6-luna"
+      ],
+      "invocation_eligible": false
+    },
+    {
+      "id": "codex-auto-review",
+      "display_name": "Codex Auto Review",
+      "visibility": "hide",
+      "description": "Automatic approval review model for Codex.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_reasoning_fallback": null,
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "visibility=\"hide\" is not owner-facing; catalogue exposes no cost/availability evidence -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "invocation_eligible": false
+    }
+  ]
+}

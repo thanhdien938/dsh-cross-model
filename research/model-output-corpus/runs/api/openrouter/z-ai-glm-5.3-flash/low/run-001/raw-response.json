@@ -1,0 +1,26 @@
+{
+  "url": "https://openrouter.ai/api/v1/chat/completions",
+  "http_status": 200,
+  "response_headers": {
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "X-Generation-Id,X-Provider-Name,request-id,cf-ray",
+    "cache-control": "private",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a37ae32c9a9285ac-HKG",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "date": "Tue, 08 Sep 2026 03:32:42 GMT",
+    "expires": "Tue, 08 Sep 2026 03:32:42 GMT",
+    "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\"), payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+    "referrer-policy": "no-referrer, strict-origin-when-cross-origin, no-referrer, strict-origin-when-cross-origin",
+    "server": "cloudflare",
+    "set-cookie": "__cf_bm=mBNN2reoC6UUc.EoWrctmA64B32rl3OWMd1gPJf8hKU-1788838361.056706-1.0.1.1-sp4pqDhXdJmuEbcec3BOYhCkOcbtqjtWOcemLCaPNAupm5yFdz.Yj7gdq1wW85PVH7dIEBz4NraPBc5zE811dNUcu0DQTPIZWFSB4.WDJdvf8V5MHrqHesarLBY4E2uf; HttpOnly; SameSite=None; Secure; Path=/; Domain=openrouter.ai; Expires=Tue, 08 Sep 2026 04:02:42 GMT",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff, nosniff",
+    "x-generation-id": "gen-1788838361-p7q0kvcJY6zte0qJbSkR"
+  },
+  "body_text": null,
+  "transport_error": null
+}

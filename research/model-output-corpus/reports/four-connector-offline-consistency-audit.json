@@ -1,0 +1,477 @@
+{
+  "generated_utc": "2026-09-08T06:21:43.196Z",
+  "audit_status": "FAIL",
+  "samples_audited": 108,
+  "samples_skipped_no_metadata": 0,
+  "mismatch_count": 5,
+  "by_connector": {
+    "codex": {
+      "audited": 10,
+      "consistent": 10,
+      "mismatched": 0
+    },
+    "antigravity": {
+      "audited": 14,
+      "consistent": 14,
+      "mismatched": 0
+    },
+    "opencode": {
+      "audited": 44,
+      "consistent": 44,
+      "mismatched": 0
+    },
+    "api/openrouter": {
+      "audited": 40,
+      "consistent": 35,
+      "mismatched": 5
+    }
+  },
+  "mismatches": [
+    {
+      "connector": "api/openrouter",
+      "run": "anthropic-claude-fable-5.1/high/run-001",
+      "status": "CORPUS_METADATA_MISMATCH",
+      "model": "anthropic/claude-fable-5.1",
+      "reasoning": "high",
+      "sample_index": 1,
+      "recorded": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "current_parse_outcome": "FAIL",
+        "current_parse_error_code": "API_BILLING_FAILED",
+        "provider_terminal_status": "ERROR",
+        "collector_capture_status": "COMPLETED",
+        "invocation_failed": true,
+        "invocation_error_code": "API_BILLING_FAILED",
+        "extraction_anomaly_code": null,
+        "http_status": 402,
+        "process_exit_code": null,
+        "finish_reason": null,
+        "transport_anomaly": null
+      },
+      "recomputed": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "dialect_detail": null,
+        "parse": null
+      },
+      "mismatches": [
+        {
+          "field": "current_parse_outcome",
+          "recorded_value": "FAIL",
+          "recomputed_value": "NOT_RUN (production parser never reached; empty Layer-B downstream of provider/adapter failure)",
+          "classification": "TRANSPORT_ERROR_RECORDED_AS_PARSE_FAIL_METADATA_ONLY",
+          "metadata_only_corrected_value": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT"
+        }
+      ]
+    },
+    {
+      "connector": "api/openrouter",
+      "run": "anthropic-claude-fable-5.1/low/run-001",
+      "status": "CORPUS_METADATA_MISMATCH",
+      "model": "anthropic/claude-fable-5.1",
+      "reasoning": "low",
+      "sample_index": 1,
+      "recorded": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "current_parse_outcome": "FAIL",
+        "current_parse_error_code": "API_BILLING_FAILED",
+        "provider_terminal_status": "ERROR",
+        "collector_capture_status": "COMPLETED",
+        "invocation_failed": true,
+        "invocation_error_code": "API_BILLING_FAILED",
+        "extraction_anomaly_code": null,
+        "http_status": 402,
+        "process_exit_code": null,
+        "finish_reason": null,
+        "transport_anomaly": null
+      },
+      "recomputed": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "dialect_detail": null,
+        "parse": null
+      },
+      "mismatches": [
+        {
+          "field": "current_parse_outcome",
+          "recorded_value": "FAIL",
+          "recomputed_value": "NOT_RUN (production parser never reached; empty Layer-B downstream of provider/adapter failure)",
+          "classification": "TRANSPORT_ERROR_RECORDED_AS_PARSE_FAIL_METADATA_ONLY",
+          "metadata_only_corrected_value": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT"
+        }
+      ]
+    },
+    {
+      "connector": "api/openrouter",
+      "run": "anthropic-claude-opus-5/high/run-001",
+      "status": "CORPUS_METADATA_MISMATCH",
+      "model": "anthropic/claude-opus-5",
+      "reasoning": "high",
+      "sample_index": 1,
+      "recorded": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "current_parse_outcome": "FAIL",
+        "current_parse_error_code": "API_EMPTY_RESPONSE",
+        "provider_terminal_status": "ERROR",
+        "collector_capture_status": "COMPLETED",
+        "invocation_failed": true,
+        "invocation_error_code": "API_EMPTY_RESPONSE",
+        "extraction_anomaly_code": null,
+        "http_status": 200,
+        "process_exit_code": null,
+        "finish_reason": "content_filter",
+        "transport_anomaly": null
+      },
+      "recomputed": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "dialect_detail": null,
+        "parse": null
+      },
+      "mismatches": [
+        {
+          "field": "current_parse_outcome",
+          "recorded_value": "FAIL",
+          "recomputed_value": "NOT_RUN (production parser never reached; empty Layer-B downstream of provider/adapter failure)",
+          "classification": "TRANSPORT_ERROR_RECORDED_AS_PARSE_FAIL_METADATA_ONLY",
+          "metadata_only_corrected_value": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT"
+        }
+      ]
+    },
+    {
+      "connector": "api/openrouter",
+      "run": "anthropic-claude-opus-5/low/run-001",
+      "status": "CORPUS_METADATA_MISMATCH",
+      "model": "anthropic/claude-opus-5",
+      "reasoning": "low",
+      "sample_index": 1,
+      "recorded": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "current_parse_outcome": "FAIL",
+        "current_parse_error_code": "API_EMPTY_RESPONSE",
+        "provider_terminal_status": "ERROR",
+        "collector_capture_status": "COMPLETED",
+        "invocation_failed": true,
+        "invocation_error_code": "API_EMPTY_RESPONSE",
+        "extraction_anomaly_code": null,
+        "http_status": 200,
+        "process_exit_code": null,
+        "finish_reason": "content_filter",
+        "transport_anomaly": null
+      },
+      "recomputed": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "dialect_detail": null,
+        "parse": null
+      },
+      "mismatches": [
+        {
+          "field": "current_parse_outcome",
+          "recorded_value": "FAIL",
+          "recomputed_value": "NOT_RUN (production parser never reached; empty Layer-B downstream of provider/adapter failure)",
+          "classification": "TRANSPORT_ERROR_RECORDED_AS_PARSE_FAIL_METADATA_ONLY",
+          "metadata_only_corrected_value": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT"
+        }
+      ]
+    },
+    {
+      "connector": "api/openrouter",
+      "run": "z-ai-glm-5.3-flash/low/run-001",
+      "status": "CORPUS_METADATA_MISMATCH",
+      "model": "z-ai/glm-5.3-flash",
+      "reasoning": "low",
+      "sample_index": 1,
+      "recorded": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "current_parse_outcome": "FAIL",
+        "current_parse_error_code": "API_NETWORK_ERROR",
+        "provider_terminal_status": "ERROR",
+        "collector_capture_status": "COMPLETED",
+        "invocation_failed": true,
+        "invocation_error_code": "API_NETWORK_ERROR",
+        "extraction_anomaly_code": null,
+        "http_status": 200,
+        "process_exit_code": null,
+        "finish_reason": null,
+        "transport_anomaly": "This operation was aborted"
+      },
+      "recomputed": {
+        "assistant_output_bytes": null,
+        "assistant_output_sha256": null,
+        "dialect_classification": "EMPTY",
+        "dialect_detail": null,
+        "parse": null
+      },
+      "mismatches": [
+        {
+          "field": "current_parse_outcome",
+          "recorded_value": "FAIL",
+          "recomputed_value": "NOT_RUN (production parser never reached; empty Layer-B downstream of provider/adapter failure)",
+          "classification": "TRANSPORT_ERROR_RECORDED_AS_PARSE_FAIL_METADATA_ONLY",
+          "metadata_only_corrected_value": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT"
+        }
+      ]
+    }
+  ],
+  "special_checks": {
+    "openrouter_claude_haiku_4_5_fenced_json_parser_recheck": [
+      {
+        "reasoning": "low",
+        "layer_b_bytes": 18710,
+        "layer_b_sha256": "a1aa330f9a43731d343ab1c69b380815d43a4ed90f98d91956a8576ab151a5dc",
+        "recorded_dialect": "FENCED_JSON",
+        "recomputed_dialect": "FENCED_JSON",
+        "current_parser_outcome": "PASS",
+        "current_parser_error_code": null
+      },
+      {
+        "reasoning": "high",
+        "layer_b_bytes": 19171,
+        "layer_b_sha256": "71f71e4f9c10add5aeffa5ac4734a19ae0a85221ebff324befe146d2881a36dc",
+        "recorded_dialect": "FENCED_JSON",
+        "recomputed_dialect": "FENCED_JSON",
+        "current_parser_outcome": "PASS",
+        "current_parser_error_code": null
+      }
+    ],
+    "antigravity_gemini_3_6_flash_medium_terminal_envelope": {
+      "present": true,
+      "terminal_result_status": "ERROR",
+      "terminal_response_present": true,
+      "terminal_response_bytes": 16286,
+      "terminal_response_dialect_from_raw": "RAW_CANONICAL_JSON",
+      "extractor_recorded_assistant_bytes": null,
+      "extractor_recorded_parse_outcome": "NOT_ATTEMPTED_NO_ASSISTANT_OUTPUT",
+      "extractor_extraction_anomaly": "ANTIGRAVITY_RUN_FAILED",
+      "observation": "raw terminal envelope contains the previously recorded complete response while production extraction refuses the non-SUCCESS terminal status"
+    },
+    "opencode_non_raw_dialect_to_parser_outcome_mapping": [
+      {
+        "mapping": "MALFORMED_JSON -> FAIL",
+        "count": 3,
+        "runs": [
+          "opencode-go/hy3/none",
+          "opencode-go/mimo-v2.5-pro/default",
+          "opencode-go/omen-alpha/low"
+        ]
+      },
+      {
+        "mapping": "EMPTY -> NOT_RUN",
+        "count": 5,
+        "runs": [
+          "opencode-go/kimi-k2.6/default",
+          "opencode-go/muse-spark-1.2-contributor/minimal",
+          "opencode-go/muse-spark-1.2-contributor/xhigh",
+          "opencode-go/muse-spark-1.3-contributor/minimal",
+          "opencode-go/muse-spark-1.3-contributor/xhigh"
+        ]
+      },
+      {
+        "mapping": "FENCED_JSON -> PASS",
+        "count": 2,
+        "runs": [
+          "opencode-go/longcat-2.0/high",
+          "opencode-go/qwen3.6-plus/default"
+        ]
+      },
+      {
+        "mapping": "UNKNOWN -> FAIL",
+        "count": 2,
+        "runs": [
+          "opencode-go/longcat-2.0/low",
+          "opencode-go/qwen3.7-max/default"
+        ]
+      },
+      {
+        "mapping": "TRUNCATED -> FAIL",
+        "count": 2,
+        "runs": [
+          "opencode-go/minimax-m2.7/default",
+          "opencode-go/omen-alpha/high"
+        ]
+      }
+    ],
+    "provider_error_downstream_classification": [
+      {
+        "connector": "codex",
+        "run": "gpt-5.6-luna/low/run-001",
+        "dialect": "TRUNCATED",
+        "provider_terminal_status": "PROVIDER_TERMINAL_SUCCESS_IMPLIED",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": null,
+        "classification": "NO_EXPLICIT_PROVIDER_TERMINAL_FAILURE_RECORDED"
+      },
+      {
+        "connector": "antigravity",
+        "run": "gemini-3.6-flash-medium/medium/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "RECORDED_RUN_LEVEL_ANOMALY_NO_EXPLICIT_TERMINAL_FIELD",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": "ANTIGRAVITY_RUN_FAILED",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-kimi-k2.6/default/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "PROVIDER_TERMINAL_ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "OPENCODE_TIMEOUT",
+        "extraction_anomaly_code": "OPENCODE_ASSISTANT_OUTPUT_MISSING",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-minimax-m2.7/default/run-001",
+        "dialect": "TRUNCATED",
+        "provider_terminal_status": "PROVIDER_TERMINAL_SUCCESS",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": null,
+        "classification": "NO_EXPLICIT_PROVIDER_TERMINAL_FAILURE_RECORDED"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-muse-spark-1.2-contributor/minimal/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "PROVIDER_TERMINAL_ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "OPENCODE_RUN_FAILED",
+        "extraction_anomaly_code": "OPENCODE_ASSISTANT_OUTPUT_MISSING",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-muse-spark-1.2-contributor/xhigh/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "PROVIDER_TERMINAL_ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "OPENCODE_RUN_FAILED",
+        "extraction_anomaly_code": "OPENCODE_ASSISTANT_OUTPUT_MISSING",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-muse-spark-1.3-contributor/minimal/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "PROVIDER_TERMINAL_ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "OPENCODE_RUN_FAILED",
+        "extraction_anomaly_code": "OPENCODE_ASSISTANT_OUTPUT_MISSING",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-muse-spark-1.3-contributor/xhigh/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "PROVIDER_TERMINAL_ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "OPENCODE_RUN_FAILED",
+        "extraction_anomaly_code": "OPENCODE_ASSISTANT_OUTPUT_MISSING",
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "opencode",
+        "run": "opencode-go-omen-alpha/high/run-001",
+        "dialect": "TRUNCATED",
+        "provider_terminal_status": "PROVIDER_TERMINAL_SUCCESS",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": null,
+        "classification": "NO_EXPLICIT_PROVIDER_TERMINAL_FAILURE_RECORDED"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "anthropic-claude-fable-5.1/high/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "API_BILLING_FAILED",
+        "extraction_anomaly_code": null,
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "anthropic-claude-fable-5.1/low/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "API_BILLING_FAILED",
+        "extraction_anomaly_code": null,
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "anthropic-claude-opus-5/high/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "API_EMPTY_RESPONSE",
+        "extraction_anomaly_code": null,
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "anthropic-claude-opus-5/low/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "API_EMPTY_RESPONSE",
+        "extraction_anomaly_code": null,
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "google-gemma-4-31b-it/high/run-001",
+        "dialect": "TRUNCATED",
+        "provider_terminal_status": "SUCCESS",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": null,
+        "classification": "NO_EXPLICIT_PROVIDER_TERMINAL_FAILURE_RECORDED"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "z-ai-glm-5.3-flash/high/run-001",
+        "dialect": "TRUNCATED",
+        "provider_terminal_status": "SUCCESS",
+        "invocation_failed": false,
+        "invocation_error_code": null,
+        "extraction_anomaly_code": null,
+        "classification": "NO_EXPLICIT_PROVIDER_TERMINAL_FAILURE_RECORDED"
+      },
+      {
+        "connector": "api/openrouter",
+        "run": "z-ai-glm-5.3-flash/low/run-001",
+        "dialect": "EMPTY",
+        "provider_terminal_status": "ERROR",
+        "invocation_failed": true,
+        "invocation_error_code": "API_NETWORK_ERROR",
+        "extraction_anomaly_code": null,
+        "classification": "EMPTY_OR_TRUNCATED_IS_DOWNSTREAM_OF_PROVIDER_TERMINAL_FAILURE"
+      }
+    ]
+  },
+  "policy": {
+    "raw_artifacts_modified": false,
+    "providers_invoked": false,
+    "discrepancies_silently_corrected": false
+  }
+}

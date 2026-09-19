@@ -1,0 +1,140 @@
+/* UI V2.1: same stacked-section divider treatment as
+   PmProfileManagement.css above it — see that file's comment. */
+.approval-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 16px 16px 16px;
+  border-top: 1px solid var(--dsh-border-default);
+}
+
+.approval-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.approval-empty {
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+  font-style: italic;
+}
+
+/* P15-REM-R3-F (P15-D-014): a read failure is a distinct, visible state —
+   never styled the same as (or less prominent than) the plain empty
+   state. UI V2.2: thin left-edge treatment (was a full amber-bordered
+   box) — same tokened warning color/pattern as the other "system
+   message" banners this phase introduced (CouncilPanel, MultiTaskControl,
+   Timeline) — still impossible to miss, less visually heavy. */
+.approval-unavailable {
+  background: var(--dsh-status-warning-bg);
+  border-left: 2px solid var(--dsh-status-warning);
+  border-radius: var(--dsh-radius-sm);
+  padding: 6px 10px;
+}
+
+.approval-error {
+  font-size: 12px;
+  color: var(--dsh-status-warning);
+}
+
+.approval-nav-note {
+  font-size: 11px;
+  color: var(--dsh-text-muted);
+  font-style: italic;
+}
+
+.awaiting-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  width: 100%;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.awaiting-nav-item:hover {
+  background: var(--dsh-row-hover);
+}
+
+.awaiting-nav-project {
+  font-weight: 600;
+}
+
+.awaiting-nav-age {
+  color: var(--dsh-text-muted);
+}
+
+/* .approval-card already gets .card's V2.1 4px radius via App.css — see
+   that class for the shared surface treatment. This is just its own
+   internal padding, tightened from 12px. */
+.approval-card {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.approval-card-context {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  flex-wrap: wrap;
+}
+
+.approval-card-path {
+  font-family: var(--dsh-font-mono);
+}
+
+.approval-card-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.approval-card-prompt {
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.approval-card-meta {
+  font-size: 11px;
+  color: var(--dsh-text-muted);
+}
+
+.approval-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.approval-card-reply {
+  display: flex;
+  gap: 8px;
+}
+
+.approval-card-reply-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--dsh-border-default);
+  border-radius: 6px;
+}
+
+.approval-card-locked {
+  font-size: 12px;
+  color: var(--dsh-text-muted);
+  font-style: italic;
+}
+
+.approval-card-error {
+  font-size: 12px;
+  color: var(--dsh-status-error);
+}

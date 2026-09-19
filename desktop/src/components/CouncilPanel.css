@@ -1,0 +1,204 @@
+/* P12-R5C Part A: root cause of "Council cannot be mouse-wheel scrolled" —
+   this panel previously had no bound on its own height at all, so a
+   project with multiple/long Council runs simply grew taller than
+   .center-content's fixed viewport height. .center-content/.main-content/
+   .app/body are ALL `overflow: hidden` by design (App.css) — none of them
+   is a scroll container, so once .council-panel's natural height exceeded
+   the visible area, everything below it (including all of Timeline) was
+   silently clipped with no scrollbar anywhere to reach it. Bounding this
+   panel's own height and giving it its own scroll region (the SAME pattern
+   Timeline.css already uses for `.timeline-content`) fixes this without
+   touching the shared app-shell layout at all: the panel now scrolls
+   internally, Timeline below it is never pushed off-screen, and a mouse
+   wheel over the panel scrolls only the panel (the browser's normal
+   nearest-scrollable-ancestor behavior) — never the whole application. A
+   relative bound (vh, not a fixed px) keeps this correct at smaller window
+   sizes too (Part A requirement). */
+/* UI V2.2: 12px -> 10px padding, same max-height/scroll behavior
+   (unchanged — see the P12-R5C comment this file already carries). */
+.council-panel {
+  margin-top: 12px;
+  padding: 10px;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.council-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.council-panel-title {
+  font-size: var(--dsh-font-size-lg);
+  margin: 0 0 6px;
+}
+
+.council-panel-empty {
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+}
+
+.council-panel-refresh {
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+/* UI V2.2: a compact "system message" instead of unstyled plain text —
+   a small warning glyph + tinted background + thin left edge, not a
+   full bordered box. See UI_V2_DENSE_COMPONENTS_IMPLEMENTATION.md §6. */
+.council-panel-error {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: var(--dsh-status-warning);
+  background: var(--dsh-status-warning-bg);
+  border-left: 2px solid var(--dsh-status-warning);
+  border-radius: var(--dsh-radius-sm);
+}
+
+.council-panel-error::before {
+  content: '⚠';
+  flex-shrink: 0;
+}
+
+.council-run {
+  border: var(--dsh-border-width) solid var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.council-run-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: left;
+  color: var(--dsh-text-primary);
+}
+
+.council-run-phase {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+}
+
+.council-run-phase-COMPLETED { color: var(--dsh-status-success); }
+.council-run-phase-FAILED { color: var(--dsh-status-error); }
+
+.council-run-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 10px 6px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.council-run-chair {
+  color: var(--dsh-text-secondary);
+}
+
+.council-run-participants {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* UI V2.2: compact rectangle (was a 10px-radius near-pill). */
+.council-participant-badge {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--dsh-radius-sm);
+  background: var(--dsh-badge-bg);
+  border: var(--dsh-border-width) solid var(--dsh-badge-border);
+}
+
+.council-participant-DONE { color: var(--dsh-status-success); }
+.council-participant-FAILED { color: var(--dsh-status-error); }
+.council-participant-RUNNING { color: var(--dsh-status-warning); }
+
+.council-run-degraded {
+  font-size: 11px;
+  color: var(--dsh-status-warning);
+}
+
+.council-run-detail {
+  padding: 8px 10px 10px;
+  border-top: var(--dsh-border-width) solid var(--dsh-border-default);
+}
+
+.council-detail-section h4 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 6px 0 4px;
+  color: var(--dsh-text-secondary);
+}
+
+.council-detail-item {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.council-detail-item p {
+  margin: 2px 0 0;
+}
+
+.council-detail-failed {
+  color: var(--dsh-status-error);
+}
+
+.council-detail-pending {
+  color: var(--dsh-text-muted);
+}
+
+.council-detail-synthesis {
+  white-space: pre-wrap;
+  font-size: 12px;
+}
+
+/* P19-D4: Debate progress badge (collapsed header) and detail section.
+   UI V2.2: compact rectangle (was a 10px-radius near-pill), same purple
+   accent (a deliberate one-off — Debate is a distinct feature axis from
+   the app's semantic success/warning/error/info palette, not a status).
+   UI V2.3: was a light lavender pastel (#EDE7FB/#4527A0, dark-text-on-
+   light) — now the same translucent-tint-over-dark-panel pattern as the
+   semantic status-*-bg tokens, just with this one-off purple instead of
+   a status color. */
+.council-run-debate-badge {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--dsh-radius-sm);
+  background: rgba(179, 157, 219, 0.18);
+  color: #C7B8ED;
+}
+
+.council-detail-debate-meta {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  margin: 0 0 4px;
+}
+
+.council-detail-final-debate-report {
+  font-size: 12px;
+}
+
+.council-detail-final-debate-report strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.council-detail-final-debate-report ul {
+  margin: 2px 0 0;
+  padding-left: 18px;
+}

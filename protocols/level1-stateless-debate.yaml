@@ -1,0 +1,32 @@
+name: level1-stateless-cross-model-debate
+version: 1
+objective: prove_dsh_can_coordinate_codex_and_claude_without_human_relay
+actors:
+  pm: dsh-parent
+  architect: codex
+  critic: claude-code
+rounds:
+  - round: 1
+    actor: codex
+    action: proposal
+  - round: 2
+    actor: claude-code
+    action: adversarial_critique
+    receives: [task, constraints, codex_round_1]
+  - round: 3
+    actor: codex
+    action: rebut_or_revise
+    receives: [task, constraints, codex_round_1, claude_round_2]
+  - round: 4
+    actor: claude-code
+    action: final_review
+    receives: [full_compact_debate_state]
+  - round: 5
+    actor: dsh-parent
+    action: verdict
+pass_criteria:
+  - both_stock_subagent_providers_invoked_by_one_parent
+  - zero_human_copy_paste_between_rounds
+  - every_round_addresses_prior_peer_argument
+  - transcript_persisted
+  - final_verdict_contains_accept_revise_or_reject

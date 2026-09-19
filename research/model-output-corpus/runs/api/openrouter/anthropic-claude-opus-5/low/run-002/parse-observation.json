@@ -1,0 +1,6 @@
+{
+  "skipped": true,
+  "reason": "production API adapter threw before assistant-text extraction; Layer C parse observation not applicable",
+  "adapter_error_code": "API_BILLING_FAILED",
+  "adapter_error_message": "API provider returned HTTP 402"
+}

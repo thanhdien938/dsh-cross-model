@@ -1,0 +1,23 @@
+{
+  "url": "https://openrouter.ai/api/v1/chat/completions",
+  "http_status": 402,
+  "response_headers": {
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "X-Generation-Id,X-Provider-Name,request-id,cf-ray",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a37c6ac71b11dd55-HKG",
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "date": "Tue, 08 Sep 2026 08:00:01 GMT",
+    "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\"), payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+    "referrer-policy": "no-referrer, strict-origin-when-cross-origin, no-referrer, strict-origin-when-cross-origin",
+    "server": "cloudflare",
+    "set-cookie": "__cf_bm=bRVA3k3a2ojP_d0ODgjIFUlrDG7kbXRtj16cbCzWG8g-1788854401.1335707-1.0.1.1-g4wapfKOB_HrOsjtfRUQo4d9G6JfjIRRCyr_RZNnN2sxvZ12mjrW8qu2jqtYOSyJXhKoiu8zMPD5ovY_vYt_QGSVfBwJDVNabLC8zv3nB7y7Wdmtg8MJ3KT2BJCTkagF; HttpOnly; SameSite=None; Secure; Path=/; Domain=openrouter.ai; Expires=Tue, 08 Sep 2026 08:30:01 GMT",
+    "transfer-encoding": "chunked",
+    "x-cloud-trace-context": "4b962c199d3be3b8d6db6a6e8da5e0c8",
+    "x-content-type-options": "nosniff, nosniff",
+    "x-generation-id": "gen-1788854401-XHdi0lm6mFsViHrejybi"
+  },
+  "body_text": "{\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\",\"remedy_hint\":\"Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\",\"provider_name\":null,\"previous_errors\":[{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\"},{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\"},{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\"},{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\"},{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 50166. To increase, visit https://openrouter.ai/settings/credits and add more credits\"}]}},\"user_id\":\"user_3C6oFD5AyvGV8rPLdkQCNKTcvnZ\"}",
+  "transport_error": null
+}

@@ -1,0 +1,19 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {PostgresCoordinationStore} from '../src/coordination/postgres/postgres-coordination-store.mjs';
+import {ProductionPmWorker} from '../src/runtime/production-pm-worker.mjs';
+
+const dsn=process.env.DSH_P5_R2_POSTGRES_DSN;
+
+function bounded(signal,label,timeoutMs=10_000){let timer;return Promise.race([signal,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`${label} timed out`)),timeoutMs);})]).finally(()=>clearTimeout(timer));}
+function renewalAwareStore(store,work,{onRenewal}={}){return{listPmActionCandidates:async()=>[work],acquireClaim:store.acquireClaim.bind(store),renewClaim:async(...args)=>{try{const claim=await store.renewClaim(...args);onRenewal?.(null,claim);return claim;}catch(error){onRenewal?.(error);throw error;}}};}
+
+async function setup(prefix){const store=await new PostgresCoordinationStore().open({connectionString:dsn});await store.migrate();const suffix=randomUUID(),worker=`${prefix}-worker:${suffix}`,work={work_item_id:`${prefix}-work:${suffix}`,work_kind:'PM_ACTION',pm_run_id:`${prefix}-pm:${suffix}`,action_id:`${prefix}-action:${suffix}`};await store.registerWorkerIncarnation({logical_worker_id:`${prefix}-worker`,worker_incarnation_id:worker,host_id:'localhost',installed_profiles:[],capacity:{max_concurrency:1,reported_in_use:0}});await store.registerWorkIdentity(work);return{store,worker,work};}
+
+// P13-R1 §4.2: runOnce() starts admitted work and returns promptly rather
+// than awaiting it to completion -- both tests below now observe the
+// terminal outcome through the started slot's own settlement promise.
+test('real PostgreSQL renews one PM fence through multiple lease periods and completes at the same generation',{skip:!dsn},async t=>{const {store,worker,work}=await setup('renew');t.after(()=>store.close());let renewalCount=0,resolveTwoRenewals;const twoRenewals=new Promise(resolve=>{resolveTwoRenewals=resolve;});const coordination=renewalAwareStore(store,work,{onRenewal:error=>{if(!error&&++renewalCount===2)resolveTwoRenewals();}});const handler={execute:async({fence,beforeTerminal})=>{await bounded(twoRenewals,'two successful PostgreSQL claim renewals');await beforeTerminal();await store.completeClaim(fence);return{status:'COMPLETED'};}};const started=await new ProductionPmWorker({coordinationStore:coordination,handler,workerIncarnationId:worker,leaseMs:600}).runOnce();assert.equal(started.status,'WORK');const result=await started.started[0].promise;const claim=await store.readClaim(work.work_item_id);assert.ok(result.renewalCount>=2);assert.equal(result.generation,1);assert.equal(claim.fencing_generation,1);assert.equal(claim.claim_state,'COMPLETED');});
+
+test('real PostgreSQL authority loss stops PM terminal mutation and stale completion remains rejected',{skip:!dsn},async t=>{const {store,worker,work}=await setup('lost');t.after(()=>store.close());let staleFence,resolveRenewalLoss;const renewalLoss=new Promise(resolve=>{resolveRenewalLoss=resolve;});const coordination=renewalAwareStore(store,work,{onRenewal:error=>{if(error)resolveRenewalLoss();}});const handler={execute:async({fence,beforeTerminal})=>{staleFence=fence;await store.releaseClaim(fence);await bounded(renewalLoss,'PostgreSQL renewal authority loss');await beforeTerminal();assert.fail('lost worker reached terminal mutation');}};const started=await new ProductionPmWorker({coordinationStore:coordination,handler,workerIncarnationId:worker,leaseMs:300}).runOnce();assert.equal(started.status,'WORK');const result=await started.started[0].promise;assert.equal(result.status,'FAILED');assert.equal(result.error.code,'PM_CLAIM_AUTHORITY_LOST');await assert.rejects(store.completeClaim(staleFence),error=>error.code==='CLAIM_AUTHORITY_REJECTED');assert.equal((await store.readClaim(work.work_item_id)).claim_state,'RELEASED');});

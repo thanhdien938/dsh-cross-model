@@ -1,0 +1,51 @@
+# P11-R0 — API provider registry (config/api-provider-config.mjs).
+#
+# This file is administrator-authored, secret-FREE configuration. It is
+# entirely OPTIONAL: a deployment that omits `api_providers_file` from its
+# p5 config (or omits this file) starts up normally with zero configured
+# providers — the `api` backend is still registered/available (see
+# `SUPPORTED` in src/pm/production-pm-backend-registry.mjs) but every api
+# PM profile fails closed with API_PROVIDER_CONFIG_INVALID until a matching
+# entry exists here.
+#
+# NEVER put a real secret value in this file. `api_key_env` is only the
+# NAME of an environment variable DSH reads at dispatch time
+# (`process.env[api_key_env]`) — see docs/p11/02_P11_R0_API_BACKEND_ARCHITECTURE_SONNET5.md
+# "SECRETS". Live keys are set as real OS/session environment variables,
+# e.g. (PowerShell, current session only):
+#
+#   $env:DSH_API_OPENROUTER_KEY  = "<owner key>"
+#   $env:DSH_API_DEEPSEEK_KEY    = "<owner key>"
+#   $env:DSH_API_XCODE_BEST_KEY  = "<owner key>"
+#
+# base_url/protocol/headers here are TRUSTED administrator config — an
+# owner Telegram task can never change them (P11-R0 stop condition:
+# PROVIDER_BASE_URL_CAN_BE_OVERRIDDEN_BY_TASK).
+api_providers:
+  openrouter:
+    protocol: openai-chat
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: DSH_API_OPENROUTER_KEY
+    # Optional, safe OpenRouter-specific headers — never required, never a
+    # public website URL. Uncomment to identify DSH's traffic to OpenRouter.
+    # headers:
+    #   HTTP-Referer: https://example.invalid
+    #   X-OpenRouter-Title: DSH
+
+  deepseek:
+    protocol: openai-chat
+    base_url: https://api.deepseek.com
+    api_key_env: DSH_API_DEEPSEEK_KEY
+
+  xcode-best:
+    protocol: openai-chat
+    base_url: https://api.xcode.best/v1
+    api_key_env: DSH_API_XCODE_BEST_KEY
+    # xcode.best is a third-party relay — treated as a plain OpenAI-
+    # compatible passthrough in P11-R0 (its Anthropic-compatible path is
+    # NOT implemented this wave). Some relay/client combinations may
+    # require a specific User-Agent; uncomment if xcode.best's own docs
+    # call for one. Authorization is ALWAYS runtime-owned and can never be
+    # set through this headers map (validated, not just documented).
+    # headers:
+    #   User-Agent: DSH/1.0

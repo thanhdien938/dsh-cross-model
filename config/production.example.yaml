@@ -1,0 +1,71 @@
+# ==============================================================================
+# DSH (Distributed Software Harness) — Production Runtime Configuration Example
+# Copy this file to your production configuration (e.g. config/production.yaml)
+# and adapt paths and settings for your local deployment.
+# NEVER place real secrets, tokens, or API keys directly in this file.
+# ==============================================================================
+
+mode: production
+
+# ------------------------------------------------------------------------------
+# 1. PostgreSQL Coordination Authority (Required)
+# ------------------------------------------------------------------------------
+# Names the environment variable containing the PostgreSQL connection URI.
+# DSH uses PostgreSQL as the single coordination/lease/claim authority.
+postgres:
+  dsn_env: DSH_POSTGRES_DSN
+
+# ------------------------------------------------------------------------------
+# 2. SQLite Persistent Store (Required)
+# ------------------------------------------------------------------------------
+# Path to the SQLite database file for durable task, run, and artifact state.
+# Relative paths are resolved against the directory containing this config file.
+sqlite:
+  path: ./state/dsh-production.sqlite
+
+# ------------------------------------------------------------------------------
+# 3. Project & PM Profile Registries (Required)
+# ------------------------------------------------------------------------------
+# Path to your registered projects registry YAML (see config/projects.example.yaml).
+projects_file: ./projects.yaml
+
+# Path to your registered PM profiles registry YAML (see config/pm_profiles.example.yaml).
+pm_profiles_file: ./pm_profiles.yaml
+
+# ------------------------------------------------------------------------------
+# 4. Optional API Provider Registry
+# ------------------------------------------------------------------------------
+# Optional: uncomment if you configure direct API model providers (see config/api-providers.example.yaml).
+# api_providers_file: ./api-providers.yaml
+
+# ------------------------------------------------------------------------------
+# 5. Runtime Supervision: Coordinator & Worker
+# ------------------------------------------------------------------------------
+coordinator:
+  logical_id: dsh-production-coordinator
+  lease_ms: 30000
+  poll_interval_ms: 250
+
+worker:
+  logical_id: dsh-production-worker
+  lease_ms: 30000
+  poll_interval_ms: 250
+
+# ------------------------------------------------------------------------------
+# 6. Concurrency Policies (Safe Defaults)
+# ------------------------------------------------------------------------------
+# Bounded concurrency: global safe default is 2 concurrent outer tasks.
+concurrency:
+  global_limit: 2
+
+# ------------------------------------------------------------------------------
+# 7. Optional Telegram Remote Control Transport
+# ------------------------------------------------------------------------------
+# Telegram is entirely OPTIONAL. Desktop GUI and root CLI run without Telegram.
+# To enable remote Telegram dispatch, uncomment this section and set the
+# bot token in the environment variable named by `token_env`.
+# telegram:
+#   token_env: DSH_TELEGRAM_BOT_TOKEN
+#   user_id: "123456789"       # Numeric Telegram user ID authorized to control DSH
+#   chat_id: "123456789"       # Numeric Telegram chat ID authorized to control DSH
+#   poll_interval_ms: 1000

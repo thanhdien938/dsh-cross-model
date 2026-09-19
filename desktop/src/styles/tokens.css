@@ -1,0 +1,245 @@
+/* DSH Desktop — UI design tokens.
+ *
+ * V2.3 (UI_V2_DARK_TERMINAL_THEME_IMPLEMENTATION.md): converted from the
+ * V2.0-V2.2 light theme to a dark terminal-inspired theme. Token NAMES
+ * are unchanged from V2.0-V2.2 — every consumer across the app (App.css
+ * and every component .css) references these same names, so this single
+ * file is what actually re-themes the whole app; very little literal
+ * color remained outside this file by the time this phase started (see
+ * the dark-theme doc §4 for the remaining literals this phase converted
+ * by hand). Where a V2.0/V2.1/V2.2 comment below still describes a
+ * light-theme rationale, it is kept for history — the VALUE has changed,
+ * the roles/relationships it documents have not.
+ *
+ * This file must be imported exactly once (see desktop/src/index.css).
+ */
+
+:root {
+  /* ---------------------------------------------------------------- */
+  /* COLOR — SURFACES                                                  */
+  /* ---------------------------------------------------------------- */
+  /* V2.3: dark palette. Elevation ladder (darkest -> lightest): bg-app
+     < panel-header-bg < bg-panel < bg-panel-subtle — the app canvas is
+     darkest, panels sit slightly "lifted" above it, and the
+     sidebar/subtle surfaces are the lightest of the plain surfaces
+     (mirrors the light theme's own app < panel-subtle < panel
+     relationship, just inverted in absolute lightness). */
+  --dsh-bg-app: #0F1317;
+  --dsh-bg-panel: #141A20;
+  --dsh-bg-panel-subtle: #171E25;
+  /* V2.3: now real, distinct colors (were both aliases of --dsh-bg-panel
+     in V2.0-V2.2, because no component had a distinct hover/selected
+     treatment yet). ProjectList/MultiTaskControl/PmProfileManagement now
+     get an actually-visible row tint on hover/selection. */
+  --dsh-bg-selected: #1A232C;
+  --dsh-bg-hover: #182029;
+  /* V2.3: pulled slightly darker than --dsh-bg-app (was the ActivityPanel
+     literal #1F2421, notably lighter/warmer than the rest of the app was
+     back then) — "slightly darker for emphasis," per the dark-theme
+     brief, now that the whole app is dark and the terminal no longer
+     needs to be the one dark island. */
+  --dsh-bg-terminal: #12191C;
+
+  /* ---------------------------------------------------------------- */
+  /* COLOR — TEXT                                                      */
+  /* ---------------------------------------------------------------- */
+  --dsh-text-primary: #E8EDF2;
+  --dsh-text-secondary: #A7B0BA;
+  --dsh-text-muted: #7E8792;
+  /* No distinct disabled-text color exists today (`.btn:disabled` uses
+     `opacity: 0.5` on whatever color is already there, not a separate
+     color). Aliased to secondary for forward-compatibility only. */
+  --dsh-text-disabled: var(--dsh-text-secondary);
+  /* V2.3: a bright, theme-independent near-white — used as text ON the
+     solid accent/danger buttons (which keep their own saturated fill
+     regardless of app theme) and as the terminal foreground. Previously
+     aliased the light theme's own --dsh-bg-app (#F7F4EF); now a plain
+     literal since that coincidence no longer holds in a dark theme. */
+  --dsh-text-inverse: #F5F8FA;
+
+  /* ---------------------------------------------------------------- */
+  /* COLOR — BORDERS                                                   */
+  /* ---------------------------------------------------------------- */
+  --dsh-border-default: #2A333D;
+  --dsh-border-strong: #3A4550;
+  --dsh-border-subtle: #202930;
+
+  /* ---------------------------------------------------------------- */
+  /* COLOR — SEMANTIC STATUS (dark surfaces)                           */
+  /* ---------------------------------------------------------------- */
+  /* V2.3: the V2.0-V2.2 values (#2e7d32/#f57c00/#c62828/#1976d2) were
+     tuned for dark text on a LIGHT background — on the new dark app
+     background they would read as muddy, low-contrast dark-on-dark.
+     Lightened to the same family the terminal tokens already proved
+     legible on a dark surface (success/warning/error reuse the terminal
+     values outright; info is lightened by the same logic — 1976d2 was
+     borderline on near-black, 64B5F6 reads clearly). */
+  --dsh-status-success: #7fd490;
+  --dsh-status-warning: #ffb74d;
+  --dsh-status-error: #ff8a80;
+  --dsh-status-error-hover: #ff6e60;
+  --dsh-status-info: #64b5f6;
+  --dsh-status-neutral: var(--dsh-text-secondary);
+  --dsh-category-purple: #C7B8ED;
+
+  /* V2.3: were light pastel chip backgrounds (meant for dark text on
+     top) — now translucent tints of the semantic color OVER the dark
+     panel surface (a `background-color` with alpha reads correctly
+     regardless of what's beneath it), the standard dark-UI pattern for
+     "a colored wash," not a jarring bright rectangle. */
+  --dsh-status-success-bg: rgba(127, 212, 144, 0.14);
+  --dsh-status-warning-bg: rgba(255, 183, 77, 0.14);
+  --dsh-status-error-bg: rgba(255, 138, 128, 0.14);
+  --dsh-status-info-bg: rgba(100, 181, 246, 0.14);
+
+  /* ---------------------------------------------------------------- */
+  /* TERMINAL COLORS (dark surfaces — ActivityPanel is the anchor)     */
+  /* ---------------------------------------------------------------- */
+  --dsh-terminal-bg: var(--dsh-bg-terminal);
+  --dsh-terminal-fg: var(--dsh-text-inverse);
+  /* V2.3: aliased to --dsh-text-muted (was its own close-but-different
+     literal, #8A8F86 vs text-muted's #8A8F86-family) — one fewer
+     near-duplicate now that the whole app (not just the terminal) is
+     dark and shares one muted-gray family. */
+  --dsh-terminal-muted: var(--dsh-text-muted);
+  /* Unchanged from V2.0/V2.1 — already light, already proven legible on
+     a dark terminal body; the dark-theme conversion doesn't need to
+     touch these. */
+  --dsh-terminal-success: #7fd490;
+  --dsh-terminal-warning: #ffd479;
+  --dsh-terminal-error: #ff8a80;
+  --dsh-terminal-info: #64b5f6;
+
+  /* ---------------------------------------------------------------- */
+  /* TYPOGRAPHY                                                        */
+  /* ---------------------------------------------------------------- */
+  --dsh-font-ui: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  --dsh-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  --dsh-font-size-xs: 10px;
+  --dsh-font-size-sm: 11px;
+  --dsh-font-size-base: 12px;
+  --dsh-font-size-md: 13px;
+  --dsh-font-size-lg: 14px;
+
+  --dsh-font-weight-regular: 400;
+  --dsh-font-weight-medium: 500;
+  --dsh-font-weight-semibold: 600;
+
+  --dsh-line-height-ui: 1.5;
+  --dsh-line-height-terminal: 1.6;
+
+  /* ---------------------------------------------------------------- */
+  /* SPACING                                                           */
+  /* ---------------------------------------------------------------- */
+  --dsh-space-1: 2px;
+  --dsh-space-2: 4px;
+  --dsh-space-3: 6px;
+  --dsh-space-4: 8px;
+  --dsh-space-5: 12px;
+  --dsh-space-6: 16px;
+
+  /* ---------------------------------------------------------------- */
+  /* RADIUS                                                            */
+  /* ---------------------------------------------------------------- */
+  --dsh-radius-sm: 4px;
+  --dsh-radius-md: 8px;
+  /* V2.3: still defined (a genuine full-pill radius is occasionally the
+     right shape) but no longer consumed by `.btn` — see App.css, which
+     now uses --dsh-radius-sm for ordinary buttons per this phase's
+     button-polish pass. Nothing else in the app used this token (grep-
+     verified before the change), so retiring it from `.btn` had no
+     other consumer to check. */
+  --dsh-radius-pill: 999px;
+
+  /* ---------------------------------------------------------------- */
+  /* CONTROL / BORDER                                                  */
+  /* ---------------------------------------------------------------- */
+  --dsh-border-width: 1px;
+
+  /* ---------------------------------------------------------------- */
+  /* STRUCTURAL NEON FRAME — reserved for the outer app frame, major    */
+  /* vertical/horizontal shell separators, and resizers ONLY. Never     */
+  /* applied to buttons, badges, inputs, rows, tabs, or dialogs — see   */
+  /* UI_V2_OPERATOR_SHELL_IMPLEMENTATION.md §4.                         */
+  /* ---------------------------------------------------------------- */
+  /* V2.5: purple -> the same orange as the brand accent/primary-action
+     color (--dsh-accent, defined below — CSS custom properties resolve
+     at used-value time, so this forward reference is valid), per the
+     PM's "one accent family" direction: dark surfaces, light text,
+     orange for both structure AND primary actions. Semantic colors
+     (success/warning/error/info) are untouched — orange is reserved for
+     structure + CTAs, never a distinct "fourth" status meaning. -soft/
+     -strong/-active are the PM's own specified rgba values (the decimal
+     form of --dsh-accent's #C4612F, at increasing opacity); -active
+     additionally lightens the hue itself (#C4612F -> #E77E48-family)
+     the same way V2.1-V2.4's active/hover states always read brighter
+     than the resting line, not just more opaque. */
+  --dsh-frame-neon: var(--dsh-accent);
+  --dsh-frame-neon-soft: rgba(196, 97, 47, 0.55);
+  --dsh-frame-neon-strong: rgba(196, 97, 47, 0.78);
+  --dsh-frame-neon-active: rgba(231, 126, 72, 0.95);
+  --dsh-frame-neon-glow-sm: 0 0 5px;
+  --dsh-frame-neon-glow-md: 0 0 9px;
+  /* V2.4: the visible-thickness hierarchy the PM asked for — a static
+     structural line (outer frame, topbar boundary, lower-band
+     separators) is thinner than a draggable resizer's line, so the
+     resizers still read as "grabbable" against the merely-structural
+     lines around them. See App.css's .resize-handle/.resize-handle-row
+     for where -resizer is consumed, and every other structural border
+     for where the plain -width is consumed. */
+  --dsh-frame-neon-width: 2px;
+  --dsh-frame-neon-width-resizer: 4px;
+
+  /* ---------------------------------------------------------------- */
+  /* ACCENT (brand) — the app's one orange action/brand color.          */
+  /* ---------------------------------------------------------------- */
+  /* Unchanged — the solid orange fill already has good contrast as a
+     button/CTA surface against either a light or dark surrounding, and
+     the brief explicitly allows keeping it as-is. */
+  --dsh-accent: #C4612F;
+  --dsh-accent-hover: #A94E22;
+  /* V2.3: was a light pastel tint (#F2E3D6, for dark text on top) — now
+     a translucent orange wash over the dark surface, same pattern as the
+     semantic status-*-bg tokens above. */
+  --dsh-accent-soft: rgba(196, 97, 47, 0.22);
+
+  /* ---------------------------------------------------------------- */
+  /* PANEL HEADER — the shared compact/uppercase header strip used by    */
+  /* every major shell panel (Projects, Connection Center, Backend Runs, */
+  /* Backend Execution, Long Task Runtime, DSH Activity, Workspace).     */
+  /* ---------------------------------------------------------------- */
+  /* V2.3: now its own distinct value (was an alias of --dsh-bg-panel-
+     subtle in V2.1-V2.2) — the dark palette gives header strips a
+     slightly different, slightly darker tone than the sidebar body they
+     sit on top of, one more layer of the elevation ladder described
+     above. */
+  --dsh-panel-header-bg: #11181E;
+
+  /* ---------------------------------------------------------------- */
+  /* DENSE OPERATOR ROWS — the shared list/row vocabulary used by       */
+  /* ProjectList, MultiTaskControl, PmProfileManagement, and the         */
+  /* Connection Center's per-backend units.                              */
+  /* ---------------------------------------------------------------- */
+  --dsh-row-hover: var(--dsh-bg-hover);
+  --dsh-row-selected: var(--dsh-bg-selected);
+  --dsh-row-divider: var(--dsh-border-subtle);
+
+  /* V2.3: a real recessed input surface (was an alias of --dsh-bg-panel
+     — "form fields at the same level as the panel around them"). Inputs
+     now sit slightly darker than their surrounding panel, the common
+     dark-UI "recessed field" convention, and a clearer visual cue for
+     "this is editable" than same-color-as-background gave. */
+  --dsh-control-bg: #10151A;
+  --dsh-control-border: var(--dsh-border-default);
+
+  /* V2.3: a real value (was #F4F1EA, a light warm tan) — a touch lighter
+     than --dsh-bg-panel so a badge still reads as a distinct "chip"
+     against the panel it sits on. */
+  --dsh-badge-bg: #1C2530;
+  --dsh-badge-border: var(--dsh-border-subtle);
+
+  --dsh-section-gap: var(--dsh-space-5);
+}

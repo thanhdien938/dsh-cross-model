@@ -1,0 +1,105 @@
+.first-run {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--dsh-bg-app);
+}
+
+.first-run-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--dsh-text-secondary);
+}
+
+.first-run-card {
+  width: 520px;
+  max-width: 90vw;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.first-run-intro {
+  color: var(--dsh-text-secondary);
+  font-size: 13px;
+  margin: 0;
+}
+
+.first-run-row {
+  border-top: 1px solid var(--dsh-border-default);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.first-run-row-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.first-run-path {
+  font-family: var(--dsh-font-mono);
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  word-break: break-all;
+}
+
+.first-run-badge {
+  font-size: var(--dsh-font-size-xs);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.first-run-badge-configured {
+  color: var(--dsh-status-success);
+  background: var(--dsh-status-success-bg);
+}
+
+.first-run-badge-missing,
+.first-run-badge-invalid {
+  color: var(--dsh-status-error);
+  background: var(--dsh-status-error-bg);
+}
+
+.first-run-badge-not_configured {
+  color: var(--dsh-text-secondary);
+  background: var(--dsh-badge-bg);
+}
+
+.first-run-env-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.first-run-env-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-family: var(--dsh-font-mono);
+}
+
+.first-run-message {
+  font-size: 12px;
+  color: var(--dsh-accent);
+}
+
+.first-run-hint {
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  margin: 0;
+}
+
+.first-run-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

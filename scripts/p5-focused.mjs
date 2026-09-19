@@ -1,0 +1,2 @@
+import { spawn } from 'node:child_process';
+const gate=process.argv[2]??'smoke';const child=spawn(process.execPath,['--test','tests/phase5-owner-control.test.mjs','tests/phase5-r1-integration.test.mjs','tests/phase5-historical-migrations.test.mjs'],{stdio:'inherit',windowsHide:true});const code=await new Promise(r=>child.once('exit',r));if(code!==0)process.exitCode=code??1;else console.log(`P5 ${gate.toUpperCase()}: PASS`);

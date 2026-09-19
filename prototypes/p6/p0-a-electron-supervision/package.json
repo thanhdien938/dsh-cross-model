@@ -1,0 +1,24 @@
+{
+  "name": "dsh-p6-p0-a-electron-spike",
+  "version": "0.0.0",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir --win"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.11.1"
+  },
+  "devDependencies": {
+    "@electron/packager": "19.1.0",
+    "electron": "43.4.1",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "dev.dsh.p6p0",
+    "asar": false,
+    "files": ["main.cjs", "renderer.html", "package.json", "node_modules/better-sqlite3/**/*"],
+    "win": {"target": "dir"}
+  }
+}

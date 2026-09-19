@@ -1,0 +1,515 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--dsh-font-ui);
+  font-weight: 300;
+  background: var(--dsh-bg-app);
+  color: var(--dsh-text-primary);
+  overflow: hidden;
+}
+
+/* UI V2.1: a restrained structural-neon perimeter for the whole renderer.
+   The Electron window itself keeps its native OS chrome (no transparent-
+   window trickery, per the brief) — this is a line just inside that
+   chrome, the only "outer frame" technically available from renderer CSS
+   alone.
+   UI V2.5 ROOT-CAUSE FIX: this was an `inset box-shadow`, which reliably
+   under-renders on a real page — box-shadow paints as part of `.app`'s
+   OWN background layer, and `.app`'s children (.topbar, the banners,
+   .main-content, the lower bands) are normal-flow content that paints
+   ON TOP of it wherever they fill the same area — which, since those
+   children together cover .app's content box edge-to-edge on all four
+   sides, is *everywhere* the shadow would show. That is exactly why the
+   PM's real screenshots read as "not a complete four-sided chassis"
+   despite the shadow being correctly declared. A real `border` does not
+   have this problem: it paints in the box's own border layer, OUTSIDE
+   the content box entirely, so no child can ever paint over it — the
+   fix is switching from `box-shadow: inset` to an actual `border`. `*`'s
+   global `box-sizing: border-box` (top of this file) means this border
+   is absorbed into .app's existing 100vh/100% box, no overflow risk. */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  border: var(--dsh-frame-neon-width) solid var(--dsh-frame-neon-soft);
+}
+
+/* UI V2.1: tighter, more operator-console padding (was 16px 24px); the
+   bottom border moves from the plain shell border to the structural neon
+   line — this is one of the app's few genuinely "major" horizontal
+   boundaries (top of the whole workspace), so it earns the same treatment
+   as the vertical dividers and lower band separators below. V2.4: 1px ->
+   2px (--dsh-frame-neon-width), matching the outer frame/lower-band
+   "static structural line" thickness. */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--dsh-bg-panel);
+  border-bottom: var(--dsh-frame-neon-width) solid var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  -webkit-app-region: drag;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* UI V2.0: Playfair Display removed — an isolated serif outlier that was
+   never bundled (so it always silently fell back to whatever OS serif was
+   installed) and did not fit the operator-console direction. Now uses the
+   shared monospace token at a restrained size/weight instead of a large
+   display face. See UI_V2_FOUNDATION_IMPLEMENTATION.md §3. */
+.app-title {
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-lg);
+  font-weight: var(--dsh-font-weight-semibold);
+  color: var(--dsh-text-primary);
+}
+
+.runtime-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-text {
+  font-size: var(--dsh-font-size-md);
+  font-weight: var(--dsh-font-weight-medium);
+  color: var(--dsh-text-primary);
+}
+
+.status-uptime {
+  font-size: var(--dsh-font-size-base);
+  color: var(--dsh-text-secondary);
+  margin-left: 4px;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+/* UI V2.3: button-polish pass — radius moved off the 999px pill token
+   (still defined in tokens.css if a genuine pill is ever needed
+   elsewhere; grep-verified this was `.btn`'s only consumer) onto the
+   same --dsh-radius-sm every other compact control in the app already
+   uses, per this phase's explicit "reduce pill-heavy appearance"
+   requirement. Padding/hierarchy/disabled state unchanged. */
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: var(--dsh-radius-sm);
+  font-size: var(--dsh-font-size-md);
+  font-weight: var(--dsh-font-weight-medium);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* UI V2.1: the brand/accent color now has its own token group
+   (--dsh-accent/-hover/-soft in tokens.css) — values are unchanged from
+   V2.0's literals, so this is a pure substitution with no visual diff.
+   Buttons themselves stay exactly as restrained as before (no neon, no
+   glow) per the brief's "internal controls stay restrained" rule. */
+.btn-primary {
+  background: var(--dsh-accent);
+  color: var(--dsh-text-inverse);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--dsh-accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--dsh-bg-panel);
+  color: var(--dsh-text-primary);
+  border: var(--dsh-border-width) solid var(--dsh-border-default);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--dsh-accent);
+  color: var(--dsh-accent);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--dsh-status-error);
+  color: var(--dsh-text-inverse);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--dsh-status-error-hover, #ff6e60);
+  transform: translateY(-1px);
+}
+
+/* UI V2.5: retuned toward the dark terminal language — a dark surface
+   with a semantic-colored text/edge, not a large filled-color strip
+   (the PM's explicit complaint about .info-banner, applied here too:
+   "same principle... where safe" — .error-banner keeps its own red
+   semantic meaning, just via a quieter surface). */
+.error-banner {
+  padding: 12px 24px;
+  background: var(--dsh-bg-panel);
+  color: var(--dsh-status-error);
+  border-bottom: 2px solid var(--dsh-status-error);
+  font-size: var(--dsh-font-size-md);
+}
+
+/* UI V2.1: .info-banner uses the brand accent color (not a semantic
+   status color) by original design — sourced from the accent token
+   group, not --dsh-status-info (it is brand-styled, not semantic-
+   status-styled).
+   UI V2.5: retuned per the PM's explicit review note — this was a
+   fairly large, fully orange-tinted (--dsh-accent-soft) strip; now a
+   dark panel surface with orange text and a clear orange edge instead,
+   the same "dark bg + accent edge, not a filled band" language the
+   terminal "system message" banners (Council/MultiTaskControl/Timeline/
+   ApprovalPanel's warning banners) already established. Message text
+   and behavior (shown only while the runtime is stopped) unchanged. */
+.info-banner {
+  padding: 12px 24px;
+  background: var(--dsh-bg-panel);
+  color: var(--dsh-accent);
+  border-bottom: 2px solid var(--dsh-accent);
+  font-size: var(--dsh-font-size-md);
+  text-align: center;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  /* P14-R0A: width comes from an inline style driven by owner-resizable
+     layout state (App.tsx / useResizableLayout.ts) — flex-basis/grow/
+     shrink are all disabled so that inline width is authoritative and the
+     panel never gets squeezed by its neighbors. 280px here is only a
+     pre-hydration fallback (React's initial state resolves synchronously
+     before paint, so this should never actually be visible). */
+  flex: 0 0 auto;
+  width: 280px;
+  min-width: 0;
+  background: var(--dsh-bg-panel-subtle);
+  /* UI V2.4: no border here — this WAS a plain 1px edge sitting 2px away
+     from .resize-handle's own neon line (UI V2.1's "quiet edge
+     underneath" reasoning), but the real-screenshot review found that
+     gap too narrow: the plain border and the neon line read as two
+     parallel lines on the same boundary, not one. The resize handle now
+     owns this boundary exclusively — see .resize-handle below, which
+     already carries a visible line at rest, not just on hover. */
+  overflow-y: auto;
+}
+
+/* UI V2.4: .sidebar-right no longer needs its own rule — it used to
+   override .sidebar's border-right/border-left pair for the right-hand
+   column; neither side has a plain border anymore (see .sidebar above),
+   so there is nothing left to override. The className stays in App.tsx's
+   JSX (harmless, and a natural hook if a right-column-only style is ever
+   needed again). */
+
+.center-content {
+  flex: 1;
+  min-width: 320px;
+  background: var(--dsh-bg-panel);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* UI V2.1: matches .project-list-header/.connection-header exactly — the
+   three-column header row (Projects / Workspace / Connection Center). */
+.workspace-header {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  background: var(--dsh-panel-header-bg);
+  border-bottom: var(--dsh-border-width) solid var(--dsh-border-default);
+}
+
+/* P14-R0C ROOT CAUSE FIX (was R0B's mistake): .center-top used to be
+   `overflow: hidden` with NO scroll mechanism at all. Composer/
+   CouncilPanel/Timeline stack here in normal block flow (deliberately
+   NOT flex-positioned in R0B, to byte-for-byte preserve their pre-R0B
+   behavior) — so once their combined natural height exceeded whatever
+   box .center-top actually got (shrunk further by center-bottom's
+   owner-resizable height), the excess was silently CROPPED, not
+   scrollable. Composer alone (context + arm banner + mode radios +
+   durability selector/panel + textarea + task-file fields + footer) is
+   easily 500-600px; a typical center-top box after a 240-480px
+   center-bottom pane is often less than that — so the crop routinely
+   landed inside Composer itself, hiding its own footer (PM/Chair
+   selector + Send) with zero way to reach it. `overflow-y: auto` is the
+   actual fix: whatever doesn't fit becomes scrollable instead of
+   invisible. */
+.center-top {
+  flex: 1 1 auto;
+  /* Matches resizableLayout.ts's MIN_CENTER_TOP_PX (the same floor the
+     JS-side window-resize clamp already protects when the owner drags
+     center-bottom taller) — one documented number instead of two. */
+  min-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* P14-R0C: Composer and CouncilPanel keep their full natural height —
+   never compressed by the flex column (a flex item's default
+   flex-shrink:1 would otherwise let the column squeeze them, which
+   would just trade "clipped" for "visually crushed/overlapping
+   controls" — no better). Any shortfall in available height is absorbed
+   by .center-top's own scroll above, not by shrinking their internals.
+   CouncilPanel already self-bounds via its own `max-height: 40vh` +
+   internal scroll (CouncilPanel.css) either way. */
+.center-top > .composer,
+.center-top > .council-panel {
+  flex: 0 0 auto;
+}
+
+/* P14-R0C: Timeline is the one region allowed to grow into whatever
+   room is actually left, instead of Timeline.css's own `height: 100%`
+   (which, as a plain block child under the OLD non-flex .center-top,
+   meant Timeline claimed 100% of .center-top's total box height and
+   then got stacked below Composer/CouncilPanel anyway — silently
+   overlapping/pushing past the bottom edge, part of what R0B's
+   `overflow: hidden` was cropping). As a flex item, `height: auto` +
+   `flex: 1 1 auto` makes it take exactly the remaining space when
+   there IS room, falling back to its own internal scroll
+   (Timeline.css's `.timeline-content { overflow-y: auto }`, unchanged)
+   for its entries either way — this is what keeps task history
+   scrolling internally rather than turning the owner's search for it
+   into a second full-height nested scroll region. */
+.center-top > .timeline {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 200px;
+}
+
+/* Horizontal (row) drag handle between Composer/history and the
+   task-status/history pane — same visual language as .resize-handle
+   (App.tsx's vertical Projects/Connection Center handles), rotated.
+   UI V2.1: resizers are one of the few places neon is deliberately
+   ALWAYS visible (not just on hover) — see the brief's "Divider/Resizer
+   Design" section. The hit target (flex: 0 0 6px / height: 6px) is
+   unchanged; only the ::after line's color/glow changed. */
+.resize-handle-row {
+  flex: 0 0 6px;
+  height: 6px;
+  cursor: row-resize;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+/* UI V2.4: line thickness doubled (2px -> 4px, --dsh-frame-neon-width-
+   resizer) per the PM's screenshot review — the hit target above
+   (flex: 0 0 6px / height: 6px) is unchanged; `top: 1px` re-centers the
+   thicker line within that same 6px box (1px clearance on each side,
+   was 2px+2px around a 2px line). */
+.resize-handle-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1px;
+  height: var(--dsh-frame-neon-width-resizer);
+  background: var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resize-handle-row:hover::after,
+.resize-handle-row.active::after {
+  background: var(--dsh-frame-neon);
+  box-shadow: var(--dsh-frame-neon-glow-md) var(--dsh-frame-neon-active);
+}
+
+/* P14-R0B: bottom of the center column ONLY — the owner's "smaller
+   task-status/history pane". This is deliberately NOT full app width: it
+   lives inside .center-content, between the Projects and Connection
+   Center columns, sized by an inline height (owner-resizable, persisted)
+   rather than a fixed/global band. See MultiTaskControl overrides below —
+   its own root card is stretched to fill this pane and scroll internally,
+   instead of the page-width unbounded card it used to be as a top-level
+   sibling of .main-content. */
+/* UI V2.4: no border-top here — this WAS a plain 1px edge sitting 2px
+   below .resize-handle-row's own neon line (the same "quiet edge
+   underneath" pattern .sidebar used to have), and the same real-
+   screenshot review found it read as two parallel lines on one boundary.
+   .resize-handle-row (immediately above, in the DOM) now owns this
+   boundary exclusively. */
+.center-bottom {
+  flex: 0 0 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-bottom .multi-task {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-bottom .multi-task-list {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
+/* P14-R0A: drag handles between Projects/center and center/Connection
+   Center — the app's two main vertical structural separators.
+   UI V2.1: these now carry the shared structural-neon line at rest (a
+   thin edge + very soft glow), strengthening on hover/active — the
+   brief's explicit "major vertical separators use shared neon system"
+   requirement. Hit target/cursor/drag behavior are byte-for-byte
+   unchanged (App.tsx / useResizableLayout.ts were not touched); only the
+   ::after line's color/glow changed. */
+.resize-handle {
+  flex: 0 0 6px;
+  width: 6px;
+  cursor: col-resize;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+/* UI V2.4: line thickness doubled (2px -> 4px, --dsh-frame-neon-width-
+   resizer) per the PM's screenshot review — the hit target above
+   (flex: 0 0 6px / width: 6px) is unchanged; `left: 1px` re-centers the
+   thicker line within that same 6px box (1px clearance on each side,
+   was 2px+2px around a 2px line). */
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1px;
+  width: var(--dsh-frame-neon-width-resizer);
+  background: var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resize-handle:hover::after,
+.resize-handle.active::after {
+  background: var(--dsh-frame-neon);
+  box-shadow: var(--dsh-frame-neon-glow-md) var(--dsh-frame-neon-active);
+}
+
+/* UI V2.1: the shared "major panel header" label — compact, uppercase,
+   monospace, tracked, muted — used by every top-level shell panel
+   (Projects, Workspace, Connection Center, Backend Runs, Backend
+   Execution, Long Task Runtime, DSH Activity). `.section-title` already
+   WAS this label for Projects/Connection Center (see UI_FILE_MANIFEST.md);
+   `.panel-header-label` is the identical style applied (via a plain
+   className addition, no markup restructuring) to the lower bands' own
+   header `<span>`s so all seven headers finally share one declaration
+   instead of five different ad hoc title treatments. */
+.section-title,
+.panel-header-label {
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-base);
+  font-weight: var(--dsh-font-weight-semibold);
+  color: var(--dsh-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* UI V2.1: reduced from --dsh-radius-md (8px) to --dsh-radius-sm (4px) —
+   the brief's "major structural surfaces prefer 0-4px radius" rule.
+   Deliberately a dedicated override rather than changing
+   --dsh-radius-md itself, which the V2.0 terminal blocks
+   (BackendExecutionLogs/LoginTerminal) also use and the brief's
+   "Terminal Rule" says to leave untouched this phase. */
+.card {
+  padding: var(--dsh-space-6);
+  background: var(--dsh-bg-panel);
+  border: var(--dsh-border-width) solid var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+}
+
+.info-card {
+  margin: 16px;
+}
+
+.info-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-card-title {
+  font-size: var(--dsh-font-size-lg);
+  font-weight: var(--dsh-font-weight-medium);
+  color: var(--dsh-text-primary);
+}
+
+.info-card-text {
+  font-size: var(--dsh-font-size-md);
+  color: var(--dsh-text-secondary);
+  line-height: var(--dsh-line-height-ui);
+}
+
+.info-card-note {
+  font-size: var(--dsh-font-size-sm);
+  color: var(--dsh-text-secondary);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+code {
+  font-family: var(--dsh-font-mono);
+  font-size: 0.9em;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dsh-accent);
+}

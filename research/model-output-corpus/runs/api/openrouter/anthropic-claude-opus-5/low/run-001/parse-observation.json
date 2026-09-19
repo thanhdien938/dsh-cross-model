@@ -1,0 +1,6 @@
+{
+  "skipped": true,
+  "reason": "production API adapter threw before assistant-text extraction; Layer C parse observation not applicable",
+  "adapter_error_code": "API_EMPTY_RESPONSE",
+  "adapter_error_message": "provider returned no usable assistant content"
+}

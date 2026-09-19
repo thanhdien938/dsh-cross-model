@@ -1,0 +1,45 @@
+# P11-R0 — example API-backed PM profiles (src/pm/pm-profile-registry.mjs).
+#
+# These are REFERENCE examples, not wired into config/pm_profiles.example.yaml
+# by default — P11-R0 does not assume a provider/model has been selected
+# (docs/p11/01_P11_START_HANDOFF_SONNET5.md). To use one, merge the entry
+# into your real pm_profiles.yaml's `pm_profiles:` list and set a real,
+# selected model id (the ones below are illustrative placeholders, not a
+# production recommendation) — then set `status: ACTIVE` once the matching
+# provider is configured in api-providers.yaml AND its secret env var is
+# actually set. Every field below except `id`/`status` is immutable
+# execution identity once created (P8 invariant, extended in P11-R0 to
+# include `provider`) — changing provider/model/reasoning requires a NEW
+# profile id (Create Variant), never editing one in place.
+pm_profiles:
+  - id: api-openrouter-canary
+    role_kind: PM
+    session_kind: STATELESS
+    product: api
+    provider: openrouter
+    transport: http
+    model: null # set to a real provider/model id, e.g. "openai/gpt-5.1" — owner decision, not defaulted here
+    reasoning: null
+    status: INACTIVE
+
+  - id: api-deepseek-v4-flash
+    role_kind: PM
+    session_kind: STATELESS
+    product: api
+    provider: deepseek
+    transport: http
+    model: deepseek-v4-flash
+    reasoning: null
+    status: INACTIVE
+
+  - id: api-xcode-canary
+    role_kind: PM
+    session_kind: STATELESS
+    product: api
+    provider: xcode-best
+    transport: http
+    model: null # set to a real model id once selected
+    reasoning: null
+    status: INACTIVE
+# No credentials anywhere in this file — see api-providers.example.yaml and
+# docs/p11/02_P11_R0_API_BACKEND_ARCHITECTURE_SONNET5.md "SECRETS".

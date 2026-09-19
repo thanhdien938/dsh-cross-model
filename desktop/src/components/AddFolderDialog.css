@@ -1,0 +1,61 @@
+.add-folder-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 27, 22, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.add-folder-dialog {
+  width: 420px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--dsh-bg-panel);
+}
+
+.add-folder-path {
+  font-family: var(--dsh-font-mono);
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+  word-break: break-all;
+}
+
+.add-folder-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--dsh-text-secondary);
+}
+
+.add-folder-field input,
+.add-folder-field select {
+  padding: 6px 8px;
+  border: 1px solid var(--dsh-control-border);
+  border-radius: 6px;
+  background: var(--dsh-control-bg);
+  color: var(--dsh-text-primary);
+}
+
+.add-folder-warning {
+  background: var(--dsh-status-warning-bg);
+  border: 1px solid var(--dsh-status-warning);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.add-folder-error {
+  color: var(--dsh-status-error);
+  font-size: 12px;
+}
+
+.add-folder-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

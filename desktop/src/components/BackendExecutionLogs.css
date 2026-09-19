@@ -1,0 +1,160 @@
+/* UI V2.1: shared structural-frame separator — see BackendRuns.css's
+   comment on the same treatment. */
+.exec-logs {
+  border-top: var(--dsh-frame-neon-width) solid var(--dsh-frame-neon-soft);
+  box-shadow: var(--dsh-frame-neon-glow-sm) var(--dsh-frame-neon-soft);
+  background: var(--dsh-bg-app);
+}
+
+.exec-logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.exec-logs-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.exec-logs-content {
+  padding: 0 16px 10px 16px;
+}
+
+.exec-logs-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: var(--dsh-border-width) solid var(--dsh-border-subtle);
+  margin-bottom: 6px;
+}
+
+.exec-logs-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 6px 10px;
+  font-size: var(--dsh-font-size-base);
+  cursor: pointer;
+  color: var(--dsh-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exec-logs-tab-active {
+  color: var(--dsh-text-primary);
+  font-weight: 600;
+  border-bottom-color: var(--dsh-accent);
+}
+
+.exec-logs-badge {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.exec-logs-badge-running {
+  color: var(--dsh-status-info);
+}
+
+.exec-logs-badge-failed {
+  color: var(--dsh-status-error);
+  font-weight: 700;
+}
+
+.exec-logs-status-bar {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--dsh-text-secondary);
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.exec-logs-jump {
+  margin-left: auto;
+  font-size: var(--dsh-font-size-sm);
+  background: var(--dsh-border-subtle);
+  border: var(--dsh-border-width) solid var(--dsh-border-strong);
+  border-radius: var(--dsh-radius-sm);
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.exec-logs-truncated {
+  font-size: 11px;
+  color: var(--dsh-status-warning);
+  font-style: italic;
+  padding: 2px 0;
+}
+
+/* UI V2.0: consolidated onto the shared terminal tokens — this surface
+   used to be an independent pure-black/green-tinted palette (#000000 /
+   #d7f5dd); it now shares ActivityPanel's dark terminal background and
+   foreground so the two read as one terminal system rather than two.
+   See UI_V2_FOUNDATION_IMPLEMENTATION.md §4. */
+.exec-logs-body {
+  background: var(--dsh-terminal-bg);
+  color: var(--dsh-terminal-fg);
+  font-family: var(--dsh-font-mono);
+  font-size: var(--dsh-font-size-sm);
+  padding: 8px 10px;
+  height: 220px;
+  overflow-y: auto;
+  border-radius: var(--dsh-radius-md);
+}
+
+.exec-logs-empty {
+  color: var(--dsh-terminal-muted);
+  font-style: italic;
+}
+
+.exec-logs-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 1px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.exec-logs-time {
+  color: var(--dsh-terminal-muted);
+  flex-shrink: 0;
+}
+
+.exec-logs-phase {
+  color: var(--dsh-terminal-success);
+  flex-shrink: 0;
+  min-width: 90px;
+}
+
+.exec-logs-message {
+  color: var(--dsh-terminal-fg);
+}
+
+.exec-logs-line-stderr .exec-logs-message,
+.exec-logs-line-stderr .exec-logs-phase {
+  color: var(--dsh-terminal-error);
+}
+
+.exec-logs-line-terminal .exec-logs-phase {
+  color: var(--dsh-terminal-warning);
+}
+
+.exec-logs-note {
+  font-size: var(--dsh-font-size-xs);
+  color: var(--dsh-terminal-muted);
+  margin: 4px 0 0 0;
+}

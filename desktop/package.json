@@ -1,0 +1,83 @@
+{
+  "name": "dsh-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist-electron/electron/main/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "npm run rebuild:electron && concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "tsc -p tsconfig.electron.json && electron .",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "build:renderer": "vite build",
+    "rebuild:electron": "electron-rebuild -f -w better-sqlite3 -v 28.3.3",
+    "rebuild:node-tests": "npm rebuild better-sqlite3",
+    "pretest": "npm run abi:check",
+    "test": "vitest run",
+    "pretest:ci": "npm run abi:check",
+    "test:ci": "node ../scripts/run-test-shard.mjs desktop-node",
+    "pretest:windows": "npm run abi:check",
+    "test:windows": "node ../scripts/run-test-shard.mjs desktop-windows-process",
+    "pretest:cross-tree": "npm run abi:check",
+    "test:cross-tree": "node ../scripts/run-test-shard.mjs desktop-cross-tree",
+    "pretest:postgres": "npm run abi:check",
+    "test:postgres": "node ../scripts/run-test-shard.mjs desktop-postgres",
+    "pretest:watch": "npm run abi:check",
+    "test:watch": "vitest",
+    "abi:check": "node ../scripts/check-native-abi-boundaries.mjs --require-installed desktop",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "better-sqlite3": "9.6.0",
+    "dotenv": "^9.0.2",
+    "pg": "8.16.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.1",
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "electron": "28.3.3",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.0"
+  },
+  "build": {
+    "appId": "com.dsh.desktop",
+    "productName": "DSH Desktop",
+    "directories": {
+      "output": "dist-package"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

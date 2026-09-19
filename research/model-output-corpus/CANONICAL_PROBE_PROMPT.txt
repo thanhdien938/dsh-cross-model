@@ -1,0 +1,95 @@
+DSH MODEL OUTPUT DIALECT PROBE v1
+
+Follow these instructions exactly.
+
+Return exactly ONE JSON object and nothing else.
+Do not use Markdown code fences.
+Do not add prose before or after the JSON object.
+Do not call tools.
+Do not browse.
+Do not use external knowledge.
+Use only the synthetic evidence below.
+
+The top-level JSON object MUST use this shape:
+
+{
+  "type": "finish",
+  "output": "<a detailed analysis string>",
+  "data": {
+    "executive_summary": "<string>",
+    "findings": [
+      {
+        "id": "F01",
+        "severity": "low|medium|high|critical",
+        "claim": "<string>",
+        "evidence_refs": ["E01"],
+        "confidence": 0
+      }
+    ],
+    "risks": ["<string>"],
+    "uncertainties": ["<string>"],
+    "recommendations": [
+      {
+        "priority": 1,
+        "action": "<string>",
+        "rationale": "<string>"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "<string>",
+        "pros": ["<string>"],
+        "cons": ["<string>"]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E01",
+        "source": "<string>",
+        "observation": "<string>"
+      }
+    ],
+    "edge_cases": ["<string>"],
+    "unicode_check": "Tiếng Việt: dữ liệu thử nghiệm phải được giữ nguyên dấu.",
+    "path_check": {
+      "windows": "C:\\DSH\\probe\\sample.json",
+      "posix": "/opt/dsh/probe/sample.json"
+    },
+    "literal_check": "Keep braces { }, brackets [ ], quotes \"like this\", colon :, comma , and backslash \\ inside this string."
+  }
+}
+
+Requirements:
+
+1. "type" MUST be exactly "finish".
+2. "output" MUST be a single JSON string containing a detailed 900-1200 word technical analysis. It may contain escaped newline characters, but it must remain one valid JSON string.
+3. "data.executive_summary" MUST be 120-180 words.
+4. "data.findings" MUST contain exactly 8 objects with ids F01 through F08.
+5. Every finding MUST contain severity, claim, evidence_refs, and integer confidence from 0 to 100.
+6. "data.risks" MUST contain exactly 6 strings.
+7. "data.uncertainties" MUST contain exactly 5 strings.
+8. "data.recommendations" MUST contain exactly 6 objects with priority values 1 through 6.
+9. "data.alternatives" MUST contain exactly 4 objects.
+10. "data.evidence" MUST contain exactly 10 objects with ids E01 through E10.
+11. "data.edge_cases" MUST contain exactly 6 strings.
+12. Preserve unicode_check, path_check, and literal_check exactly as specified above.
+13. Do not invent evidence beyond E01-E10.
+14. Do not expose hidden reasoning or chain-of-thought. Give conclusions and concise justification only.
+15. The JSON must be syntactically valid and parse as exactly one top-level object.
+
+Synthetic evidence:
+
+E01 — At 09:00, queue depth was 120 and worker count was 8.
+E02 — At 09:10, queue depth rose to 1,850 while worker count remained 8.
+E03 — At 09:12, median task latency rose from 1.8 seconds to 14.2 seconds.
+E04 — At 09:14, CPU utilization averaged 43%, memory 51%, and disk utilization 22%.
+E05 — At 09:15, outbound dependency B began returning HTTP 429 for 31% of requests.
+E06 — At 09:16, retry volume increased by 420%, using exponential backoff with a maximum of three retries.
+E07 — At 09:20, increasing worker count from 8 to 16 reduced queue depth only 6% over ten minutes.
+E08 — At 09:26, temporarily disabling retries for dependency B caused queue depth to fall 38% in six minutes, while direct failure rate increased.
+E09 — At 09:35, dependency B rate limits were raised and HTTP 429 responses fell below 1%; queue depth then returned below 150 within eleven minutes.
+E10 — No deploy, schema change, host restart, network route change, or credential rotation occurred between 08:00 and 10:00.
+
+Analysis objective:
+
+Using only E01-E10, determine the most likely primary cause of the queue incident, distinguish primary cause from amplifiers, explain why adding workers had limited effect, assess the retry policy, identify uncertainties, and recommend a staged remediation plan. Include at least one plausible alternative hypothesis and explain why it is less supported by the evidence.

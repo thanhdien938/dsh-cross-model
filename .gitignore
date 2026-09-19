@@ -1,0 +1,21 @@
+node_modules/
+.runtime/
+.env
+.env.*
+!.env.example
+runs/*.json
+runs/*.jsonl
+.DS_Store
+*.log
+*.err
+.tmp-*
+.tools/
+*.dump
+.test-results/
+
+# Retained acceptance evidence is local and never auto-committed.
+research/live-acceptance-runs/
+
+# User-local runtime configuration (untracked)
+config/*.yaml
+!config/*.example.yaml

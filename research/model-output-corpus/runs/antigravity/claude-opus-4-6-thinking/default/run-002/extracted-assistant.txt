@@ -1,0 +1,8 @@
+I'll create a plan artifact for this DSH Model Output Dialect Probe task before producing the final JSON output.
+The plan artifact is ready for your review. Key decisions documented:
+
+- **Primary cause:** Dependency B rate-limiting (HTTP 429), with the retry policy as the amplifier
+- **Why workers didn't help:** Bottleneck was external, not compute-bound (E04 confirms low resource usage)
+- **8 findings, 6 recommendations, 4 alternatives** all mapped out with evidence references and confidence scores
+
+Please review and approve the plan, or provide feedback on any adjustments before I produce the final JSON output.

@@ -1,0 +1,55 @@
+/* UI V2.0 foundation: the one place the shared design-token layer is
+   imported (see docs/ui-v2/UI_V2_FOUNDATION_IMPLEMENTATION.md). Do not
+   import styles/tokens.css from any other file. */
+@import './styles/tokens.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--dsh-font-ui);
+  font-weight: 300;
+  background: var(--dsh-bg-app);
+  color: var(--dsh-text-primary);
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dsh-border-default);
+  border-radius: var(--dsh-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dsh-text-secondary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--dsh-frame-neon-active);
+  outline-offset: 2px;
+}

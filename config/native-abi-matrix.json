@@ -1,0 +1,25 @@
+{
+  "rootNodeRuntime": {
+    "node": "22.19.x",
+    "nodeModuleAbi": 127,
+    "betterSqlite3": "12.11.1",
+    "role": "root Node runtime and tests"
+  },
+  "desktopNodeTests": {
+    "node": ["20.20.x", "22.19.x"],
+    "nodeModuleAbi": [115, 127],
+    "betterSqlite3": "9.6.0",
+    "role": "Desktop Node/Vitest only"
+  },
+  "desktopElectron": {
+    "electron": "28.3.3",
+    "nodeModuleAbi": 119,
+    "betterSqlite3": "9.6.0",
+    "role": "isolated Electron packaging job/tree only"
+  },
+  "rules": [
+    "root/node_modules is never shared with Desktop",
+    "desktop/node_modules is Node-test ABI until an isolated Electron packaging job rebuilds it",
+    "Electron-rebuilt native binaries are never used for Node tests"
+  ]
+}

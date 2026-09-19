@@ -1,0 +1,670 @@
+{
+  "connector": "api",
+  "provider": "openrouter",
+  "api_version": "v1",
+  "base_url": "https://openrouter.ai/api/v1",
+  "catalogue_endpoint": "https://openrouter.ai/api/v1/models",
+  "catalogue_http_status": 200,
+  "catalogue_retrieved_at": "2026-09-08T02:42:30.593Z",
+  "total_openrouter_models_discovered": 428,
+  "production_model_discovery_limit": 500,
+  "opencode_corpus_state": "IN_PROGRESS_OR_UNACCEPTED",
+  "opencode_overlap_deferred_pending_inventory": true,
+  "selection_sources": [
+    "CORE_VENDOR"
+  ],
+  "core_vendor_families": [
+    "openai",
+    "anthropic",
+    "google",
+    "z-ai"
+  ],
+  "core_vendor_candidates": 188,
+  "core_vendor_candidates_eligible": 104,
+  "exclusion_counts": {
+    "FREE_EXCLUDED": 4,
+    "TRIAL_EXCLUDED": 0,
+    "EPHEMERAL_EXCLUDED": 0,
+    "NON_TEXT_EXCLUDED": 11,
+    "BATCH_EXCLUDED": 58,
+    "ROUTER_ALIAS_EXCLUDED": 1,
+    "DUPLICATE_ALIAS_EXCLUDED": 10
+  },
+  "selected_models": [
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-6-astra",
+      "catalogue_name": "OpenAI: GPT-6 Astra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current OpenAI flagship generation (newest openai-family catalogue entry)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-6-astra-pro",
+      "catalogue_name": "OpenAI: GPT-6 Astra Pro",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "premium tier of the current flagship generation (materially distinct product)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.6-terra",
+      "catalogue_name": "OpenAI: GPT-5.6 Terra",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GPT-5.6 generation, heavy variant"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.6-luna",
+      "catalogue_name": "OpenAI: GPT-5.6 Luna",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GPT-5.6 generation, light variant"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.6-sol",
+      "catalogue_name": "OpenAI: GPT-5.6 Sol",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GPT-5.6 generation, mid variant"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.5",
+      "catalogue_name": "OpenAI: GPT-5.5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "prior main generation, still independently active production"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.4-mini",
+      "catalogue_name": "OpenAI: GPT-5.4 Mini",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current light/mini production tier (no newer mini generation exists)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-5.3-codex",
+      "catalogue_name": "OpenAI: GPT-5.3-Codex",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current codex-specialized production line"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "openai",
+      "model_slug": "openai/gpt-oss-120b",
+      "catalogue_name": "OpenAI: gpt-oss-120b",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current open-weight production line (distinct architecture identity)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "anthropic",
+      "model_slug": "anthropic/claude-opus-5",
+      "catalogue_name": "Claude Opus 5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Claude flagship"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "anthropic",
+      "model_slug": "anthropic/claude-sonnet-5",
+      "catalogue_name": "Anthropic: Claude Sonnet 5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Claude mainline"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "anthropic",
+      "model_slug": "anthropic/claude-fable-5.1",
+      "catalogue_name": "Anthropic: Claude Fable 5.1",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Fable line (newest generation)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "anthropic",
+      "model_slug": "anthropic/claude-haiku-4.5",
+      "catalogue_name": "Anthropic: Claude Haiku 4.5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current fast tier (no newer haiku generation exists)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "google",
+      "model_slug": "google/gemini-3.8-flash",
+      "catalogue_name": "Google: Gemini 3.8 Flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Gemini Flash generation"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "google",
+      "model_slug": "google/gemini-3.5-flash-lite",
+      "catalogue_name": "Google: Gemini 3.5 Flash Lite",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Flash-Lite tier (no newer flash-lite generation exists)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "google",
+      "model_slug": "google/gemini-3.1-pro-preview",
+      "catalogue_name": "Google: Gemini 3.1 Pro Preview",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current Gemini Pro production route (no non-preview 3.x Pro exists in the catalogue)"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "google",
+      "model_slug": "google/gemma-4-31b-it",
+      "catalogue_name": "Google: Gemma 4 31B",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current open-weight Gemma generation"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "z-ai",
+      "model_slug": "z-ai/glm-5.3",
+      "catalogue_name": "Z.ai: GLM 5.3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GLM flagship"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "z-ai",
+      "model_slug": "z-ai/glm-5.3-flash",
+      "catalogue_name": "Z.ai: GLM 5.3 Flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning_effort' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GLM fast tier"
+    },
+    {
+      "selection_source": [
+        "CORE_VENDOR"
+      ],
+      "provider_family": "z-ai",
+      "model_slug": "z-ai/glm-5v-turbo",
+      "catalogue_name": "Z.ai: GLM 5V Turbo",
+      "cost_classification": "PAID_OR_STANDARD",
+      "classification_evidence": [
+        "output_modalities=[\"text\"] supports the standard text/chat path",
+        "non-zero paid pricing in catalogue metadata; no free/trial/batch/route-variant/non-text marker"
+      ],
+      "supported_reasoning": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoning_evidence": "catalogue supported_parameters include 'reasoning' (production normalizeOpenRouterModel() marks reasoningSupport=SUPPORTED)",
+      "selected_lowest": "low",
+      "selected_highest": "high",
+      "selected_configurations": [
+        "low",
+        "high"
+      ],
+      "planned_samples": 2,
+      "rationale": "current GLM vision-line production model (text output)"
+    }
+  ],
+  "selection_errors": [],
+  "unselected_eligible": [
+    "anthropic/claude-3-haiku",
+    "anthropic/claude-fable-5",
+    "anthropic/claude-opus-4",
+    "anthropic/claude-opus-4.1",
+    "anthropic/claude-opus-4.5",
+    "anthropic/claude-opus-4.6",
+    "anthropic/claude-opus-4.7",
+    "anthropic/claude-opus-4.8",
+    "anthropic/claude-sonnet-4",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-sonnet-4.6",
+    "google/gemini-2.5-flash",
+    "google/gemini-2.5-flash-lite",
+    "google/gemini-2.5-pro",
+    "google/gemini-2.5-pro-preview",
+    "google/gemini-2.5-pro-preview-05-06",
+    "google/gemini-3-flash-preview",
+    "google/gemini-3.1-flash-lite",
+    "google/gemini-3.1-flash-lite-preview",
+    "google/gemini-3.1-pro-preview-customtools",
+    "google/gemini-3.5-flash",
+    "google/gemini-3.6-flash",
+    "google/gemini-3.7-flash",
+    "google/gemma-2-27b-it",
+    "google/gemma-3-12b-it",
+    "google/gemma-3-27b-it",
+    "google/gemma-3-4b-it",
+    "google/gemma-4-26b-a4b-it",
+    "openai/gpt-3.5-turbo",
+    "openai/gpt-3.5-turbo-0613",
+    "openai/gpt-3.5-turbo-16k",
+    "openai/gpt-3.5-turbo-instruct",
+    "openai/gpt-4",
+    "openai/gpt-4-turbo",
+    "openai/gpt-4-turbo-preview",
+    "openai/gpt-4.1",
+    "openai/gpt-4.1-mini",
+    "openai/gpt-4.1-nano",
+    "openai/gpt-4o",
+    "openai/gpt-4o-2024-05-13",
+    "openai/gpt-4o-2024-08-06",
+    "openai/gpt-4o-2024-11-20",
+    "openai/gpt-4o-mini",
+    "openai/gpt-4o-mini-2024-07-18",
+    "openai/gpt-5",
+    "openai/gpt-5-mini",
+    "openai/gpt-5-nano",
+    "openai/gpt-5-pro",
+    "openai/gpt-5.1",
+    "openai/gpt-5.1-codex",
+    "openai/gpt-5.1-codex-max",
+    "openai/gpt-5.1-codex-mini",
+    "openai/gpt-5.2",
+    "openai/gpt-5.2-chat",
+    "openai/gpt-5.2-codex",
+    "openai/gpt-5.2-pro",
+    "openai/gpt-5.4",
+    "openai/gpt-5.4-nano",
+    "openai/gpt-5.4-pro",
+    "openai/gpt-5.5-pro",
+    "openai/gpt-5.6-luna-pro",
+    "openai/gpt-5.6-sol-pro",
+    "openai/gpt-5.6-terra-pro",
+    "openai/gpt-oss-20b",
+    "openai/gpt-oss-safeguard-20b",
+    "openai/o1",
+    "openai/o1-pro",
+    "openai/o3",
+    "openai/o3-mini",
+    "openai/o3-mini-high",
+    "openai/o3-pro",
+    "openai/o4-mini",
+    "openai/o4-mini-high",
+    "z-ai/glm-4.5",
+    "z-ai/glm-4.5-air",
+    "z-ai/glm-4.5v",
+    "z-ai/glm-4.6",
+    "z-ai/glm-4.6v",
+    "z-ai/glm-4.7",
+    "z-ai/glm-4.7-flash",
+    "z-ai/glm-5",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5.1",
+    "z-ai/glm-5.2"
+  ],
+  "planned_configurations": 40,
+  "planned_baseline_invocations": 40,
+  "reasoning_levels_source": "openrouter reasoning.effort documented accepted values (low|medium|high); all selected values are also in the production openrouter translation token list",
+  "notes": [
+    "scope is deliberately bounded to the four core vendor families; the full 428-model marketplace is inventoried by count only",
+    "exclusion counts are evaluated over the core-vendor-family catalogue entries (the bounded scope denominator)",
+    "no fallback model list is configured; a request for model X must not execute model Y"
+  ]
+}

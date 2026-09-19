@@ -1,0 +1,7 @@
+pm_profiles:
+  - id: canary-scripted-pm
+    role_kind: PM
+    session_kind: STATELESS
+    product: scripted
+    transport: in-process
+    model: deterministic-canary

@@ -1,0 +1,21 @@
+{
+  "outcome": "FAIL",
+  "error_code": "PM_DECISION_PARSE_FAILED",
+  "parse_subreason": "PM_DECISION_NO_DECISION_FOUND",
+  "structural_diagnostics": {
+    "bytes": 12543,
+    "outputByteLength": 12543,
+    "firstChar": "{",
+    "lastChar": "}",
+    "firstCharClass": "OPEN_BRACE",
+    "lastCharClass": "CLOSE_BRACE",
+    "fullJson": false,
+    "jsonFence": false,
+    "prefixClass": "NONE",
+    "suffixClass": "NONE",
+    "parseSubreason": "PM_DECISION_JSON_INVALID"
+  },
+  "normalized_decision": null,
+  "normalize_outcome": null,
+  "normalize_error_code": null
+}

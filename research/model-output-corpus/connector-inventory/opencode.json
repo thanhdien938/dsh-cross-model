@@ -1,0 +1,3813 @@
+{
+  "phase_version": "1.0",
+  "captured_at_utc": "2026-09-08T02:14:32.844Z",
+  "repo": {
+    "branch": "codex/council-participant-execution-audit",
+    "head": "7b6df0490bef812894df6b2654baef16d17a2b70"
+  },
+  "connector": "opencode",
+  "connector_version": "1.18.18",
+  "binary": "C:\\Users\\<user>\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe",
+  "discovery_command": "opencode models --verbose",
+  "discovery_raw": {
+    "stdout_bytes": 56256,
+    "stdout_sha256": "954e6fcd1e1292a19fcb27708209b6f402dd63b00652479d41caf6e5077f8a05",
+    "stderr_bytes": 0,
+    "exit_code": 0,
+    "duration_ms": 1110
+  },
+  "catalogue_metadata_note": "`opencode models --verbose` exposes per-model catalogue records (id, providerID, name, status, cost, limit, capabilities, variants) from the models.dev cache; config-defined third-party providers appear with placeholder 0/0 cost metadata",
+  "owner_scope_restriction": "Owner instruction (2026-09-08): invoke FIRST-PARTY providers only (opencode, opencode-go). The xcode-best* config-defined third-party providers are inventoried for completeness but never invoked in this corpus run.",
+  "native_structured_output": {
+    "cli_flag": null,
+    "production_use": "none — `opencode run` (1.18.18) exposes no structured-output/schema flag",
+    "corpus_mode": "NONE — free-form output path only"
+  },
+  "reasoning_axis_note": "the reasoning axis is the catalogue `variants` map per model (e.g. none/minimal/low/medium/high/xhigh/max); production forwards --variant <name> only when a variant is selected; models with an empty variants map have no reasoning control and run once as default",
+  "counts": {
+    "total_discovered": 50,
+    "paid_or_standard": 27,
+    "free_excluded": 7,
+    "trial_excluded": 0,
+    "ephemeral_excluded": 0,
+    "unknown_not_invoked": 16,
+    "owner_excluded": 16,
+    "eligible": 27
+  },
+  "planned_configurations": [
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-flash-vision-exp",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-flash-vision-exp",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-pro",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/deepseek-v4-pro",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.1",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.2",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.2",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.3-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/glm-5.3-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/gpt-5.6-luna",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "selected_variant": "none",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/gpt-5.6-luna",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/grok-4.6",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/grok-4.6",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "xhigh",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/hy3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "low",
+        "high"
+      ],
+      "selected_variant": "none",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/hy3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "low",
+        "high"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/hy4-preview",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "high"
+      ],
+      "selected_variant": "none",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/hy4-preview",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "high"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/kimi-k2.6",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/kimi-k2.7-code",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/kimi-k3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "max"
+      ],
+      "selected_variant": "max",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/longcat-2.0",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/longcat-2.0",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/mimo-v2.5",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/mimo-v2.5-pro",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/minimax-m2.7",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/minimax-m3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "thinking"
+      ],
+      "selected_variant": "none",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/minimax-m3",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "none",
+        "thinking"
+      ],
+      "selected_variant": "thinking",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/muse-spark-1.2-contributor",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "minimal",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/muse-spark-1.2-contributor",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "xhigh",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "minimal",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "selected_variant": "xhigh",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/omen-alpha",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/omen-alpha",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "high"
+      ],
+      "selected_variant": "high",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.6-plus",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.7-max",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.7-plus",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [],
+      "selected_variant": "default",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.8-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.8-flash",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "selected_variant": "xhigh",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.8-max",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "selected_variant": "low",
+      "planned_sample_count": 1
+    },
+    {
+      "connector": "opencode",
+      "provider": "opencode-go",
+      "model": "opencode-go/qwen3.8-max",
+      "cost_classification": "PAID_OR_STANDARD",
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "selected_variant": "xhigh",
+      "planned_sample_count": 1
+    }
+  ],
+  "planned_baseline_invocations": 44,
+  "canonical_probe": {
+    "sha256": "102946023d462f67187574cdad536eba93c2e3f4351c07d2f9a82d8f59b3bcb5",
+    "bytes": 4112
+  },
+  "models": [
+    {
+      "slug": "opencode/big-pickle",
+      "id": "big-pickle",
+      "provider_id": "opencode",
+      "display_name": "Big Pickle",
+      "status": "active",
+      "release_date": "2025-10-17",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 200000,
+        "input": 160000,
+        "output": 32000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "catalogue cost input=0 output=0 — authoritative first-party catalogue (opencode) prices this model at zero; no paid pricing listed"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/ling-3.0-flash-fin-free",
+      "id": "ling-3.0-flash-fin-free",
+      "provider_id": "opencode",
+      "display_name": "Ling 3.0 Flash Fin Free",
+      "status": "active",
+      "release_date": "2026-08-27",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 262144,
+        "output": 32768
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "medium": "medium",
+        "high": "high"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "high",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/mimo-v2.5-free",
+      "id": "mimo-v2.5-free",
+      "provider_id": "opencode",
+      "display_name": "MiMo V2.5 Free",
+      "status": "active",
+      "release_date": "2026-04-24",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 200000,
+        "output": 32000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/muse-spark-1.2-contributor-free",
+      "id": "muse-spark-1.2-contributor-free",
+      "provider_id": "opencode",
+      "display_name": "Muse Spark 1.2 Free",
+      "status": "active",
+      "release_date": "2026-08-05",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "minimal": "minimal",
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "minimal",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/muse-spark-1.3-contributor-free",
+      "id": "muse-spark-1.3-contributor-free",
+      "provider_id": "opencode",
+      "display_name": "Muse Spark 1.3 Free",
+      "status": "active",
+      "release_date": "2026-09-02",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "minimal": "minimal",
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "minimal",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/nemotron-3-ultra-free",
+      "id": "nemotron-3-ultra-free",
+      "provider_id": "opencode",
+      "display_name": "Nemotron 3 Ultra Free",
+      "status": "active",
+      "release_date": "2026-06-04",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode/nemotron-3.5-lightning-free",
+      "id": "nemotron-3.5-lightning-free",
+      "provider_id": "opencode",
+      "display_name": "Nemotron 3.5 Lightning Free",
+      "status": "active",
+      "release_date": "2026-08-11",
+      "api_url": "https://opencode.ai/zen/v1",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 262144,
+        "output": 262144
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "FREE",
+      "cost_classification_evidence": [
+        "explicit \"free\" marker in catalogue metadata"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": false
+    },
+    {
+      "slug": "opencode-go/deepseek-v4-flash",
+      "id": "deepseek-v4-flash",
+      "provider_id": "opencode-go",
+      "display_name": "DeepSeek V4 Flash",
+      "status": "active",
+      "release_date": "2026-07-31",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.22,
+        "output": 0.66,
+        "cache": {
+          "read": 0.007,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 384000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.22 output=0.66 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/deepseek-v4-flash-vision-exp",
+      "id": "deepseek-v4-flash-vision-exp",
+      "provider_id": "opencode-go",
+      "display_name": "DeepSeek V4 Flash Vision Exp",
+      "status": "active",
+      "release_date": "2026-08-21",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.22,
+        "output": 0.66,
+        "cache": {
+          "read": 0.007,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 384000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.22 output=0.66 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/deepseek-v4-pro",
+      "id": "deepseek-v4-pro",
+      "provider_id": "opencode-go",
+      "display_name": "DeepSeek V4 Pro (New)",
+      "status": "active",
+      "release_date": "2026-04-24",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.66,
+        "output": 1.98,
+        "cache": {
+          "read": 0.022,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 384000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.66 output=1.98 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/glm-5.1",
+      "id": "glm-5.1",
+      "provider_id": "opencode-go",
+      "display_name": "GLM-5.1",
+      "status": "active",
+      "release_date": "2026-04-07",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 1.4,
+        "output": 4.4,
+        "cache": {
+          "read": 0.26,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 202752,
+        "output": 32768
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=1.4 output=4.4 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/glm-5.2",
+      "id": "glm-5.2",
+      "provider_id": "opencode-go",
+      "display_name": "GLM-5.2",
+      "status": "active",
+      "release_date": "2026-06-13",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 1.4,
+        "output": 4.4,
+        "cache": {
+          "read": 0.26,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "high",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=1.4 output=4.4 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/glm-5.3",
+      "id": "glm-5.3",
+      "provider_id": "opencode-go",
+      "display_name": "GLM-5.3",
+      "status": "active",
+      "release_date": "2026-08-14",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 1.4,
+        "output": 4.4,
+        "cache": {
+          "read": 0.26,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=1.4 output=4.4 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/glm-5.3-flash",
+      "id": "glm-5.3-flash",
+      "provider_id": "opencode-go",
+      "display_name": "GLM-5.3-Flash (2x usage)",
+      "status": "active",
+      "release_date": "2026-08-26",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.075,
+        "output": 0.25,
+        "cache": {
+          "read": 0.015,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "high",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.075 output=0.25 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/gpt-5.6-luna",
+      "id": "gpt-5.6-luna",
+      "provider_id": "opencode-go",
+      "display_name": "GPT-5.6 Luna",
+      "status": "active",
+      "release_date": "2026-07-09",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.2,
+        "output": 1.2,
+        "cache": {
+          "read": 0.02,
+          "write": 0.25
+        },
+        "tiers": [
+          {
+            "input": 0.4,
+            "output": 1.8,
+            "cache": {
+              "read": 0.04,
+              "write": 0.5
+            },
+            "tier": {
+              "type": "context",
+              "size": 272000
+            }
+          }
+        ],
+        "experimentalOver200K": {
+          "cache": {
+            "read": 0.04,
+            "write": 0.5
+          },
+          "input": 0.4,
+          "output": 1.8
+        }
+      },
+      "limit": {
+        "context": 1050000,
+        "input": 922000,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": false,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "none": "none",
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh",
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "none",
+        "highest": "max",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.2 output=1.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/grok-4.6",
+      "id": "grok-4.6",
+      "provider_id": "opencode-go",
+      "display_name": "Grok 4.6",
+      "status": "active",
+      "release_date": "2026-08-12",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 2,
+        "output": 6,
+        "cache": {
+          "read": 0.5,
+          "write": 0
+        },
+        "tiers": [
+          {
+            "input": 4,
+            "output": 12,
+            "cache": {
+              "read": 1,
+              "write": 0
+            },
+            "tier": {
+              "type": "context",
+              "size": 200000
+            }
+          }
+        ],
+        "experimentalOver200K": {
+          "cache": {
+            "read": 1,
+            "write": 0
+          },
+          "input": 4,
+          "output": 12
+        }
+      },
+      "limit": {
+        "context": 500000,
+        "output": 500000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=2 output=6 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/hy3",
+      "id": "hy3",
+      "provider_id": "opencode-go",
+      "display_name": "Hy3",
+      "status": "active",
+      "release_date": "2026-07-06",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.14,
+        "output": 0.58,
+        "cache": {
+          "read": 0.035,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 256000,
+        "input": 192000,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "none",
+        "low",
+        "high"
+      ],
+      "variant_reasoning_efforts": {
+        "none": "none",
+        "low": "low",
+        "high": "high"
+      },
+      "reasoning_extremes": {
+        "lowest": "none",
+        "highest": "high",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.14 output=0.58 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/hy4-preview",
+      "id": "hy4-preview",
+      "provider_id": "opencode-go",
+      "display_name": "Hy4 preview",
+      "status": "active",
+      "release_date": "2026-08-28",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.834,
+        "output": 2.501,
+        "cache": {
+          "read": 0.042,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1024000,
+        "output": 64000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "none",
+        "high"
+      ],
+      "variant_reasoning_efforts": {
+        "none": "none",
+        "high": "high"
+      },
+      "reasoning_extremes": {
+        "lowest": "none",
+        "highest": "high",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.834 output=2.501 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/kimi-k2.6",
+      "id": "kimi-k2.6",
+      "provider_id": "opencode-go",
+      "display_name": "Kimi K2.6",
+      "status": "active",
+      "release_date": "2026-04-21",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.95,
+        "output": 4,
+        "cache": {
+          "read": 0.16,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 262144,
+        "output": 65536
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.95 output=4 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/kimi-k2.7-code",
+      "id": "kimi-k2.7-code",
+      "provider_id": "opencode-go",
+      "display_name": "Kimi K2.7 Code",
+      "status": "active",
+      "release_date": "2026-06-12",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.95,
+        "output": 4,
+        "cache": {
+          "read": 0.19,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 262144,
+        "output": 262144
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.95 output=4 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/kimi-k3",
+      "id": "kimi-k3",
+      "provider_id": "opencode-go",
+      "display_name": "Kimi K3",
+      "status": "active",
+      "release_date": "2026-07-16",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 3,
+        "output": 15,
+        "cache": {
+          "read": 0.3,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "max"
+      ],
+      "variant_reasoning_efforts": {
+        "max": "max"
+      },
+      "reasoning_extremes": {
+        "lowest": "max",
+        "highest": "max",
+        "single": true
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=3 output=15 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/longcat-2.0",
+      "id": "longcat-2.0",
+      "provider_id": "opencode-go",
+      "display_name": "LongCat-2.0",
+      "status": "active",
+      "release_date": "2026-06-30",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.3,
+        "output": 1.2,
+        "cache": {
+          "read": 0.006,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "medium": "medium",
+        "high": "high"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "high",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.3 output=1.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/mimo-v2.5",
+      "id": "mimo-v2.5",
+      "provider_id": "opencode-go",
+      "display_name": "MiMo V2.5",
+      "status": "active",
+      "release_date": "2026-04-22",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.14,
+        "output": 0.28,
+        "cache": {
+          "read": 0.0028,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.14 output=0.28 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/mimo-v2.5-pro",
+      "id": "mimo-v2.5-pro",
+      "provider_id": "opencode-go",
+      "display_name": "MiMo V2.5 Pro",
+      "status": "active",
+      "release_date": "2026-04-22",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.435,
+        "output": 0.87,
+        "cache": {
+          "read": 0.003625,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.435 output=0.87 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/minimax-m2.7",
+      "id": "minimax-m2.7",
+      "provider_id": "opencode-go",
+      "display_name": "MiniMax-M2.7",
+      "status": "active",
+      "release_date": "2026-03-18",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.3,
+        "output": 1.2,
+        "cache": {
+          "read": 0.06,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 204800,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.3 output=1.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/minimax-m3",
+      "id": "minimax-m3",
+      "provider_id": "opencode-go",
+      "display_name": "MiniMax-M3",
+      "status": "active",
+      "release_date": "2026-05-31",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.3,
+        "output": 1.2,
+        "cache": {
+          "read": 0.06,
+          "write": 0
+        },
+        "tiers": [
+          {
+            "input": 0.6,
+            "output": 2.4,
+            "cache": {
+              "read": 0.12,
+              "write": 0
+            },
+            "tier": {
+              "type": "context",
+              "size": 512000
+            }
+          }
+        ],
+        "experimentalOver200K": {
+          "cache": {
+            "read": 0.12,
+            "write": 0
+          },
+          "input": 0.6,
+          "output": 2.4
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "none",
+        "thinking"
+      ],
+      "variant_reasoning_efforts": {
+        "none": "disabled",
+        "thinking": "adaptive"
+      },
+      "reasoning_extremes": {
+        "lowest": "none",
+        "highest": "thinking",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.3 output=1.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/muse-spark-1.2-contributor",
+      "id": "muse-spark-1.2-contributor",
+      "provider_id": "opencode-go",
+      "display_name": "Muse Spark 1.2 Contributor",
+      "status": "active",
+      "release_date": "2026-08-05",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.1,
+        "output": 0.2,
+        "cache": {
+          "read": 0.002,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "minimal": "minimal",
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "minimal",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.1 output=0.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/muse-spark-1.3-contributor",
+      "id": "muse-spark-1.3-contributor",
+      "provider_id": "opencode-go",
+      "display_name": "Muse Spark 1.3 Contributor",
+      "status": "active",
+      "release_date": "2026-09-02",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.1,
+        "output": 0.2,
+        "cache": {
+          "read": 0.002,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 1048576,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": true,
+          "image": true,
+          "video": true,
+          "pdf": true
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "minimal": "minimal",
+        "low": "low",
+        "medium": "medium",
+        "high": "high",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "minimal",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.1 output=0.2 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/omen-alpha",
+      "id": "omen-alpha",
+      "provider_id": "opencode-go",
+      "display_name": "Omen Alpha",
+      "status": "active",
+      "release_date": "2026-09-04",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.2,
+        "output": 0.66,
+        "cache": {
+          "read": 0.04,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 500000,
+        "output": 128000
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": {
+          "field": "reasoning_content"
+        }
+      },
+      "supported_variants": [
+        "low",
+        "high"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "high": "high"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "high",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.2 output=0.66 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/qwen3.6-plus",
+      "id": "qwen3.6-plus",
+      "provider_id": "opencode-go",
+      "display_name": "Qwen3.6 Plus",
+      "status": "active",
+      "release_date": "2026-04-02",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.5,
+        "output": 3,
+        "cache": {
+          "read": 0.05,
+          "write": 0.625
+        },
+        "tiers": [
+          {
+            "input": 2,
+            "output": 6,
+            "cache": {
+              "read": 0.2,
+              "write": 2.5
+            },
+            "tier": {
+              "type": "context",
+              "size": 256000
+            }
+          }
+        ],
+        "experimentalOver200K": {
+          "cache": {
+            "read": 0.2,
+            "write": 2.5
+          },
+          "input": 2,
+          "output": 6
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 65536
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.5 output=3 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/qwen3.7-max",
+      "id": "qwen3.7-max",
+      "provider_id": "opencode-go",
+      "display_name": "Qwen3.7 Max",
+      "status": "active",
+      "release_date": "2026-05-21",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 2.5,
+        "output": 7.5,
+        "cache": {
+          "read": 0.5,
+          "write": 3.125
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 65536
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=2.5 output=7.5 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/qwen3.7-plus",
+      "id": "qwen3.7-plus",
+      "provider_id": "opencode-go",
+      "display_name": "Qwen3.7 Plus",
+      "status": "active",
+      "release_date": "2026-06-02",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.4,
+        "output": 1.6,
+        "cache": {
+          "read": 0.04,
+          "write": 0.5
+        },
+        "tiers": [
+          {
+            "input": 1.2,
+            "output": 4.8,
+            "cache": {
+              "read": 0.12,
+              "write": 1.5
+            },
+            "tier": {
+              "type": "context",
+              "size": 256000
+            }
+          }
+        ],
+        "experimentalOver200K": {
+          "cache": {
+            "read": 0.12,
+            "write": 1.5
+          },
+          "input": 1.2,
+          "output": 4.8
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 65536
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.4 output=1.6 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/qwen3.8-flash",
+      "id": "qwen3.8-flash",
+      "provider_id": "opencode-go",
+      "display_name": "Qwen3.8 Flash",
+      "status": "active",
+      "release_date": "2026-08-26",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 0.15,
+        "output": 0.47,
+        "cache": {
+          "read": 0.016,
+          "write": 0.2
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "medium": "medium",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=0.15 output=0.47 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "opencode-go/qwen3.8-max",
+      "id": "qwen3.8-max",
+      "provider_id": "opencode-go",
+      "display_name": "Qwen3.8 Max",
+      "status": "active",
+      "release_date": "2026-08-03",
+      "api_url": "https://opencode.ai/zen/go/v1",
+      "cost": {
+        "input": 2,
+        "output": 6,
+        "cache": {
+          "read": 0.25,
+          "write": 2.5
+        }
+      },
+      "limit": {
+        "context": 1000000,
+        "output": 131072
+      },
+      "capabilities": {
+        "temperature": true,
+        "reasoning": true,
+        "attachment": true,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": true,
+          "video": true,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "variant_reasoning_efforts": {
+        "low": "low",
+        "medium": "medium",
+        "xhigh": "xhigh"
+      },
+      "reasoning_extremes": {
+        "lowest": "low",
+        "highest": "xhigh",
+        "single": false
+      },
+      "default_variant_fallback": null,
+      "cost_classification": "PAID_OR_STANDARD",
+      "cost_classification_evidence": [
+        "catalogue cost input=2 output=6 (per M tokens, models.dev cache)"
+      ],
+      "first_party_provider": true,
+      "owner_excluded": false,
+      "owner_exclusion_reason": null,
+      "invocation_eligible": true
+    },
+    {
+      "slug": "xcode-best/gpt-5.4",
+      "id": "gpt-5.4",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-5.4 - Xcode Best",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-5.5",
+      "id": "gpt-5.5",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-5.5 - Xcode Best (no reasoning)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-5.5-reasoning",
+      "id": "gpt-5.5-reasoning",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-5.5 - Xcode Best (reasoning on)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra",
+      "id": "gpt-6-astra",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra - Xcode Best",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra-high",
+      "id": "gpt-6-astra-high",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra (reasoning high)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra-low",
+      "id": "gpt-6-astra-low",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra (reasoning low)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra-max",
+      "id": "gpt-6-astra-max",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra (reasoning max)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra-medium",
+      "id": "gpt-6-astra-medium",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra (reasoning medium)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best/gpt-6-astra-xhigh",
+      "id": "gpt-6-astra-xhigh",
+      "provider_id": "xcode-best",
+      "display_name": "GPT-6 Astra (reasoning xhigh)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-opus-4-8",
+      "id": "claude-opus-4-8",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Opus 4.8 - Xcode Best (no reasoning)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-opus-4-8-reasoning",
+      "id": "claude-opus-4-8-reasoning",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Opus 4.8 - Xcode Best (reasoning on)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-opus-5",
+      "id": "claude-opus-5",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Opus 5 - Xcode Best (no reasoning)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-opus-5-reasoning",
+      "id": "claude-opus-5-reasoning",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Opus 5 - Xcode Best (reasoning on)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-sonnet-4-6",
+      "id": "claude-sonnet-4-6",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Sonnet 4.6 - Xcode Best (no reasoning)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-claude/claude-sonnet-4-6-reasoning",
+      "id": "claude-sonnet-4-6-reasoning",
+      "provider_id": "xcode-best-claude",
+      "display_name": "Claude Sonnet 4.6 - Xcode Best (reasoning on)",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-claude, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    },
+    {
+      "slug": "xcode-best-grok/grok-4.5",
+      "id": "grok-4.5",
+      "provider_id": "xcode-best-grok",
+      "display_name": "Grok 4.5 - Xcode Best",
+      "status": "active",
+      "release_date": "",
+      "api_url": "",
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "limit": {
+        "context": 0,
+        "output": 0
+      },
+      "capabilities": {
+        "temperature": false,
+        "reasoning": false,
+        "attachment": false,
+        "toolcall": true,
+        "input": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "output": {
+          "text": true,
+          "audio": false,
+          "image": false,
+          "video": false,
+          "pdf": false
+        },
+        "interleaved": false
+      },
+      "supported_variants": [],
+      "variant_reasoning_efforts": {},
+      "reasoning_extremes": {
+        "lowest": null,
+        "highest": null,
+        "single": true
+      },
+      "default_variant_fallback": "default",
+      "cost_classification": "UNKNOWN",
+      "cost_classification_evidence": [
+        "catalogue cost is placeholder 0/0 from a config-defined third-party provider (providerID=xcode-best-grok, no authoritative pricing in the models.dev cache) -> NEEDS_OWNER_CLASSIFICATION"
+      ],
+      "first_party_provider": false,
+      "owner_excluded": true,
+      "owner_exclusion_reason": "owner instruction (2026-09-08): collect first-party opencode models only; config-defined third-party providers are inventoried but never invoked",
+      "invocation_eligible": false
+    }
+  ]
+}

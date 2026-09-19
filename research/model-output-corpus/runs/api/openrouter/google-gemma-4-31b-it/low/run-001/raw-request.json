@@ -1,0 +1,21 @@
+{
+  "url": "https://openrouter.ai/api/v1/chat/completions",
+  "method": "POST",
+  "model": "google/gemma-4-31b-it",
+  "reasoning_requested": "low",
+  "messages": [
+    {
+      "role": "user",
+      "content_sha256": "102946023d462f67187574cdad536eba93c2e3f4351c07d2f9a82d8f59b3bcb5",
+      "content_bytes": 4069,
+      "content_source": "CANONICAL_PROBE_PROMPT.txt (byte-identical, see prompt_sha256)"
+    }
+  ],
+  "extra": {
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "stream": false,
+  "timeout_ms": 600000
+}

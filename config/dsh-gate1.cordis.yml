@@ -1,0 +1,29 @@
+# DSH Gate 1 dual-provider composition (T1) — harness driver tree.
+#
+# ONE DSH host/context used by `scripts/dsh-gate1-smoke.mjs` to register and
+# invoke both stock subagent providers in the same project workspace. The
+# model-facing tools `subagent_codex` / `subagent_claude_code` are exposed by
+# the full DSH host profile patched with `config/dsh-gate1.patch.yml`; this
+# tree carries the provider machinery the tool wrapper delegates to.
+#
+# Published upstream line: 0.1.0-rc.6 (dsh + subagent providers + tool wrapper).
+#   https://github.com/deepseek-ai/DeepSeek-Harness
+# Source-of-truth packages:
+#   @deepseek-ai/dsh-subprocess-local   -> child process service
+#   @deepseek-ai/dsh-subagent           -> subagent runtime service
+#   @deepseek-ai/dsh-subagent-codex     -> fixed `codex` provider
+#   @deepseek-ai/dsh-subagent-claude-code -> fixed `claude-code` provider
+
+- id: subprocess
+  name: '@deepseek-ai/dsh-subprocess-local'
+
+- id: subagent
+  name: '@deepseek-ai/dsh-subagent'
+
+- id: subagent-codex
+  name: '@deepseek-ai/dsh-subagent-codex'
+  config: {}
+
+- id: subagent-claude-code
+  name: '@deepseek-ai/dsh-subagent-claude-code'
+  config: {}

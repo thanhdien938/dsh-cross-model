@@ -1,0 +1,30 @@
+# Stock DeepSeek Harness provider composition for Level-1 POC.
+# Exact host/preset wrapping may change while DSH is in developer preview.
+# Source-of-truth packages:
+#   @deepseek-ai/dsh-subagent-codex
+#   @deepseek-ai/dsh-subagent-claude-code
+#   @deepseek-ai/dsh-tool-subagent
+
+- id: subagent-codex
+  name: '@deepseek-ai/dsh-subagent-codex'
+  config: {}
+
+- id: tool-subagent-codex
+  name: '@deepseek-ai/dsh-tool-subagent'
+  config:
+    provider: codex
+    toolName: subagent_codex
+    enableRunInBackground: false
+    maxDepth: provider-managed
+
+- id: subagent-claude-code
+  name: '@deepseek-ai/dsh-subagent-claude-code'
+  config: {}
+
+- id: tool-subagent-claude-code
+  name: '@deepseek-ai/dsh-tool-subagent'
+  config:
+    provider: claude-code
+    toolName: subagent_claude_code
+    enableRunInBackground: false
+    maxDepth: provider-managed

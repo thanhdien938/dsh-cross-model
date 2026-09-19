@@ -1,0 +1,10 @@
+{
+  "mode": "production",
+  "postgresDsn": "postgresql://USER:PASSWORD@postgres.example.invalid:5432/dsh",
+  "sqlitePath": "C:/var/lib/dsh/runtime.sqlite",
+  "logicalCoordinatorId": "dsh-coordinator",
+  "logicalWorkerId": "dsh-worker",
+  "pollIntervalMs": 250,
+  "leaseMs": 30000,
+  "concurrency": 1
+}

@@ -1,0 +1,5 @@
+node_modules/
+dist/
+packaged/
+packager-*/
+packaged-proof*.json

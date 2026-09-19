@@ -1,0 +1,13 @@
+projects:
+  - id: example-project
+    display_name: Example Project
+    repo_path: C:/path/to/my/repository
+    default_pm_profile_id: local-pm
+    autonomy:
+      revision: 1
+      effects:
+        SUBMIT_TASK: ALLOW
+        REQUEST_CANCEL: ALLOW
+        BRANCH_CREATE: APPROVAL
+        MERGE_MAIN: APPROVAL
+        PUSH_REMOTE: APPROVAL
