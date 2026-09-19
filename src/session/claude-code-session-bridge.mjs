@@ -61,7 +61,7 @@ function parseJsonLine(line) {
 }
 
 export function runClaudeProcess({
-  binary = resolveClaudeBinary(),
+  binary = resolveClaudeBinary() || 'claude',
   cwd = process.cwd(),
   prompt,
   resume = null,

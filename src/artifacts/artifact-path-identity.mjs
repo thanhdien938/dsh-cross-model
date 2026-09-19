@@ -118,7 +118,9 @@ export function assertContainedRegularFile({ storeRoot, attemptDir, reportPath, 
 
   let real;
   try { real = realCanonical(absReport); } catch (error) { fail('PATH_INVALID', error.message); }
-  if (!isWithin(attemptDir, real)) fail('OUTSIDE_WORKSPACE', `report resolves outside the attempt dir via a symlink/junction: ${absReport} -> ${real}`);
+  let realAttempt;
+  try { realAttempt = realCanonical(attemptDir); } catch (error) { fail('PATH_INVALID', error.message); }
+  if (!isWithin(realAttempt, real)) fail('OUTSIDE_WORKSPACE', `report resolves outside the attempt dir via a symlink/junction: ${absReport} -> ${real}`);
 
   let ls;
   try { ls = lstatSync(absReport); } catch (error) { fail('UNREADABLE', `lstat failed: ${error.message}`); }

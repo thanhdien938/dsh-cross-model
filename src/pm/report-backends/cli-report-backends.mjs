@@ -446,7 +446,7 @@ function grokErrorToResult({ error, common, startedAt }) {
  * @param {'VERBATIM_MATERIALIZATION'|'DIRECT_WRITE'} [opts.deliveryMechanism]
  */
 export function createClaudeReportBackend(opts = {}) {
-  const binary = opts.binary ?? resolveClaudeBinary();
+  const binary = opts.binary ?? (resolveClaudeBinary() || 'claude');
   const directWrite = opts.deliveryMechanism === 'DIRECT_WRITE';
   const observer = opts.observer ?? null;
   return {
@@ -534,7 +534,7 @@ export function createClaudeReportBackend(opts = {}) {
  * @param {'VERBATIM_MATERIALIZATION'|'DIRECT_WRITE'} [opts.deliveryMechanism]
  */
 export function createOpenCodeReportBackend(opts = {}) {
-  const binary = opts.binary ?? resolveOpenCodeBinary();
+  const binary = opts.binary ?? (resolveOpenCodeBinary() || 'opencode');
   const directWrite = opts.deliveryMechanism === 'DIRECT_WRITE';
   const observer = opts.observer ?? null;
   return {
@@ -616,7 +616,7 @@ export function createOpenCodeReportBackend(opts = {}) {
  * @param {'VERBATIM_MATERIALIZATION'|'DIRECT_WRITE'} [opts.deliveryMechanism]
  */
 export function createCodexReportBackend(opts = {}) {
-  const binary = opts.binary ?? resolveCodexCliBinary();
+  const binary = opts.binary ?? (resolveCodexCliBinary() || 'codex');
   const directWrite = opts.deliveryMechanism === 'DIRECT_WRITE';
   const observer = opts.observer ?? null;
   return {
@@ -685,7 +685,7 @@ export function createCodexReportBackend(opts = {}) {
  * @param {'VERBATIM_MATERIALIZATION'|'DIRECT_WRITE'} [opts.deliveryMechanism]
  */
 export function createGrokReportBackend(opts = {}) {
-  const binary = opts.binary ?? resolveGrokBinary();
+  const binary = opts.binary ?? (resolveGrokBinary() || 'grok');
   const directWrite = opts.deliveryMechanism === 'DIRECT_WRITE';
   const observer = opts.observer ?? null;
   return {
@@ -742,7 +742,7 @@ export function createGrokReportBackend(opts = {}) {
  * @param {'VERBATIM_MATERIALIZATION'|'DIRECT_WRITE'} [opts.deliveryMechanism]
  */
 export function createAntigravityReportBackend(opts = {}) {
-  const binary = opts.binary ?? resolveAntigravityBinary();
+  const binary = opts.binary ?? (resolveAntigravityBinary() || 'agy');
   const directWrite = opts.deliveryMechanism === 'DIRECT_WRITE';
   const observer = opts.observer ?? null;
   return {
