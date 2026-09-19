@@ -34,7 +34,7 @@
  */
 
 import { spawn as nodeSpawn } from 'node:child_process';
-import { realpathSync, existsSync } from 'node:fs';
+import { realpathSync, existsSync, lstatSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve as resolvePath, relative as relativePath, isAbsolute } from 'node:path';
 
@@ -134,6 +134,54 @@ function boundedPathComponent(value) {
   return `${value.slice(0, 24)}~${digest}`;
 }
 
+function hasReparsePoint(p) {
+  try {
+    let cur = resolvePath(p);
+    while (cur) {
+      try {
+        const st = lstatSync(cur);
+        if (st.isSymbolicLink()) return true;
+      } catch {
+        // Not existing or not accessible
+      }
+      const parent = resolvePath(cur, '..');
+      if (parent === cur) break;
+      cur = parent;
+    }
+  } catch {
+    // ignore
+  }
+  return false;
+}
+
+export function canonicalizePath(p) {
+  try {
+    const resolved = resolvePath(p);
+    if (process.platform !== 'win32') return resolved;
+
+    let cur = resolved;
+    const tail = [];
+    while (cur && !existsSync(cur)) {
+      const parent = resolvePath(cur, '..');
+      if (parent === cur) break;
+      tail.unshift(cur.slice(parent.length).replace(/^[\\/]+/, ''));
+      cur = parent;
+    }
+    if (hasReparsePoint(cur)) {
+      return resolved;
+    }
+    let canonicalBase = cur;
+    try {
+      canonicalBase = realpathSync.native ? realpathSync.native(cur) : realpathSync(cur);
+    } catch {
+      canonicalBase = cur;
+    }
+    return tail.length > 0 ? resolvePath(canonicalBase, ...tail) : canonicalBase;
+  } catch {
+    return resolvePath(p);
+  }
+}
+
 /**
  * §5 — deterministic workspace-path derivation. Uses ONLY canonical IDs
  * (never a display name), validates both against a bounded safe-component
@@ -149,7 +197,7 @@ export function deriveTaskWorkspacePath({ runtimeWorktreeRoot, projectId, taskId
   if (typeof runtimeWorktreeRoot !== 'string' || !runtimeWorktreeRoot) {
     throw new TaskWorkspaceError('runtime worktree root is required', 'WORKSPACE_ROOT_MISSING', {});
   }
-  const resolvedRoot = resolvePath(runtimeWorktreeRoot);
+  const resolvedRoot = canonicalizePath(runtimeWorktreeRoot);
   const candidate = resolvePath(resolvedRoot, boundedPathComponent(safeProjectId), boundedPathComponent(safeTaskId));
   const rel = relativePath(resolvedRoot, candidate);
   if (rel === '' || rel.startsWith('..') || isAbsolute(rel)) {
@@ -179,7 +227,7 @@ export async function resolveRepositoryCommonDir({ repoPath, spawnImpl = nodeSpa
   const absolute = isAbsolute(raw) ? raw : resolvePath(repoPath, raw);
   let real;
   try {
-    real = realpathSync(absolute);
+    real = realpathSync.native ? realpathSync.native(absolute) : realpathSync(absolute);
   } catch {
     throw new TaskWorkspaceError('git common directory does not exist on disk', 'WORKSPACE_REPO_IDENTITY_UNRESOLVED', { repoPath });
   }
@@ -196,7 +244,21 @@ export async function resolveRepositoryCommonDir({ repoPath, spawnImpl = nodeSpa
 // already trust.
 export function pathsEqual(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') return false;
-  return process.platform === 'win32' ? a.toLowerCase() === b.toLowerCase() : a === b;
+  if (process.platform === 'win32') {
+    if (a.toLowerCase() === b.toLowerCase()) return true;
+    const na = resolvePath(a);
+    const nb = resolvePath(b);
+    if (na.toLowerCase() === nb.toLowerCase()) return true;
+    try {
+      if (hasReparsePoint(na) || hasReparsePoint(nb)) return false;
+      const ca = canonicalizePath(na);
+      const cb = canonicalizePath(nb);
+      return ca.toLowerCase() === cb.toLowerCase();
+    } catch {
+      return false;
+    }
+  }
+  return a === b;
 }
 
 function existsOnDisk(path) {
