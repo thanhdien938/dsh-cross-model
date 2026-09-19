@@ -26,16 +26,16 @@ function cancellationRowOf(row) {
 
 async function seedWorkItem(client, { work_item_id, pm_run_id, action_id, work_revision }) {
   await client.query(`INSERT INTO ${SCHEMA}.worker_incarnations
-    (worker_incarnation_id,logical_worker_id,host_id,installed_profiles,capacity)
-    VALUES ('worker-recon-test','worker-recon','test-host','[]','{"max_concurrency":1,"reported_in_use":0}')
+    (worker_incarnation_id,logical_worker_id,host_id,status,installed_profiles,capacity,record_version)
+    VALUES ('worker-recon-test','worker-recon','test-host','ACTIVE','[]','{"max_concurrency":1,"reported_in_use":0}',1)
     ON CONFLICT (worker_incarnation_id) DO NOTHING`);
   // Exactly the live PM_ACTION shape: task_id NULL (the task id is resolved
   // from owner_command.canonical_result by observeCancellationReconciliation,
   // and lives in the audit fixture here).
   await client.query(`INSERT INTO ${SCHEMA}.work_items
-    (work_item_id,work_kind,pm_run_id,action_id,
+    (work_item_id,work_kind,pm_run_id,action_id,record_version,
      claim_state,owner_worker_incarnation_id,fencing_generation,fencing_token,acquired_at,renewed_at,expires_at,revision)
-    VALUES ($1,'PM_ACTION',$2,$3,
+    VALUES ($1,'PM_ACTION',$2,$3,1,
             'COMPLETED','worker-recon-test',2,$4,statement_timestamp(),statement_timestamp(),statement_timestamp()+interval '30 seconds',$5)`,
     [work_item_id, pm_run_id, action_id, token43, work_revision]);
   await client.query(`INSERT INTO ${SCHEMA}.cancellation_requests
@@ -63,6 +63,12 @@ test('real PostgreSQL: reconcileTerminalCancellation CAS repair settles REQUESTE
   await admin.connect();
   await admin.query(`DROP SCHEMA IF EXISTS ${SCHEMA} CASCADE`);
   const store = await new PostgresCoordinationStore().open({ connectionString: dsn });
+  // open() only connects — it never migrates (by design, see its own
+  // implementation). Having just dropped the schema above, every table
+  // this test relies on (coordinator_incarnations, work_items,
+  // cancellation_requests, ...) needs a real migrate() call before use,
+  // exactly like every other real-PostgreSQL test file in this suite does.
+  await store.migrate();
   t.after(async () => { await store.close(); await admin.query(`DROP SCHEMA IF EXISTS ${SCHEMA} CASCADE`); await admin.end(); });
 
   // Coordinator leadership fixture the runtime fence must match (withLeadershipAuthority).
@@ -113,7 +119,7 @@ test('real PostgreSQL: reconcileTerminalCancellation CAS repair settles REQUESTE
   assert.equal(rerun.applied, false);
   assert.equal(rerun.idempotent, true);
   assert.equal(rerun.reconciliationId, auditRowsA[0].reconciliation_id);
-  assert.equal((await admin.query(`SELECT COUNT(*) n FROM ${SCHEMA}.reconciliation_audit WHERE idempotency_key=$1`, [auditA.idempotencyKey])).rows[0].n, 1);
+  assert.equal((await admin.query(`SELECT COUNT(*)::int n FROM ${SCHEMA}.reconciliation_audit WHERE idempotency_key=$1`, [auditA.idempotencyKey])).rows[0].n, 1);
   assert.equal(cancellationRowOf((await admin.query(`SELECT * FROM ${SCHEMA}.cancellation_requests WHERE work_item_id='pmwork-recon-test-a'`)).rows[0]).revision, 2);
 
   // 5. Stale revision fails closed (both CAS dimensions), no mutation, no audit row.
@@ -127,7 +133,7 @@ test('real PostgreSQL: reconcileTerminalCancellation CAS repair settles REQUESTE
   const afterB = cancellationRowOf((await admin.query(`SELECT * FROM ${SCHEMA}.cancellation_requests WHERE work_item_id='pmwork-recon-test-b'`)).rows[0]);
   assert.equal(afterB.state, 'REQUESTED');
   assert.equal(afterB.revision, 1);
-  assert.equal((await admin.query(`SELECT COUNT(*) n FROM ${SCHEMA}.reconciliation_audit WHERE idempotency_key=$1`, [auditB.idempotencyKey])).rows[0].n, 0);
+  assert.equal((await admin.query(`SELECT COUNT(*)::int n FROM ${SCHEMA}.reconciliation_audit WHERE idempotency_key=$1`, [auditB.idempotencyKey])).rows[0].n, 0);
 
   // 6. No provider execution / no claim side effects anywhere: total work_items,
   //    claim states, and fencing generations are exactly as seeded; no ACTIVE claims.
@@ -136,7 +142,7 @@ test('real PostgreSQL: reconcileTerminalCancellation CAS repair settles REQUESTE
     ['pmwork-recon-test-a', 'COMPLETED', 2],
     ['pmwork-recon-test-b', 'COMPLETED', 2],
   ]);
-  assert.equal((await admin.query(`SELECT COUNT(*) n FROM ${SCHEMA}.reconciliation_audit`)).rows[0].n, 1);
+  assert.equal((await admin.query(`SELECT COUNT(*)::int n FROM ${SCHEMA}.reconciliation_audit`)).rows[0].n, 1);
 
   // 7. A non-current fence fails closed before any mutation (leadership fencing preserved).
   await assert.rejects(
@@ -144,5 +150,5 @@ test('real PostgreSQL: reconcileTerminalCancellation CAS repair settles REQUESTE
     (e) => e.code === 'LEADERSHIP_AUTHORITY_REJECTED',
   );
   assert.equal(cancellationRowOf((await admin.query(`SELECT * FROM ${SCHEMA}.cancellation_requests WHERE work_item_id='pmwork-recon-test-b'`)).rows[0]).revision, 1);
-  assert.equal((await admin.query(`SELECT COUNT(*) n FROM ${SCHEMA}.reconciliation_audit`)).rows[0].n, 1);
+  assert.equal((await admin.query(`SELECT COUNT(*)::int n FROM ${SCHEMA}.reconciliation_audit`)).rows[0].n, 1);
 });

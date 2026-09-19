@@ -90,7 +90,7 @@ test('A1: captureExecutionForensics() preserves byte counts, hashes, assistant-o
 
 test('A2: a real Claude report-backend TIMEOUT keeps terminal_state=TIMEOUT, ineligible, with bounded safeDiagnostics', async () => {
   const { spawnImpl, child } = fakeHangingSpawn();
-  const backend = createClaudeReportBackend({ cwd: '/x', timeoutMs: 30, spawnImpl });
+  const backend = createClaudeReportBackend({ cwd: '/x', timeoutMs: 300, spawnImpl });
   const request = { profileId: 'live1-claude-sonnet-medium', executionId: 'exec-a2', stage: 'participant-report', invocation: { invocationId: 'inv-a2' }, store: { projectId: 'p' } };
   const pending = backend.runReport({ prompt: 'x', request });
   child.stdout.write('partial assistant tex');
@@ -147,7 +147,7 @@ test('A3: signal IS preserved through a real (non-timeout) CLAUDE_EXIT_FAILED cl
 
 test('B1: zero-output timeout records 0 bytes explicitly, captured=true, assistant_output_present=false', async () => {
   const { spawnImpl } = fakeHangingSpawn();
-  const backend = createClaudeReportBackend({ cwd: '/x', timeoutMs: 15, spawnImpl });
+  const backend = createClaudeReportBackend({ cwd: '/x', timeoutMs: 150, spawnImpl });
   const request = { profileId: 'p', executionId: 'exec-b1', stage: 'participant-report', invocation: { invocationId: 'inv-b1' }, store: { projectId: 'p' } };
   const result = await backend.runReport({ prompt: 'x', request });
   assert.equal(result.terminal_state, TERMINAL_STATE.TIMEOUT);

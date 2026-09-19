@@ -87,7 +87,7 @@ test('real multi-process workers preserve G2/G3/P2 truth', { skip: !dsn, timeout
     assert.notEqual((await waitChildRaw(child)).code, 0); assert.equal(calls(ledger, 'work-sqlite-down'), 0);
   });
 
-  assert.equal(await coordination.readSchemaVersion(), 4); assert.equal(await sqlite.readSchemaVersion(), 6);
+  assert.equal(await coordination.readSchemaVersion(), 5); assert.equal(await sqlite.readSchemaVersion(), 11);
   await t.test('H PostgreSQL outage grants zero new authority and starts zero provider calls', async () => {
     assert.ok(container); await prepare('postgres-down', coordination, service, bootstrapId);
     await execFileAsync('docker', ['stop', '--time', '0', container], { windowsHide: true });

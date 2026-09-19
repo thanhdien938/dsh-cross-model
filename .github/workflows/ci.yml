@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - p15-rem/**
+      - fix/**
   pull_request:
 
 permissions:
@@ -125,6 +126,8 @@ jobs:
       DSH_P6_P0_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
       DSH_P13_R2_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
       DSH_R22_TEST_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_RECON_CANCELLATION_POSTGRES_DSN: postgresql://postgres:postgres@127.0.0.1:5432/dsh_test
+      DSH_RECON_CANCELLATION_REQUIRE_POSTGRES: 1
       DSH_P3G1_REQUIRE_POSTGRES: 1
       DSH_P3G2_REQUIRE_POSTGRES: 1
       DSH_P3G3_REQUIRE_POSTGRES: 1
@@ -153,7 +156,7 @@ jobs:
       - name: Run known multi-process PostgreSQL diagnostic without skips
         continue-on-error: true
         run: npm run test:postgres:diagnostic
-      - name: Run 13 required root PostgreSQL files without skips
+      - name: Run 14 required root PostgreSQL files without skips
         run: npm run test:postgres
       - name: Reset canonical schema before Desktop PostgreSQL suite
         run: npm run test:postgres:init -- --reset

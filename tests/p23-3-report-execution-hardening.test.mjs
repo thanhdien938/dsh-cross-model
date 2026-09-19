@@ -57,12 +57,12 @@ test('resolver forwards explicit DI policy values to Codex, OpenCode, and Claude
     { id: 'o', role_kind: 'PM', product: 'opencode', model: 'x/y', session_kind: 'STATELESS', transport: 'stdio' },
     { id: 'a', role_kind: 'PM', product: 'claude-code', model: 'sonnet', session_kind: 'STATELESS', transport: 'stdio' },
   ];
-  const policy = { ...PRODUCTION_REPORT_BACKEND_TIMEOUT_MS, codex: 7, opencode: 9, 'claude-code': 11 };
+  const policy = { ...PRODUCTION_REPORT_BACKEND_TIMEOUT_MS, codex: 70, opencode: 90, 'claude-code': 110 };
   const resolver = createCliReportBackendResolver({
     profileRegistry: new PmProfileRegistry(profiles), project: { id: 'p', repo_path: '.' }, timeoutMsByProduct: policy,
     spawnImpl: () => timedChild(), observer: createBackendExecutionObserver({ emit: () => {} }),
   });
-  for (const [id, expected] of [['c', 7], ['o', 9], ['a', 11]]) {
+  for (const [id, expected] of [['c', 70], ['o', 90], ['a', 110]]) {
     const result = await resolver(id).runReport({ prompt: 'x', request: request(id, `exec-${id}`) });
     assert.equal(result.terminal_state, 'TIMEOUT');
     assert.equal(result.safe_diagnostics.timeout_ms, expected);
@@ -72,7 +72,7 @@ test('resolver forwards explicit DI policy values to Codex, OpenCode, and Claude
 test('Codex and OpenCode timeout results retain bounded stream summary metadata and remain ineligible', async () => {
   for (const [name, create] of [['codex', createCodexReportBackend], ['opencode', createOpenCodeReportBackend]]) {
     const child = timedChild();
-    const result = await create({ cwd: '.', timeoutMs: 8, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 5, reapAfterMs: 10 } })
+    const result = await create({ cwd: '.', timeoutMs: 80, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 100 } })
       .runReport({ prompt: 'x', request: request(name, `exec-${name}`) });
     assert.equal(result.terminal_state, 'TIMEOUT');
     assert.equal(reportDeliveryEligible(result).eligible, false);
@@ -87,7 +87,7 @@ test('Codex and OpenCode timeout results retain bounded stream summary metadata 
 
 test('Claude zero-output summary remains proven zero and preserves its prior safe diagnostics', async () => {
   const child = timedChild({ output: '' });
-  const result = await createClaudeReportBackend({ cwd: '.', timeoutMs: 8, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 5, reapAfterMs: 10 } })
+  const result = await createClaudeReportBackend({ cwd: '.', timeoutMs: 80, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 100 } })
     .runReport({ prompt: 'x', request: request('claude', 'exec-claude') });
   assert.equal(result.terminal_state, 'TIMEOUT');
   assert.equal(result.safe_diagnostics.stdout_chunk_count, 0);
@@ -101,10 +101,10 @@ test('delayed timeout exit is observed before the next sequential participant sp
   const events = [];
   const observer = createBackendExecutionObserver({ emit: (event) => events.push(event) });
   const firstChild = timedChild({ exitDelayMs: 25 });
-  const first = createCodexReportBackend({ cwd: '.', timeoutMs: 8, spawnImpl: () => firstChild, observer, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 50 } });
+  const first = createCodexReportBackend({ cwd: '.', timeoutMs: 80, spawnImpl: () => firstChild, observer, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 50 } });
   await first.runReport({ prompt: 'x', request: request('codex', 'exec-first') });
   const secondChild = timedChild();
-  const second = createOpenCodeReportBackend({ cwd: '.', timeoutMs: 8, spawnImpl: () => secondChild, observer, processSettlementOptions: { gracefulAfterMs: 5, reapAfterMs: 10 } });
+  const second = createOpenCodeReportBackend({ cwd: '.', timeoutMs: 80, spawnImpl: () => secondChild, observer, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 100 } });
   await second.runReport({ prompt: 'x', request: request('opencode', 'exec-second') });
   const firstExit = events.findIndex((e) => e.runId === 'exec-first' && e.eventKind === 'PROCESS_EXIT');
   const secondSpawn = events.findIndex((e) => e.runId === 'exec-second' && e.eventKind === 'PROCESS_SPAWN');
@@ -124,7 +124,7 @@ test('stubborn process cleanup remains bounded', async () => {
   const started = Date.now();
   const keepAlive = setInterval(() => {}, 50);
   const child = timedChild({ stubborn: true });
-  const result = await createCodexReportBackend({ cwd: '.', timeoutMs: 8, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 5, reapAfterMs: 10, taskkillSpawn: () => { const killer = new EventEmitter(); queueMicrotask(() => killer.emit('close', 0)); return killer; } } })
+  const result = await createCodexReportBackend({ cwd: '.', timeoutMs: 80, spawnImpl: () => child, processSettlementOptions: { gracefulAfterMs: 50, reapAfterMs: 100, taskkillSpawn: () => { const killer = new EventEmitter(); queueMicrotask(() => killer.emit('close', 0)); return killer; } } })
     .runReport({ prompt: 'x', request: request('codex', 'exec-stubborn') });
   clearInterval(keepAlive);
   assert.equal(result.terminal_state, 'TIMEOUT');

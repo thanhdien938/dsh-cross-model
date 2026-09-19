@@ -29,5 +29,5 @@ test('real production owner, PM worker, parking, leader restoration, and resume 
   const resumedStarted=await worker.runOnce();assert.equal(resumedStarted.status,'WORK');const resumed=await resumedStarted.started[0].promise;assert.equal(resumed.status,'WORK');assert.equal(resumed.outcome.status,'COMPLETED');assert.equal(composition.pmRepository.load(first.outcome.pmRunId).status,'completed');assert.equal((await composition.coordination.readClaim(first.work_item_id)).claim_state,'COMPLETED');
   const terminal=await composition.terminalNotifier.flush();assert.equal(terminal.sent,1);assert.match(sent.at(-1),/DSH task completed/);assert.match(sent.at(-1),/Result:\ndone/);assert.equal((await composition.terminalNotifier.flush()).sent,0);
   assert.equal((await worker.runOnce()).status,'IDLE');assert.equal(composition.sqlite.get('SELECT count(*) n FROM pm_runs').n,1);assert.equal(composition.sqlite.get('SELECT count(*) n FROM pm_turns').n,2);assert.doesNotMatch(sent.join('\n'),/runtime-random-token/);
-  assert.equal(await composition.coordination.readSchemaVersion(),4);assert.equal(await composition.sqlite.readSchemaVersion(),6);
+  assert.equal(await composition.coordination.readSchemaVersion(),5);assert.equal(await composition.sqlite.readSchemaVersion(),11);
 });

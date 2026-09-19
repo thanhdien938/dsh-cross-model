@@ -53,6 +53,12 @@ function advance(workDir, text) {
 function advanceViaClone(root, name, bareDir, text) {
   const cloneDir = mkdtempSync(join(root, `${name}-advancer-`));
   git(cloneDir, ['clone', '-q', bareDir, '.']);
+  // git config is per-repository, never inherited through `git clone` — a
+  // fresh CI runner has no global user.name/user.email, so this clone
+  // needs its own identity before it can commit, same as initRepo()'s
+  // workDir already sets up.
+  git(cloneDir, ['config', 'user.email', 'dsh-test@example.invalid']);
+  git(cloneDir, ['config', 'user.name', 'DSH Test']);
   writeFileSync(join(cloneDir, 'CHANGE.md'), `${text}\n`);
   git(cloneDir, ['add', '-A']);
   git(cloneDir, ['commit', '-q', '-m', text]);

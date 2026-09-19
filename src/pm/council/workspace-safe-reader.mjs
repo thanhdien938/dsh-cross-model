@@ -262,7 +262,13 @@ export function resolveSafeRepoPath(repoRoot, relativePath) {
   if (typeof relativePath !== 'string' || !relativePath.trim()) {
     throw new WorkspaceSafeReadError('relativePath is required', 'WORKSPACE_READ_NO_PATH');
   }
-  if (isAbsolute(relativePath) || /^[A-Za-z]:/.test(relativePath)) {
+  // isAbsolute() alone is host-dependent: on a POSIX host it does not
+  // recognize '\\host\share\...' (UNC) or 'C:\...' (drive-letter) syntax as
+  // absolute, so those forms would otherwise fall through to be joined as a
+  // literal-backslash "relative" segment instead of being refused. The
+  // drive-letter regex and an explicit UNC pattern make this refusal
+  // deterministic on every host, matching isUncPath() in artifact-store.mjs.
+  if (isAbsolute(relativePath) || /^[A-Za-z]:/.test(relativePath) || /^[\\/]{2}[^\\/]/.test(relativePath)) {
     throw new WorkspaceSafeReadError(`absolute paths are refused: ${relativePath}`, 'WORKSPACE_READ_PATH_ABSOLUTE', { relativePath });
   }
   const root = resolve(repoRoot);

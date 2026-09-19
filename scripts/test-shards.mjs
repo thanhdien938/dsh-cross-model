@@ -48,6 +48,7 @@ const rootInstalledCliDiagnostics = Object.freeze([
 
 const desktopWindowsProcess = Object.freeze([
   'desktop/tests/p13-r71-restart-exit-race.test.ts',
+  'desktop/tests/relayRunnerLifecycleManagerWindows.test.ts',
   'desktop/tests/runtimeRestartLifecycle.test.ts',
 ]);
 

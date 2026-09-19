@@ -60,6 +60,9 @@ test('P4_C7 telemetry is bounded, redacted, and sink failure is non-interfering'
 });
 
 test('P4_C8 deployment is constrained to host-local SQLite', async () => {
-  const text = await readFile(new URL('../docs/phase4/P4_DEPLOYMENT.md', import.meta.url), 'utf8');
+  // The normative deployment-constraint text lives in the public README's
+  // "Deployment Constraints" subsection (§5), not in an internal-only phase
+  // report — this is the one product doc an OSS user actually reads.
+  const text = await readFile(new URL('../README.md', import.meta.url), 'utf8');
   assert.match(text, /one execution host/i); assert.match(text, /Never mount.*NFS, SMB/is); assert.match(text, /unsupported/i);
 });

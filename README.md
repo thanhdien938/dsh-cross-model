@@ -126,6 +126,14 @@ Extends Council into structured multi-turn dialectic debate:
 - **Git:** Git 2.40+ (supporting worktrees).
 - **Python:** Python 3.10+ (for auxiliary research and audit tooling).
 
+### Deployment Constraints
+
+DSH's durable SQLite state is designed to run on **one execution host** at a time — the coordinator/worker runtime, the Desktop app, and the SQLite database file must all live on the same machine's local disk.
+
+- **Never mount** the SQLite data directory over a network filesystem (NFS, SMB, or any remote/shared drive). SQLite's file locking is not reliable over network filesystems, and a shared mount can corrupt durable state or silently desynchronize two DSH instances writing to the same file.
+- Multi-host coordination (multiple DSH instances sharing state) is **unsupported** by the SQLite persistence layer in this release — PostgreSQL is the durable coordination authority for cross-process claim/lease/fencing, but SQLite itself remains single-host.
+- If you need to move an installation to a different machine, stop the runtime, copy the whole data directory over, and start fresh there — do not run two instances against the same SQLite file from different hosts concurrently.
+
 ---
 
 ## 6. Fresh Clone Setup

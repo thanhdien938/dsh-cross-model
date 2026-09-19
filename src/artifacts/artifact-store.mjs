@@ -26,7 +26,7 @@ import {
   existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, renameSync,
   rmSync, statSync, realpathSync, openSync, readSync, closeSync,
 } from 'node:fs';
-import { dirname, isAbsolute, join, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, resolve, sep } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 
 import {
@@ -279,7 +279,23 @@ function assertNoReparseSurprise(path, label) {
   // the logical path traverses a symlink/junction/reparse point. (Uses
   // `sameLexicalPath`, not `samePath`, which would canonicalise both sides
   // and always report equal.)
-  if (!sameLexicalPath(real, path)) {
+  //
+  // The comparison is anchored on `path`'s PARENT's realpath, not on `path`
+  // itself: an ANCESTOR directory reached only through a Windows 8.3
+  // short-name alias (e.g. `C:\Users\RUNNER~1\...` for `C:\Users\runneradmin\...`,
+  // observed on GitHub-hosted Windows runners' %TEMP%) is not a
+  // symlink/junction/reparse point — it is the same physical directory
+  // under an alternate DOS-compatible name, and realpath() legitimately
+  // expands it. Only when THIS path's own final segment resolves outside
+  // its (already-canonical) parent is that a genuine reparse surprise.
+  let parentReal;
+  try {
+    parentReal = realpathSync.native ? realpathSync.native(dirname(path)) : realpathSync(dirname(path));
+  } catch (error) {
+    throw new ArtifactStoreError(`cannot resolve real path of ${label}'s parent (failing closed): ${error.message}`, 'ARTIFACT_ROOT_REPARSE', { path, label });
+  }
+  const expected = join(parentReal, basename(path));
+  if (!sameLexicalPath(real, expected)) {
     throw new ArtifactStoreError(`${label} resolves through a symlink/junction/reparse point (failing closed): ${path} -> ${real}`, 'ARTIFACT_ROOT_REPARSE', { path, real, label });
   }
 }
@@ -321,11 +337,17 @@ export function resolveArtifactStoreRoot({ runtimeBase, projectId }) {
   if (typeof runtimeBase !== 'string' || runtimeBase.trim() === '') {
     throw new ArtifactStoreError('runtimeBase (trusted absolute path) is required', 'ARTIFACT_ROOT_BASE_MISSING');
   }
-  if (!isAbsolute(runtimeBase)) {
-    throw new ArtifactStoreError(`runtimeBase must be absolute, got: ${JSON.stringify(runtimeBase)}`, 'ARTIFACT_ROOT_BASE_RELATIVE', { runtimeBase });
-  }
+  // UNC detection must run before the host-native isAbsolute() check:
+  // path.isAbsolute() only recognizes '\\server\share'/'//server/share' as
+  // absolute on win32, so on a POSIX host the relative-path branch would
+  // fire first and report the wrong, less specific reason for the same
+  // unsupported input. isUncPath() is a pure string pattern, not
+  // host-dependent, so this ordering is deterministic on every platform.
   if (isUncPath(runtimeBase)) {
     throw new ArtifactStoreError(`UNC/network artifact roots are unsupported in P20 v1: ${JSON.stringify(runtimeBase)}`, 'ARTIFACT_ROOT_UNC_UNSUPPORTED', { runtimeBase });
+  }
+  if (!isAbsolute(runtimeBase)) {
+    throw new ArtifactStoreError(`runtimeBase must be absolute, got: ${JSON.stringify(runtimeBase)}`, 'ARTIFACT_ROOT_BASE_RELATIVE', { runtimeBase });
   }
   assertProjectIdSegment(projectId);
   return resolve(runtimeBase, 'dsh-artifacts', projectId);
@@ -357,6 +379,9 @@ export class ArtifactStore {
       throw new ArtifactStoreError('projectId is required', 'ARTIFACT_PROJECT_ID_MISSING');
     }
     assertProjectIdSegment(projectId);
+    if (root !== undefined && root !== null && typeof root === 'string' && isUncPath(root)) {
+      throw new ArtifactStoreError(`explicit store root must not be a UNC/network path, got: ${JSON.stringify(root)}`, 'ARTIFACT_ROOT_UNC_UNSUPPORTED', { root });
+    }
     if (root !== undefined && root !== null && (typeof root !== 'string' || !isAbsolute(root))) {
       throw new ArtifactStoreError(`explicit store root must be an absolute path, got: ${JSON.stringify(root)}`, 'ARTIFACT_ROOT_RELATIVE', { root });
     }

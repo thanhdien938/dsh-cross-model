@@ -47,10 +47,14 @@ function fakeCliChild({ stdout = '', stderr = '', exitCode = 0, pid = 4242 } = {
   proc.stdin = new EventEmitter();
   proc.stdin.write = () => {};
   proc.stdin.end = () => {};
-  // Deferred to a microtask so every caller (the real bridge AND
-  // withSpawnObservation()) has already attached its listeners — a real
-  // child process's first 'data'/'close' always arrives asynchronously.
-  queueMicrotask(() => {
+  // Deferred so every caller (the real bridge AND withSpawnObservation())
+  // has already attached its listeners — a real child process's first
+  // 'data'/'close' always arrives asynchronously. setImmediate (after all
+  // microtasks/promise continuations drain) gives more scheduling headroom
+  // than a single queueMicrotask tick, which proved marginal enough to be
+  // observed racing against listener attachment under loaded CI runners
+  // even though it was reliable locally.
+  setImmediate(() => {
     if (stdout) proc.stdout.emit('data', Buffer.from(stdout));
     if (stderr) proc.stderr.emit('data', Buffer.from(stderr));
     proc.emit('exit', exitCode, null);

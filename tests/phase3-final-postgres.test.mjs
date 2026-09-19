@@ -54,7 +54,7 @@ test('G8-G10 real PostgreSQL split-brain/native/cancellation integration', { ski
   });
 
   await t.test('G10_CHECKPOINT A-Z matrix preserves local fencing while acknowledging external effects', async () => {
-    const rows = ledgerRows(nativeLedger); assert.equal(rows.filter((x) => x === 'resume').length, 1); assert.equal(rows.filter((x) => x === 'interrupt').length, 1); assert.equal(await store.readSchemaVersion(), 4); assert.equal(await sqlite.readSchemaVersion(), 6);
+    const rows = ledgerRows(nativeLedger); assert.equal(rows.filter((x) => x === 'resume').length, 1); assert.equal(rows.filter((x) => x === 'interrupt').length, 1); assert.equal(await store.readSchemaVersion(), 5); assert.equal(await sqlite.readSchemaVersion(), 11);
     console.log('P3 FINAL A-Z: PASS; real coordinator processes=4; tokens/DSN/task bodies redacted; no provider exactly-once claim');
   });
   await t.test('G10 coordinator PostgreSQL outage freezes policy authority', async () => {
