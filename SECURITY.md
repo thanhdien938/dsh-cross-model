@@ -8,14 +8,12 @@ DSH is currently in **initial beta** (pre-1.0). There is one actively supported 
 
 **Do not open a public GitHub Issue for a security vulnerability**, and do not include exploitable details, working exploit code, or real credentials in any public issue, discussion, or pull request.
 
-This project intends to use **GitHub Private Vulnerability Reporting / Security Advisories** for coordinated, private disclosure once the public repository exists. That feature must be enabled on the repository itself as a publication step — activating it is tracked as a follow-on publication action for this project (**P25.4**), not something that can be documented with a working link before the repository is created.
+**GitHub Private Vulnerability Reporting is enabled on this repository.** To report a vulnerability privately:
 
-Until that route is confirmed active on the published repository, if you believe you've found a security issue:
+1. Go to the **Security** tab of this repository.
+2. Click **Report a vulnerability** to open a private advisory draft with the maintainer.
 
-1. Check the repository's **About**/**Security** tab first — if Private Vulnerability Reporting is enabled, use it.
-2. If it is not yet visible, hold the report privately rather than filing a public issue, and check back once the repository has been published — the intent is to enable this feature at or shortly after initial publication.
-
-We do not yet have a dedicated security contact address to publish here, and we are deliberately not inventing one — an unmonitored or fabricated contact is worse than none. This section will be updated with a concrete, verified reporting channel once one exists.
+This is the only supported private reporting channel. We do not have a separate dedicated security contact email to publish here, and we are deliberately not inventing one — an unmonitored or fabricated contact is worse than none.
 
 ## Scope
 
