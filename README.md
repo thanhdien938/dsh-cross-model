@@ -72,7 +72,7 @@ Extends Council into structured multi-turn dialectic debate:
 ┌─────────────────────────────────────────────────────────────┐
 │                       Owner Transports                      │
 │        Desktop GUI (Electron)  │  Telegram Remote Bot       │
-│                  GitHub Relay (Optional / Private)          │
+│              GitHub Relay (Optional Companion)             │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
@@ -378,12 +378,28 @@ To configure Telegram transport:
 
 ---
 
-## 17. Optional GitHub Relay Architecture
+## 17. Optional GitHub ↔ Telegram Relay Companion
 
-For automated issue-based task dispatch, DSH supports a separate GitHub relay topology:
-- **Strict Separation:** The relay control plane runs in a dedicated private repository (e.g. `dsh-github-telegram-relay`).
-- **One-Way Ingress:** GitHub Actions events trigger a local self-hosted runner which dispatches tasks through the authorized Telegram owner channel.
-- **Safety Boundary:** The public DSH source repository contains zero relay credentials and accepts no public webhooks. Public forks or issue authors cannot reach owner infrastructure.
+DSH can optionally receive owner tasks from GitHub Issues through the public companion project [DSH Telegram Relay](https://github.com/thanhdien938/dsh-telegram-relay).
+
+The relay bridges:
+
+```text
+GitHub Issue
+    → private self-hosted runner
+    → Telegram
+    → DSH
+    → GitHub result comment
+```
+
+Key deployment rules:
+- **Public source, private control plane:** the relay source/template is public, but the deployed GitHub Issue control repository should be **Private**.
+- **Owner allowlist:** only explicitly configured GitHub users are authorized; matching is exact and fails closed.
+- **Pinned Telegram destination:** `DSH_RELAY_TELEGRAM_TARGET` is trusted configuration and must be set explicitly; Issue content cannot choose the Telegram destination.
+- **Windows deployment baseline:** the current v0.1.x deployment template targets a Windows self-hosted runner.
+- **Safety boundary:** the public DSH repository contains no relay credentials and does not expose an active issue-triggered self-hosted runner workflow.
+
+To set it up, open [`thanhdien938/dsh-telegram-relay`](https://github.com/thanhdien938/dsh-telegram-relay), use the repository as a template for a **private** control repo, then configure the authorized GitHub owner, Telegram target, Telegram MCP, and self-hosted runner.
 
 ---
 
