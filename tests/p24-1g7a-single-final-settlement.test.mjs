@@ -284,6 +284,8 @@ test('unexpected remote branch content fails closed rather than force-pushing ov
   try {
     git(otherClone, ['clone', '-q', bareDir, '.']);
     git(otherClone, ['checkout', '-q', binding.task_branch]);
+    git(otherClone, ['config', 'user.email', 'dsh-foreign@example.invalid']);
+    git(otherClone, ['config', 'user.name', 'DSH Foreign']);
     writeFileSync(join(otherClone, 'FOREIGN.md'), 'not ours\n');
     git(otherClone, ['add', '-A']);
     git(otherClone, ['commit', '-q', '-m', 'foreign change']);

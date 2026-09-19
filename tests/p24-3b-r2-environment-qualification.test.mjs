@@ -18,7 +18,7 @@ import { EventEmitter } from 'node:events';
 
 import { PostgresCoordinationStore } from '../src/coordination/postgres/postgres-coordination-store.mjs';
 import { migrateCoordination } from '../scripts/coordination-migrate.mjs';
-import { startDisposablePostgres } from './fixtures/disposable-postgres.mjs';
+import { startDisposablePostgres, isDisposablePostgresAvailable } from './fixtures/disposable-postgres.mjs';
 import { SqlitePersistenceStore } from '../src/persistence/sqlite/sqlite-persistence-store.mjs';
 import { AgentBusRepository } from '../src/persistence/repositories/agentbus-repository.mjs';
 import { PmRepository } from '../src/persistence/repositories/pm-repository.mjs';
@@ -104,7 +104,9 @@ async function registerPmActionWork(coordination, { taskId, pmRunId }) {
   return identity;
 }
 
-test('§4.A1/A2/A3 — real Postgres: two registered projects sharing one repository_common_dir (a real linked-worktree alias) serialize through the REAL PostgresCoordinationStore + real ProductionPmWorker admission path', async () => {
+const hasPostgres = isDisposablePostgresAvailable();
+
+test('§4.A1/A2/A3 — real Postgres: two registered projects sharing one repository_common_dir (a real linked-worktree alias) serialize through the REAL PostgresCoordinationStore + real ProductionPmWorker admission path', { skip: !hasPostgres ? 'PostgreSQL (initdb) not available in this environment' : false }, async () => {
   await withRealCoordination(async ({ coordination }) => {
     await withDisposableRoot(async (root) => {
       const { workDir } = initWorktreeWithBareRemote(root);
@@ -162,7 +164,7 @@ test('§4.A1/A2/A3 — real Postgres: two registered projects sharing one reposi
   });
 });
 
-test('§4.A4 — real Postgres: two genuinely different repositories run concurrently under the existing global=2 limit', async () => {
+test('§4.A4 — real Postgres: two genuinely different repositories run concurrently under the existing global=2 limit', { skip: !hasPostgres ? 'PostgreSQL (initdb) not available in this environment' : false }, async () => {
   await withRealCoordination(async ({ coordination }) => {
     await withDisposableRoot(async (root) => {
       const { workDir: workDirX } = initWorktreeWithBareRemote(join(root, 'repo-x'));
@@ -196,7 +198,7 @@ test('§4.A4 — real Postgres: two genuinely different repositories run concurr
   });
 });
 
-test('§4.A5/A6 — real Postgres: a SECOND worker incarnation (simulating a restarted process, with an EMPTY in-memory slot table) still cannot start a same-repository task while a FIRST incarnation durably owns it — durable cross-incarnation occupancy, not in-memory state', async () => {
+test('§4.A5/A6 — real Postgres: a SECOND worker incarnation (simulating a restarted process, with an EMPTY in-memory slot table) still cannot start a same-repository task while a FIRST incarnation durably owns it — durable cross-incarnation occupancy, not in-memory state', { skip: !hasPostgres ? 'PostgreSQL (initdb) not available in this environment' : false }, async () => {
   await withRealCoordination(async ({ coordination }) => {
     await withDisposableRoot(async (root) => {
       const { workDir } = initWorktreeWithBareRemote(root);
@@ -527,7 +529,7 @@ test('§6.C2a — a moderately long, realistic nested runtime root (well under t
 
 test('§6.C2b — a runtime worktree root long enough to trip the REAL git "$GIT_DIR too big" defect is rejected deterministically BEFORE any git mutation, with a clear typed reason', async () => withDisposableRoot(async (root) => {
   const { workDir } = initWorktreeWithBareRemote(root);
-  const deepSegments = ['dsh-runtime-storage', 'worktrees', 'v1', 'a-reasonably-long-project-identifier-segment', 'nested', 'deeper'];
+  const deepSegments = ['dsh-runtime-storage', 'worktrees', 'v1', 'a-reasonably-long-project-identifier-segment', 'nested', 'deeper', 'safe-bound-exceeding-path-segment'];
   const workspaceRoot = join(root, ...deepSegments);
   mkdirSync(workspaceRoot, { recursive: true });
   const taskId = 'task-c2-a-fairly-long-deterministic-task-identifier-value';
@@ -582,7 +584,7 @@ function launchExclusiveLockHolder(filePath) {
   };
 }
 
-test('§6.C3/C7/C8 — a real, OS-level exclusive-share Windows file lock (a genuine separate process, FileShare.None) blocks cleanup (retained, typed reason, never force-deleted); releasing the lock and retrying succeeds; the local task branch remains available throughout', async () => withDisposableRoot(async (root) => {
+test('§6.C3/C7/C8 — a real, OS-level exclusive-share Windows file lock (a genuine separate process, FileShare.None) blocks cleanup (retained, typed reason, never force-deleted); releasing the lock and retrying succeeds; the local task branch remains available throughout', { skip: process.platform !== 'win32' ? 'Windows OS-level FileShare.None lock' : false }, async () => withDisposableRoot(async (root) => {
   const { workDir } = initWorktreeWithBareRemote(root);
   const workspaceRoot = join(root, 'workspaces');
   const taskId = 'task-c3-handle-lock';
@@ -682,7 +684,7 @@ test('§6.C4 — a real child process whose cwd is inside the task workspace blo
 // own explicit "do NOT recursively traverse arbitrary junction targets"
 // instruction (a full pre-emptive ancestor-realpath resolution before
 // every allocation was judged out of this qualification phase's scope).
-test('§6.C5 — a real Windows junction redirecting the project_id path component outside the runtime worktree root is never silently adopted: allocation fails closed (typed, BLOCKED), never reported READY', async () => withDisposableRoot(async (root) => {
+test('§6.C5 — a real Windows junction redirecting the project_id path component outside the runtime worktree root is never silently adopted: allocation fails closed (typed, BLOCKED), never reported READY', { skip: process.platform !== 'win32' ? 'Windows NTFS junction mechanism' : false }, async () => withDisposableRoot(async (root) => {
   const { workDir } = initWorktreeWithBareRemote(root);
   const legitRoot = join(root, 'legit-worktree-root');
   mkdirSync(legitRoot, { recursive: true });
@@ -715,7 +717,7 @@ test('§6.C5 — a real Windows junction redirecting the project_id path compone
 // to current manager policy" — no new reserved-name-specific code was
 // added; the EXISTING git-level, typed rejection is safe as-is.
 for (const [label, projectId, taskId] of [['project_id', 'CON', 'task-c6-1'], ['task_id', 'proj-c6', 'NUL'], ['task_id', 'proj-c6', 'COM1']]) {
-  test(`§6.C6 — a Windows reserved device name ("${label}"=${projectId === 'CON' || projectId === 'NUL' || projectId === 'COM1' ? projectId : taskId}) fails closed with a typed error, never a crash or partial corruption`, async () => withDisposableRoot(async (root) => {
+  test(`§6.C6 — a Windows reserved device name ("${label}"=${projectId === 'CON' || projectId === 'NUL' || projectId === 'COM1' ? projectId : taskId}) fails closed with a typed error, never a crash or partial corruption`, { skip: process.platform !== 'win32' ? 'Windows reserved device names (CON/NUL/COM1)' : false }, async () => withDisposableRoot(async (root) => {
     const { workDir } = initWorktreeWithBareRemote(root);
     const workspaceRoot = join(root, 'workspaces');
     mkdirSync(workspaceRoot, { recursive: true });

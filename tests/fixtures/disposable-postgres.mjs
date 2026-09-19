@@ -25,6 +25,15 @@ function randomPort() {
   return 20000 + Math.floor(Math.random() * 30000);
 }
 
+export function isDisposablePostgresAvailable() {
+  try {
+    execFileSync('initdb', ['--version'], { stdio: 'ignore', windowsHide: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * @returns {Promise<{dsn:string, stop: () => Promise<void>}>}
  */

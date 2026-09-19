@@ -25,7 +25,7 @@
 // cwd alone -- also proven by direct reproduction).
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, copyFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, copyFileSync, realpathSync } from 'node:fs';
 import { EventEmitter } from 'node:events';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
@@ -44,7 +44,8 @@ import { ProductionPmBackendRegistry } from '../src/pm/production-pm-backend-reg
 import { normalizePmDecision } from '../src/pm/pm-contracts.mjs';
 
 const isWin32 = process.platform === 'win32';
-const root = mkdtempSync(join(tmpdir(), 'p16-live-r2-'));
+const rawRoot = mkdtempSync(join(tmpdir(), 'p16-live-r2-'));
+const root = realpathSync.native ? realpathSync.native(rawRoot) : realpathSync(rawRoot);
 test.after(() => rmSync(root, { recursive: true, force: true }));
 
 function fakeChild() {
