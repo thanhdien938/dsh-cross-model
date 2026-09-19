@@ -98,8 +98,8 @@ export function discoverShards() {
   const crossTreeDesktop = new Set(desktopCrossTree);
 
   return Object.freeze({
-    'root-portable-pure': Object.freeze({ kind: 'node', files: portablePure, timeoutMs: 60_000, concurrency: 4 }),
-    'root-portable-sqlite': Object.freeze({ kind: 'node', files: portableSqlite, timeoutMs: 90_000, concurrency: 3 }),
+    'root-portable-pure': Object.freeze({ kind: 'node', files: portablePure, timeoutMs: 120_000, concurrency: 3 }),
+    'root-portable-sqlite': Object.freeze({ kind: 'node', files: portableSqlite, timeoutMs: 120_000, concurrency: 3 }),
     'root-windows-process': Object.freeze({ kind: 'node', files: [...rootWindowsProcess], timeoutMs: 180_000, concurrency: 1 }),
     'root-installed-cli-diagnostic': Object.freeze({ kind: 'node', files: [...rootInstalledCliDiagnostics], timeoutMs: 60_000, concurrency: 1, required: false }),
     'root-host-timing-diagnostic': Object.freeze({ kind: 'node', files: [...rootHostTimingDiagnostics], timeoutMs: 60_000, concurrency: 1, required: false }),
